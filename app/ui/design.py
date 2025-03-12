@@ -90,28 +90,28 @@ class Ui_MainWindow(object):
         """Set up buttons in the central widget."""
         # Back Button
         self.back_button = self.create_button(
-            "⇦", self.centralwidget, "back_button", geometry=QtCore.QRect(20, 20, 50, 50),
+            "⇦", self.centralwidget, "back_button", geometry=QtCore.QRect(20, 30, 50, 50),
             font_size=40, font_family="Hiragino Sans GB", hover_color="rgb(253, 94, 80)"
         )
 
         # Save Button
         self.save_button = self.create_button(
-            "Save", self.centralwidget, "save_button", geometry=QtCore.QRect(410, 20, 200, 45)
+            "Save", self.centralwidget, "save_button", geometry=QtCore.QRect(410, 30, 200, 45)
         )
 
         # Reset Button
         self.reset_button = self.create_button(
-            "Reset", self.centralwidget, "reset_button", geometry=QtCore.QRect(690, 20, 200, 45)
+            "Reset", self.centralwidget, "reset_button", geometry=QtCore.QRect(690, 30, 200, 45)
         )
 
         # Upload Button
         self.upload_button = self.create_button(
-            "Upload Photo", self.centralwidget, "upload_button", geometry=QtCore.QRect(970, 20, 200, 45)
+            "Upload Photo", self.centralwidget, "upload_button", geometry=QtCore.QRect(970, 30, 200, 45)
         )
 
         # Quit App Button
         self.quit_app_button = self.create_button(
-            "X", self.centralwidget, "quit_app_button", geometry=QtCore.QRect(1220, 20, 50, 50),
+            "X", self.centralwidget, "quit_app_button", geometry=QtCore.QRect(1220, 30, 50, 50),
             font_size=40, font_family="Hiragino Sans GB", hover_color="rgb(253, 94, 80)"
         )
 
@@ -155,7 +155,7 @@ class Ui_MainWindow(object):
     def setup_sidebar_2(self):
         """Set up the second sidebar with labels, sliders, and buttons."""
         self.sidebar_2_layout = QtWidgets.QWidget(self.centralwidget)
-        self.sidebar_2_layout.setGeometry(QtCore.QRect(10, 70, 271, 731))
+        self.sidebar_2_layout.setGeometry(QtCore.QRect(10, 80, 271, 731))
         self.sidebar_2_layout.setObjectName("sidebar_2_layout")
 
         self.sidebar_5 = QtWidgets.QVBoxLayout(self.sidebar_2_layout)
