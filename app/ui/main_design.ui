@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color:#2c3a41;</string>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>190</y>
+      <width>961</width>
+      <height>511</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="images_layout">
+     <item>
+      <widget class="QGroupBox" name="original_image_groupbox">
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="title">
+        <string>Original Image</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="processed_image_groupbox">
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="title">
+        <string>Processed Image</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1261</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>80</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="back_button">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>230</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{ 
+	background-color: rgb(255, 255, 255);
+	border-radius: 8px;
+	color: rgb(0, 0, 0);
+	border:2px solid black;
+}
+QPushButton:hover {
+background-color: rgb(230, 230, 230);                               
+                             }
+</string>
+       </property>
+       <property name="text">
+        <string>Back</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="save_button">
+       <property name="maximumSize">
+        <size>
+         <width>230</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{ 
+	background-color: rgb(255, 255, 255);
+	border-radius: 8px;
+	color: rgb(0, 0, 0);
+	border:2px solid black;
+}
+QPushButton:hover {
+background-color: rgb(230, 230, 230);                               
+                             }</string>
+       </property>
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="reset">
+       <property name="maximumSize">
+        <size>
+         <width>230</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{ 
+	background-color: rgb(255, 255, 255);
+	border-radius: 8px;
+	color: rgb(0, 0, 0);
+	border:2px solid black;
+}
+QPushButton:hover {
+background-color: rgb(230, 230, 230);                               
+                             }</string>
+       </property>
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="upload_button">
+       <property name="maximumSize">
+        <size>
+         <width>230</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{ 
+	background-color: rgb(255, 255, 255);
+	border-radius: 8px;
+	color: rgb(0, 0, 0);
+	border:2px solid black;
+}
+QPushButton:hover {
+background-color: rgb(230, 230, 230);                               
+                             }</string>
+       </property>
+       <property name="text">
+        <string>Upload Photo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="quit_app_button">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Hiragino Sans GB</family>
+         <pointsize>40</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+         <kerning>false</kerning>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 3px solid rgb(255, 255, 255);
+                                            }
+                                            QPushButton:hover {
+                                            border-color:rgb(253, 94, 80);
+                                            color:rgb(253, 94, 80);
+                                            }
+                                        </string>
+       </property>
+       <property name="text">
+        <string>X</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>25</width>
+         <height>16</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>261</width>
+      <height>701</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="side_bar_1">
+     <item>
+      <widget class="QPushButton" name="edge_detection">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>230</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{ 
+	background-color: rgb(255, 255, 255);
+	border-radius: 8px;
+	color: rgb(0, 0, 0);
+	border:2px solid black;
+}
+QPushButton:hover {
+background-color: rgb(230, 230, 230);                               
+                             }
+</string>
+       </property>
+       <property name="text">
+        <string>Edge Detection</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="object_contour">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>230</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{ 
+	background-color: rgb(255, 255, 255);
+	border-radius: 8px;
+	color: rgb(0, 0, 0);
+	border:2px solid black;
+}
+QPushButton:hover {
+background-color: rgb(230, 230, 230);                               
+                             }
+</string>
+       </property>
+       <property name="text">
+        <string>Object Contour</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
