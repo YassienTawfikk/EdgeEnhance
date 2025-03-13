@@ -1,0 +1,37 @@
+Pixelizer/
+│
+├── README.md
+├── requirements.txt
+├── main.py
+│
+├── app/
+│   ├── controller.py
+│   │
+│   ├── design/
+│   │   │
+│   │   ├── ui/
+│   │   │   └── design.ui
+│   │   │
+│   │   └── design.py
+│   │
+│   ├── processing/
+│   │   └── contour.py
+│   │
+│   ├── services/
+│   │   └── image_service.py
+│   │
+│   └── utils/
+│       └── clean_cache.py
+│
+└── static/
+    ├── icons/
+    │   └── icon.png
+    │
+    ├── images/
+    │   ├── image01
+    │   ├── ......
+    │   └── image15
+    │
+    └── docs/
+        ├── Report.pdf
+        └── OOP Structure.txt
