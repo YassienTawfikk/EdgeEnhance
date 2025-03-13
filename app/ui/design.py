@@ -41,11 +41,11 @@ class Ui_MainWindow(object):
     def setup_image_layouts(self):
         """Set up the layout for displaying original and processed images."""
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(300, 150, 971, 621))
+        self.layoutWidget.setGeometry(QtCore.QRect(280, 190, 1000, 530))
         self.layoutWidget.setObjectName("layoutWidget")
 
         self.images_layout = QtWidgets.QHBoxLayout(self.layoutWidget)
-        self.images_layout.setContentsMargins(0, 0, 0, 0)
+        self.images_layout.setContentsMargins(20, 0, 20, 0)
         self.images_layout.setObjectName("images_layout")
 
         # Original Image GroupBox
@@ -63,7 +63,7 @@ class Ui_MainWindow(object):
     def setup_sidebar_1(self):
         """Set up the first sidebar with buttons."""
         self.sidebar_1_layout = QtWidgets.QWidget(self.centralwidget)
-        self.sidebar_1_layout.setGeometry(QtCore.QRect(20, 90, 261, 701))
+        self.sidebar_1_layout.setGeometry(QtCore.QRect(20, 130, 261, 600))
         self.sidebar_1_layout.setObjectName("sidebar_1_layout")
 
         self.side_bar_1 = QtWidgets.QVBoxLayout(self.sidebar_1_layout)
@@ -314,7 +314,8 @@ class Ui_MainWindow(object):
     def create_group_box(self, title, parent, object_name):
         """Helper function to create a group box."""
         group_box = QtWidgets.QGroupBox(parent)
-        group_box.setStyleSheet("color: rgb(255, 255, 255);")
+        group_box.setStyleSheet("color: rgb(255, 255, 255);"
+                                "QGroupBox:border: 5px solid rgb(255, 255, 255); }")
         group_box.setObjectName(object_name)
         group_box.setTitle(title)
         return group_box
