@@ -1,7 +1,10 @@
 from PyQt5 import QtWidgets
+from torch.nn.functional import selu_
+
 from app.ui.design import Ui_MainWindow
 from app.utils.clean_cache import remove_directories
 from app.services.image_service import ImageServices
+from app.processing.contour import Contour
 import cv2
 
 
@@ -26,6 +29,8 @@ class MainWindowController:
         self.ui.upload_button.clicked.connect(self.drawImage)
         self.ui.save_button.clicked.connect(lambda: self.srv.save_image(self.processed_image))
         self.ui.reset_button.clicked.connect(self.reset_images)
+        self.ui.apply_contour_button.clicked.connect(self.apply_contour)
+        self.contour=Contour()
 
     def drawImage(self):
         self.path = self.srv.upload_image_file()
@@ -78,3 +83,49 @@ class MainWindowController:
         self.ui.sidebar_1_layout.hide()  # Hide sidebar_1
         self.ui.sidebar_2_layout.hide()  # Hide sidebar_2
         self.ui.sidebar_3_layout.show()  # Show sidebar_3
+
+    def apply_contour(self):
+        if self.original_image is None:
+            print("No image available")
+            return
+        if self.processed_image is None:
+            print("No image available")
+            return
+
+        num_points = self.ui.num_of_points_spin_box.value()
+        num_iterations = self.ui.num_of_itr_spin_box.value()
+        alpha = self.ui.alpha_spin_box.value()
+        beta = self.ui.beta_spin_box.value()
+        gamma = self.ui.gamma_spin_box.value()
+        radius = self.ui.circle_radius_spinBox.value()
+        window_size = self.ui.window_size_spin_box.value()
+
+        # Initialize the contour
+        original_snake = self.contour.initialize_contour(self.original_image, num_points, radius)
+        processed_snake = self.contour.initialize_contour(self.processed_image, num_points, radius)
+        # Evolve the contour
+        processed_snake = self.contour.evolve_contour(processed_snake, self.processed_image, num_iterations, alpha, beta, gamma, window_size)
+
+        # Update processed image with the equalized image
+        #self.processed_image = equalized_image
+
+        # Show the processed image
+        self.showImage(self.original_image, self.ui.original_image_groupbox)
+        self.showImage(self.processed_image, self.ui.processed_image_groupbox)
+
+        # Compute chain code, area, and perimeter
+        #codes = self.contour.chain_code(processed_snake)
+        area, perimeter = self.contour.compute_area_perimeter(processed_snake,self.processed_image)
+        self.ui.perimeter_label.setText(str(perimeter))
+        self.ui.area_label.setText(str(area))
+        #print("Chain Code:", codes)
+        print("Area:", area)
+        print("Perimeter:", perimeter)
+
+    def showImage(self,image,groupbox):
+        if image is None:
+            print("Error: Processed image is None.")
+            return  # Prevents crashing
+
+        self.srv.clear_image(groupbox)
+        self.srv.set_image_in_groupbox(groupbox, image)

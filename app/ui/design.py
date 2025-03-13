@@ -367,10 +367,43 @@ class Ui_MainWindow(object):
             label = self.create_label(label_text, group_box, f"{label_text.lower().replace(' ', '_')}_label")
             grid_layout.addWidget(label, i, 0, 1, 1)
 
-            spin_box = QtWidgets.QSpinBox(group_box)
-            spin_box.setStyleSheet("QSpinBox{ color: rgb(255, 255, 255); }")
-            spin_box.setObjectName(f"{label_text.lower().replace(' ', '_')}_spinBox")
-            grid_layout.addWidget(spin_box, i, 1, 1, 1)
+            if label_text =="Window Size":
+                self.window_size_spin_box = QtWidgets.QSpinBox(group_box)
+                self.window_size_spin_box.setStyleSheet("QSpinBox{ color: rgb(255, 255, 255); }")
+                self.window_size_spin_box.setObjectName(f"{label_text.lower().replace(' ', '_')}_spinBox")
+                grid_layout.addWidget(self.window_size_spin_box, i, 1, 1, 1)
+
+            elif label_text =="Num of Points":
+                self.num_of_points_spin_box = QtWidgets.QSpinBox(group_box)
+                self.num_of_points_spin_box.setStyleSheet("QSpinBox{ color: rgb(255, 255, 255); }")
+                self.num_of_points_spin_box.setObjectName(f"{label_text.lower().replace(' ', '_')}_spinBox")
+                grid_layout.addWidget(self.num_of_points_spin_box, i, 1, 1, 1)
+
+            elif label_text == "Num of Itr":
+                self.num_of_itr_spin_box = QtWidgets.QSpinBox(group_box)
+                self.num_of_itr_spin_box.setStyleSheet("QSpinBox{ color: rgb(255, 255, 255); }")
+                self.num_of_itr_spin_box.setObjectName(f"{label_text.lower().replace(' ', '_')}_spinBox")
+                grid_layout.addWidget(self.num_of_itr_spin_box, i, 1, 1, 1)
+
+            elif label_text == "Alpha":
+                self.alpha_spin_box = QtWidgets.QSpinBox(group_box)
+                self.alpha_spin_box.setStyleSheet("QSpinBox{ color: rgb(255, 255, 255); }")
+                self.alpha_spin_box.setObjectName(f"{label_text.lower().replace(' ', '_')}_spinBox")
+                grid_layout.addWidget(self.alpha_spin_box, i, 1, 1, 1)
+
+            elif label_text =="Beta":
+                self.beta_spin_box = QtWidgets.QSpinBox(group_box)
+                self.beta_spin_box.setStyleSheet("QSpinBox{ color: rgb(255, 255, 255); }")
+                self.beta_spin_box.setObjectName(f"{label_text.lower().replace(' ', '_')}_spinBox")
+                grid_layout.addWidget(self.beta_spin_box, i, 1, 1, 1)
+
+            elif label_text =="Gamma":
+                self.gamma_spin_box = QtWidgets.QSpinBox(group_box)
+                self.gamma_spin_box.setStyleSheet("QSpinBox{ color: rgb(255, 255, 255); }")
+                self.gamma_spin_box.setObjectName(f"{label_text.lower().replace(' ', '_')}_spinBox")
+                grid_layout.addWidget(self.gamma_spin_box, i, 1, 1, 1)
+
+
 
     def retranslateUi(self, MainWindow):
         """Translate the UI elements."""
