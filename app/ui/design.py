@@ -118,7 +118,7 @@ class Ui_MainWindow(object):
     def setup_sidebar_3(self):
         """Set up the third sidebar with group boxes and buttons."""
         self.sidebar_3_layout = QtWidgets.QWidget(self.centralwidget)
-        self.sidebar_3_layout.setGeometry(QtCore.QRect(10, 150, 281, 621))
+        self.sidebar_3_layout.setGeometry(QtCore.QRect(10, 130, 285, 630))
         self.sidebar_3_layout.setObjectName("sidebar_3_layout")
 
         self.sidebar_3 = QtWidgets.QVBoxLayout(self.sidebar_3_layout)
@@ -150,12 +150,18 @@ class Ui_MainWindow(object):
         self.apply_contour_button = self.create_button(
             "Apply Contour", self.sidebar_3_layout, "apply_contour_button"
         )
+        # self.apply_contour_button.setFixedSize(200, 45)
+
+        self.initial_conour_groupBox.setStyleSheet("color: white;")
+        self.snake_contour_groupBox.setStyleSheet("color: white;")
+        self.active_contour_groupbox.setStyleSheet("color: white;")
+
         self.sidebar_3.addWidget(self.apply_contour_button)
 
     def setup_sidebar_2(self):
         """Set up the second sidebar with labels, sliders, and buttons."""
         self.sidebar_2_layout = QtWidgets.QWidget(self.centralwidget)
-        self.sidebar_2_layout.setGeometry(QtCore.QRect(10, 80, 271, 731))
+        self.sidebar_2_layout.setGeometry(QtCore.QRect(10, 100, 271, 680))
         self.sidebar_2_layout.setObjectName("sidebar_2_layout")
 
         self.sidebar_5 = QtWidgets.QVBoxLayout(self.sidebar_2_layout)
@@ -289,7 +295,7 @@ class Ui_MainWindow(object):
             button.setGeometry(geometry)
         button.setFont(QtGui.QFont(font_family, font_size))
         button.setStyleSheet(
-            f"QPushButton {{ color: rgb(255, 255, 255); border: 3px solid rgb(255, 255, 255); }}"
+            f"QPushButton {{ color: rgb(255, 255, 255); border: 3px solid rgb(255, 255, 255); height:40px; }}"
             f"QPushButton:hover {{ border-color:{hover_color}; color: {hover_color}; }}"
         )
         button.setObjectName(object_name)
@@ -302,7 +308,7 @@ class Ui_MainWindow(object):
             button.setMaximumSize(QtCore.QSize(*maximum_size))
 
         return button
-    def create_label(self, text, parent, object_name, font_size=12, bold=False):
+    def create_label(self, text, parent, object_name, font_size=11, bold=False):
         """Helper function to create a label."""
         label = QtWidgets.QLabel(parent)
         label.setFont(QtGui.QFont("", font_size, QtGui.QFont.Bold if bold else QtGui.QFont.Normal))
@@ -425,12 +431,6 @@ class Ui_MainWindow(object):
         self.area_label.setText(_translate("MainWindow", "Area"))
         self.perimeter_label.setText(_translate("MainWindow", "Perimeter"))
         self.active_contour_groupbox.setTitle(_translate("MainWindow", "Active Contour"))
-        # self.window_size_label.setText(_translate("MainWindow", "Window Size"))
-        # self.num_of_points_label.setText(_translate("MainWindow", "Num of Points"))
-        # self.num_of_itr_label.setText(_translate("MainWindow", "Num of Itr"))
-        # self.alpha_label.setText(_translate("MainWindow", "Alpha"))
-        # self.beta_label.setText(_translate("MainWindow", "Beta"))
-        # self.gamma_label.setText(_translate("MainWindow", "Gamma"))
         self.apply_contour_button.setText(_translate("MainWindow", "Apply Contour"))
         self.parametric_shape_label.setText(_translate("MainWindow", "Parametric Shape"))
         self.line_threshold_label.setText(_translate("MainWindow", "Line Threshold"))
