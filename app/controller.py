@@ -17,7 +17,7 @@ class MainWindowController:
         # Hide sidebar_2 and sidebar_3 initially
         self.ui.sidebar_2_layout.hide()
         self.ui.sidebar_3_layout.hide()
-        self.ui.parametric_shape_combobox.addItems(["Line","Circle", "Ellipse" ])
+        self.ui.parametric_shape_combobox.addItems(["Line", "Circle", "Ellipse"])
 
         # Connect button signals
         self.ui.quit_app_button.clicked.connect(self.closeApp)
@@ -29,7 +29,7 @@ class MainWindowController:
         self.ui.save_button.clicked.connect(lambda: self.srv.save_image(self.processed_image))
         self.ui.reset_button.clicked.connect(self.reset_images)
         self.ui.apply_contour_button.clicked.connect(self.apply_contour)
-        self.contour=Contour()
+        self.contour = Contour()
 
     def drawImage(self):
         self.path = self.srv.upload_image_file()
@@ -106,22 +106,22 @@ class MainWindowController:
         processed_snake = self.contour.evolve_contour(processed_snake, self.processed_image, num_iterations, alpha, beta, gamma, window_size)
 
         # Update processed image with the equalized image
-        #self.processed_image = equalized_image
+        # self.processed_image = equalized_image
 
         # Show the processed image
         self.showImage(self.original_image, self.ui.original_image_groupbox)
         self.showImage(self.processed_image, self.ui.processed_image_groupbox)
 
         # Compute chain code, area, and perimeter
-        #codes = self.contour.chain_code(processed_snake)
-        area, perimeter = self.contour.compute_area_perimeter(processed_snake,self.processed_image)
+        # codes = self.contour.chain_code(processed_snake)
+        area, perimeter = self.contour.compute_area_perimeter(processed_snake, self.processed_image)
         self.ui.perimeter_label.setText(str(perimeter))
         self.ui.area_label.setText(str(area))
-        #print("Chain Code:", codes)
+        # print("Chain Code:", codes)
         print("Area:", area)
         print("Perimeter:", perimeter)
 
-    def showImage(self,image,groupbox):
+    def showImage(self, image, groupbox):
         if image is None:
             print("Error: Processed image is None.")
             return  # Prevents crashing

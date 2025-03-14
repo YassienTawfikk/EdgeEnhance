@@ -1,8 +1,9 @@
 import numpy as np
 import cv2
 
+
 class Contour:
-    def gaussian_blur(self,image, kernel_size, sigma):
+    def gaussian_blur(self, image, kernel_size, sigma):
         """Apply Gaussian blur to an image."""
         # Create a Gaussian kernel
         ax = np.linspace(-(kernel_size // 2), kernel_size // 2, kernel_size)
@@ -22,18 +23,17 @@ class Contour:
 
         return blurred_image
 
-
-    def initialize_contour(self,image, num_points, radius):
+    def initialize_contour(self, image, num_points, radius):
         """Initialize the contour around the center of the image."""
         s = np.linspace(0, 2 * np.pi, num_points)
         x = radius * np.cos(s) + image.shape[1] // 2
         y = radius * np.sin(s) + image.shape[0] // 2
         return np.array([x, y]).T
 
-    def evolve_contour(self,snake, image, num_iterations, alpha, beta, gamma, window_size):
+    def evolve_contour(self, snake, image, num_iterations, alpha, beta, gamma, window_size):
         """Evolve the contour using the greedy algorithm."""
         if window_size <= 0 or window_size % 2 == 0:
-            window_size=5
+            window_size = 5
         for _ in range(num_iterations):
             # Compute the energy terms
             dx = np.roll(snake[:, 0], -1) - snake[:, 0]
@@ -63,7 +63,7 @@ class Contour:
 
         return snake
 
-    def chain_code(self,snake):
+    def chain_code(self, snake):
         """Compute the chain code representation of the contour."""
         codes = []
         for i in range(len(snake)):
@@ -79,7 +79,7 @@ class Contour:
                 codes.append(3)  # Up
         return codes
 
-    def compute_area_perimeter(self,snake,image):
+    def compute_area_perimeter(self, snake, image):
         """Compute the area and perimeter of the contour."""
         snake = np.round(snake).astype(int)
         mask = np.zeros((image.shape[0], image.shape[1]), dtype=np.uint8)
