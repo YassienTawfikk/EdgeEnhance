@@ -5,6 +5,10 @@ from app.utils.clean_cache import remove_directories
 from app.services.image_service import ImageServices
 from app.processing.contour import Contour
 import cv2
+from skimage.filters import gaussian
+
+
+
 
 
 class MainWindowController:
@@ -103,7 +107,8 @@ class MainWindowController:
         # Initialize the contour
         initial_snake = self.contour.initialize_contour(self.original_image,center, radius, num_points)
         # Evolve the contour
-        final_snake = self.contour.evolve_contour( self.processed_image,initial_snake, num_iterations, alpha, beta, gamma)
+        image = gaussian(self.processed_image, sigma=1)
+        final_snake = self.contour.active_contour(image, initial_snake, alpha=0.015, beta=10, gamma=0.01)
 
         # Update processed image with the equalized image
         # self.processed_image = equalized_image
@@ -137,3 +142,5 @@ class MainWindowController:
                      (255, 0, 0), thickness=2)
 
         return image_with_contour
+
+
