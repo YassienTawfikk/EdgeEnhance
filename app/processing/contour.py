@@ -3,93 +3,55 @@ import cv2
 
 
 class Contour:
-    def gaussian_blur(self, image, kernel_size, sigma):
-        """Apply Gaussian blur to an image."""
-        # Create a Gaussian kernel
-        ax = np.linspace(-(kernel_size // 2), kernel_size // 2, kernel_size)
-        xx, yy = np.meshgrid(ax, ax)
-        kernel = np.exp(-(xx ** 2 + yy ** 2) / (2 * sigma ** 2))
-        kernel /= np.sum(kernel)  # Normalize the kernel
-
-        # Apply the kernel to the image
-        blurred_image = np.zeros_like(image)
-        pad_width = kernel_size // 2
-        padded_image = np.pad(image, pad_width, mode='edge')
-
-        for i in range(padded_image.shape[0] - kernel_size):
-            for j in range(padded_image.shape[1] - kernel_size):
-                region = padded_image[i:i + kernel_size, j:j + kernel_size]
-                blurred_image[i, j] = np.sum(region * kernel)
-
-        return blurred_image
-
-    def initialize_contour(self, image, num_points, radius):
-        """Initialize the contour around the center of the image."""
-        s = np.linspace(0, 2 * np.pi, num_points)
-        x = radius * np.cos(s) + image.shape[1] // 2
-        y = radius * np.sin(s) + image.shape[0] // 2
+    def initialize_contour(self, image, center, radius, num_points):
+        """ Initialize a discrete circle contour. """
+        angles = np.linspace(0, 2 * np.pi, num_points)
+        x = center[0] + radius * np.cos(angles)
+        y = center[1] + radius * np.sin(angles)
         return np.array([x, y]).T
 
-    def evolve_contour(self, snake, image, num_iterations, alpha, beta, gamma, window_size):
-        """Evolve the contour using the greedy algorithm."""
-        if window_size <= 0 or window_size % 2 == 0:
-            window_size = 5
-        for _ in range(num_iterations):
-            # Compute the energy terms
-            dx = np.roll(snake[:, 0], -1) - snake[:, 0]
-            dy = np.roll(snake[:, 1], -1) - snake[:, 1]
+    def evolve_contour(self, image, initial_contour, max_iterations=100, alpha=1, beta=1, gamma=1):
+        """ Evolve the active contour using a greedy algorithm. """
+        # Check if the image is colored and convert it to grayscale if necessary
+        if len(image.shape) == 3:  # Color image has 3 channels
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-            # Internal forces
-            internal_force = alpha * (np.roll(snake, -1, axis=0) + np.roll(snake, 1, axis=0) - 2 * snake)
+        # Compute gradients of the image
+        Gx = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=5)
+        Gy = cv2.Sobel(image, cv2.CV_64F, 0, 1, ksize=5)
 
-            # External forces from the image
-            blurred_image = cv2.GaussianBlur(image, (window_size, window_size), 0)
-            img_grad = np.gradient(blurred_image.astype(float))
+        external_energy = -np.sqrt(Gx ** 2 + Gy ** 2)
 
-            # Clamp the snake coordinates to be within valid range
-            x_indices = np.clip(snake[:, 0].astype(int), 0, img_grad[0].shape[1] - 1)
-            y_indices = np.clip(snake[:, 1].astype(int), 0, img_grad[0].shape[0] - 1)
+        # Initialize the contour
+        contour = initial_contour.copy()
+        n = contour.shape[0]
 
-            # Calculate the external force based on gradients
-            # Use both x and y gradients to construct external force
-            external_force_x = gamma * (img_grad[0][y_indices, x_indices] - img_grad[0].min())
-            external_force_y = gamma * (img_grad[1][y_indices, x_indices] - img_grad[1].min())
+        for _ in range(max_iterations):
+            # Internal energy calculation
+            internal_energy = np.zeros((n, 2))
+            for i in range(n):
+                v_next = contour[(i + 1) % n]
+                v_prev = contour[(i - 1) % n]
+                v_current = contour[i]
 
-            # Combine external forces into a single array with shape (N, 2)
-            external_force = np.column_stack((external_force_x, external_force_y))
+                # Energy terms
+                term1 = alpha * np.linalg.norm(v_next - v_current) ** 2
+                term2 = beta * np.linalg.norm(v_next - 2 * v_current + v_prev) ** 2
 
-            # Update the snake
-            snake += internal_force + external_force
+                internal_energy[i] = term1 + term2
 
-        return snake
+            # External energy calculation
+            external_energy_values = np.zeros(n)
+            for i in range(n):
+                x, y = int(contour[i, 0]), int(contour[i, 1])
+                if 0 <= x < image.shape[1] and 0 <= y < image.shape[0]:
+                    external_energy_values[i] = external_energy[y, x]
 
-    def chain_code(self, snake):
-        """Compute the chain code representation of the contour."""
-        codes = []
-        for i in range(len(snake)):
-            dx = int(snake[(i + 1) % len(snake)][0] - snake[i][0])
-            dy = int(snake[(i + 1) % len(snake)][1] - snake[i][1])
-            if dx == 1 and dy == 0:
-                codes.append(0)  # Right
-            elif dx == 0 and dy == 1:
-                codes.append(1)  # Down
-            elif dx == -1 and dy == 0:
-                codes.append(2)  # Left
-            elif dx == 0 and dy == -1:
-                codes.append(3)  # Up
-        return codes
+            # Total energy
+            total_energy = internal_energy + gamma * external_energy_values[:, np.newaxis]
 
-    def compute_area_perimeter(self, snake, image):
-        """Compute the area and perimeter of the contour."""
-        snake = np.round(snake).astype(int)
-        mask = np.zeros((image.shape[0], image.shape[1]), dtype=np.uint8)
-        for point in snake:
-            mask[point[1], point[0]] = 1
-        area = np.sum(mask)
+            # Update contour
+            for i in range(n):
+                contour[i] -= total_energy[i] * 0.1  # Adjust step size as needed
 
-        # Compute perimeter using the chain code
-        perimeter = 0
-        for i in range(len(snake)):
-            perimeter += np.linalg.norm(snake[i] - snake[(i + 1) % len(snake)])
-
-        return area, perimeter
+        return contour

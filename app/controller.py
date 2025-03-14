@@ -98,28 +98,23 @@ class MainWindowController:
         gamma = self.ui.gamma_spin_box.value()
         radius = self.ui.circle_radius_spinBox.value()
         window_size = self.ui.window_size_spin_box.value()
+        center=(self.original_image.shape[0]//2,self.original_image.shape[1]//2)
 
         # Initialize the contour
-        original_snake = self.contour.initialize_contour(self.original_image, num_points, radius)
-        processed_snake = self.contour.initialize_contour(self.processed_image, num_points, radius)
+        initial_snake = self.contour.initialize_contour(self.original_image,center, radius, num_points)
         # Evolve the contour
-        processed_snake = self.contour.evolve_contour(processed_snake, self.processed_image, num_iterations, alpha, beta, gamma, window_size)
+        final_snake = self.contour.evolve_contour( self.processed_image,initial_snake, num_iterations, alpha, beta, gamma)
 
         # Update processed image with the equalized image
         # self.processed_image = equalized_image
 
         # Show the processed image
-        self.showImage(self.original_image, self.ui.original_image_groupbox)
-        self.showImage(self.processed_image, self.ui.processed_image_groupbox)
+        processed_image_with_contour =self.draw_contour_on_image(self.processed_image,final_snake)
+        original_image_with_contour =self.draw_contour_on_image(self.original_image,initial_snake)
 
-        # Compute chain code, area, and perimeter
-        # codes = self.contour.chain_code(processed_snake)
-        area, perimeter = self.contour.compute_area_perimeter(processed_snake, self.processed_image)
-        self.ui.perimeter_label.setText(str(perimeter))
-        self.ui.area_label.setText(str(area))
-        # print("Chain Code:", codes)
-        print("Area:", area)
-        print("Perimeter:", perimeter)
+        self.showImage(original_image_with_contour, self.ui.original_image_groupbox)
+        self.showImage(processed_image_with_contour, self.ui.processed_image_groupbox)
+
 
     def showImage(self, image, groupbox):
         if image is None:
@@ -128,3 +123,17 @@ class MainWindowController:
 
         self.srv.clear_image(groupbox)
         self.srv.set_image_in_groupbox(groupbox, image)
+
+    def draw_contour_on_image(self,image, contour):
+        """ Draws the contour onto the image. """
+        # Create a copy of the image to draw on
+        image_with_contour = image.copy()
+
+        # Draw the contour in red
+        for i in range(len(contour)):
+            next_index = (i + 1) % len(contour)
+            # Draw a line segment between current point and next point
+            cv2.line(image_with_contour, tuple(contour[i].astype(int)), tuple(contour[next_index].astype(int)),
+                     (255, 0, 0), thickness=2)
+
+        return image_with_contour
