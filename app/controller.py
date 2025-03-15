@@ -1,14 +1,11 @@
 from PyQt5 import QtWidgets
-
-# from app.design.design import Ui_MainWindow
+from PyQt5.QtCore import Qt
 from app.design2 import Ui_MainWindow
 from app.utils.clean_cache import remove_directories
 from app.services.image_service import ImageServices
 from app.processing.contour import Contour
 import cv2
 
-from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtCore import Qt
 
 class MainWindowController:
     def __init__(self):
@@ -17,21 +14,24 @@ class MainWindowController:
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.MainWindow)
 
+        # Track the previous sidebar
+        self.previous_sidebar = None
+
         # Show sidebar_1 initially
         self.show_sidebar_1()
 
-        self.ui.verticalLayout_5.setAlignment(Qt.AlignCenter)  # Center alignment
-
+        # Center alignment for shapes_sidebar_layout
+        self.ui.verticalLayout_5.setAlignment(Qt.AlignCenter)
 
         # Connect button signals
         self.ui.quit_app_button.clicked.connect(self.closeApp)
-        self.ui.back_button.clicked.connect(self.show_sidebar_1)  # Connect back button
+        self.ui.back_button.clicked.connect(self.go_back)  # Connect back button
         self.ui.shape_detection_button.clicked.connect(self.show_sidebar_2)
         self.ui.object_contour_button.clicked.connect(self.show_sidebar_3)
         self.ui.canny_edge_detection_button.clicked.connect(self.show_filter_sidebar)
-        self.ui.line_detection_button.clicked.connect(self.show_line_groupbox)
-        self.ui.circle_detection_button.clicked.connect(self.show_circle_groupbox)
-        self.ui.ellipse_detection_button.clicked.connect(self.show_ellipse_groupbox)
+        self.ui.line_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.line_groupBox))
+        self.ui.circle_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.circle_groupBox))
+        self.ui.ellipse_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.ellipse_groupBox))
         self.srv = ImageServices()
         self.ui.upload_button.clicked.connect(self.drawImage)
         self.ui.save_button.clicked.connect(lambda: self.srv.save_image(self.processed_image))
@@ -80,6 +80,7 @@ class MainWindowController:
         self.ui.page_filter_layout.hide()
         self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.sidebar_1_layout.show()  # Show sidebar_1
+        self.previous_sidebar = None  # Reset previous sidebar
 
     def show_sidebar_2(self):
         """Show sidebar_2 and hide other sidebars."""
@@ -88,6 +89,7 @@ class MainWindowController:
         self.ui.page_filter_layout.hide()
         self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.sidebar_2_layout.show()  # Show sidebar_2
+        self.previous_sidebar = "sidebar_1"  # Set previous sidebar
 
     def show_sidebar_3(self):
         """Show sidebar_3 and hide other sidebars."""
@@ -96,6 +98,7 @@ class MainWindowController:
         self.ui.page_filter_layout.hide()
         self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.sidebar_3_layout.show()  # Show sidebar_3
+        self.previous_sidebar = "sidebar_1"  # Set previous sidebar
 
     def show_filter_sidebar(self):
         """Show filter sidebar and hide other sidebars."""
@@ -104,39 +107,45 @@ class MainWindowController:
         self.ui.sidebar_3_layout.hide()  # Hide sidebar_3
         self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.page_filter_layout.show()
+        self.previous_sidebar = "sidebar_1"  # Set previous sidebar
 
-    def show_line_groupbox(self):
-        """Show shapes_sidebar_layout and line_groupBox, hide other group boxes."""
+    def show_groupbox(self, groupbox_to_show):
+        """
+        Show shapes_sidebar_layout and the specified group box, hide other group boxes.
+
+        Args:
+            groupbox_to_show (QGroupBox): The group box to show (e.g., line_groupBox, circle_groupBox, ellipse_groupBox).
+        """
+        # Hide all sidebars
         self.ui.sidebar_1_layout.hide()  # Hide sidebar_1
         self.ui.sidebar_2_layout.hide()  # Hide sidebar_2
         self.ui.sidebar_3_layout.hide()  # Hide sidebar_3
         self.ui.page_filter_layout.hide()  # Hide filter sidebar
-        self.ui.shapes_sidebar_layout.show()  # Show shapes_sidebar_layout
-        self.ui.line_groupBox.show()  # Show line_groupBox
-        self.ui.circle_groupBox.hide()  # Hide circle_groupBox
-        self.ui.ellipse_groupBox.hide()  # Hide ellipse_groupBox
 
-    def show_circle_groupbox(self):
-        """Show shapes_sidebar_layout and line_groupBox, hide other group boxes."""
-        self.ui.sidebar_1_layout.hide()  # Hide sidebar_1
-        self.ui.sidebar_2_layout.hide()  # Hide sidebar_2
-        self.ui.sidebar_3_layout.hide()  # Hide sidebar_3
-        self.ui.page_filter_layout.hide()  # Hide filter sidebar
-        self.ui.shapes_sidebar_layout.show()  # Show shapes_sidebar_layout
-        self.ui.line_groupBox.hide()  # Show line_groupBox
-        self.ui.circle_groupBox.show()  # Hide circle_groupBox
-        self.ui.ellipse_groupBox.hide()  # Hide ellipse_groupBox
+        # Show the shapes_sidebar_layout
+        self.ui.shapes_sidebar_layout.show()
 
-    def show_ellipse_groupbox(self):
-        """Show shapes_sidebar_layout and line_groupBox, hide other group boxes."""
-        self.ui.sidebar_1_layout.hide()  # Hide sidebar_1
-        self.ui.sidebar_2_layout.hide()  # Hide sidebar_2
-        self.ui.sidebar_3_layout.hide()  # Hide sidebar_3
-        self.ui.page_filter_layout.hide()  # Hide filter sidebar
-        self.ui.shapes_sidebar_layout.show()  # Show shapes_sidebar_layout
-        self.ui.line_groupBox.hide()  # Show line_groupBox
-        self.ui.circle_groupBox.hide()  # Hide circle_groupBox
-        self.ui.ellipse_groupBox.show()  # Hide ellipse_groupBox
+        # Hide all group boxes
+        self.ui.line_groupBox.hide()
+        self.ui.circle_groupBox.hide()
+        self.ui.ellipse_groupBox.hide()
+
+        # Show the specified group box
+        groupbox_to_show.show()
+
+        # Set previous sidebar to sidebar_2 (Shape Detection)
+        self.previous_sidebar = "sidebar_2"
+
+    def go_back(self):
+        """Handle the back button click."""
+        if self.previous_sidebar == "sidebar_1":
+            self.show_sidebar_1()
+        elif self.previous_sidebar == "sidebar_2":
+            self.show_sidebar_2()
+        elif self.previous_sidebar == "sidebar_3":
+            self.show_sidebar_3()
+        else:
+            self.show_sidebar_1()  # Default to sidebar_1 if no previous sidebar is set
 
     def apply_contour(self):
         if self.original_image is None:
