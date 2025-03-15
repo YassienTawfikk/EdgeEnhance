@@ -538,25 +538,8 @@
         <property name="verticalSpacing">
          <number>35</number>
         </property>
-        <item row="0" column="0">
-         <widget class="QLabel" name="window_size_label">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-          <property name="text">
-           <string>Window Size</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="window_size_spinBox">
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="num_of_itr_spinBox">
           <property name="styleSheet">
            <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
@@ -564,8 +547,8 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="num_of_points_label">
+        <item row="3" column="0">
+         <widget class="QLabel" name="alpha_label">
           <property name="font">
            <font>
             <pointsize>12</pointsize>
@@ -577,7 +560,41 @@
 }</string>
           </property>
           <property name="text">
-           <string>Num of Points</string>
+           <string>Alpha</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="beta_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Beta</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="gamma_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Gamma</string>
           </property>
          </widget>
         </item>
@@ -607,55 +624,12 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QSpinBox" name="num_of_itr_spinBox">
+        <item row="5" column="1">
+         <widget class="QSpinBox" name="gamma_spinBox">
           <property name="styleSheet">
            <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
 }</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="alpha_label">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-          <property name="text">
-           <string>Alpha</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QSpinBox" name="alpha_spinBox">
-          <property name="styleSheet">
-           <string notr="true">QSpinBox{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="beta_label">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-          <property name="text">
-           <string>Beta</string>
           </property>
          </widget>
         </item>
@@ -668,8 +642,17 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="gamma_label">
+        <item row="3" column="1">
+         <widget class="QSpinBox" name="alpha_spinBox">
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="num_of_points_label">
           <property name="font">
            <font>
             <pointsize>12</pointsize>
@@ -681,16 +664,33 @@
 }</string>
           </property>
           <property name="text">
-           <string>Gamma</string>
+           <string>Num of Points</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
-         <widget class="QSpinBox" name="gamma_spinBox">
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="window_size_spinBox">
           <property name="styleSheet">
            <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
 }</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="window_size_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Window Size</string>
           </property>
          </widget>
         </item>
@@ -1694,11 +1694,11 @@
    <zorder>reset_button</zorder>
    <zorder>upload_button</zorder>
    <zorder>quit_app_button</zorder>
-   <zorder>sidebar_3_layout</zorder>
    <zorder>page_filter_layout</zorder>
    <zorder>sidebar_1_layout</zorder>
    <zorder>sidebar_2_layout</zorder>
    <zorder>shapes_sidebar_layout</zorder>
+   <zorder>sidebar_3_layout</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

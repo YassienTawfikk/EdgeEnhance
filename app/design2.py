@@ -238,6 +238,8 @@ class Ui_MainWindow(object):
 "    color: rgb(255, 255, 255);\n"
 "}")
         self.circle_radius_spinBox.setObjectName("circle_radius_spinBox")
+        self.circle_radius_spinBox.setRange(0, 200)
+
         self.gridLayout_3.addWidget(self.circle_radius_spinBox, 0, 1, 1, 1)
         self.sidebar_3.addWidget(self.initial_conour_groupBox)
         self.snake_contour_groupBox = QtWidgets.QGroupBox(self.sidebar_3_layout)
@@ -293,6 +295,7 @@ class Ui_MainWindow(object):
         self.window_size_label.setObjectName("window_size_label")
         self.gridLayout.addWidget(self.window_size_label, 0, 0, 1, 1)
         self.window_size_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
+        self.window_size_spinBox.setRange(0, 200)
         self.window_size_spinBox.setStyleSheet("QSpinBox{\n"
 "    color: rgb(255, 255, 255);\n"
 "}")
@@ -312,6 +315,8 @@ class Ui_MainWindow(object):
 "    color: rgb(255, 255, 255);\n"
 "}")
         self.num_of_points_spinBox.setObjectName("num_of_points_spinBox")
+        self.num_of_points_spinBox.setRange(0, 200)
+
         self.gridLayout.addWidget(self.num_of_points_spinBox, 1, 1, 1, 1)
         self.num_of_itr_label = QtWidgets.QLabel(self.active_contour_groupbox)
         font = QtGui.QFont()
@@ -327,6 +332,7 @@ class Ui_MainWindow(object):
 "    color: rgb(255, 255, 255);\n"
 "}")
         self.num_of_itr_spinBox.setObjectName("num_of_itr_spinBox")
+        self.num_of_itr_spinBox.setRange(0, 2500)
         self.gridLayout.addWidget(self.num_of_itr_spinBox, 2, 1, 1, 1)
         self.alpha_label = QtWidgets.QLabel(self.active_contour_groupbox)
         font = QtGui.QFont()
@@ -337,11 +343,14 @@ class Ui_MainWindow(object):
 "}")
         self.alpha_label.setObjectName("alpha_label")
         self.gridLayout.addWidget(self.alpha_label, 3, 0, 1, 1)
-        self.alpha_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
-        self.alpha_spinBox.setStyleSheet("QSpinBox{\n"
-"    color: rgb(255, 255, 255);\n"
-"}")
+        self.alpha_spinBox = QtWidgets.QDoubleSpinBox(self.active_contour_groupbox)
+        self.alpha_spinBox.setStyleSheet("QDoubleSpinBox{\n"
+                                         "    color: rgb(255, 255, 255);\n"
+                                         "}")
         self.alpha_spinBox.setObjectName("alpha_spinBox")
+        self.alpha_spinBox.setDecimals(2)  # Set the number of decimal places
+        self.alpha_spinBox.setRange(0.0, 100.0)  # Set the minimum and maximum values
+        self.alpha_spinBox.setSingleStep(0.1)  # Set the step size
         self.gridLayout.addWidget(self.alpha_spinBox, 3, 1, 1, 1)
         self.beta_label = QtWidgets.QLabel(self.active_contour_groupbox)
         font = QtGui.QFont()
@@ -352,11 +361,14 @@ class Ui_MainWindow(object):
 "}")
         self.beta_label.setObjectName("beta_label")
         self.gridLayout.addWidget(self.beta_label, 4, 0, 1, 1)
-        self.beta_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
-        self.beta_spinBox.setStyleSheet("QSpinBox{\n"
-"    color: rgb(255, 255, 255);\n"
-"}")
+        self.beta_spinBox = QtWidgets.QDoubleSpinBox(self.active_contour_groupbox)
+        self.beta_spinBox.setStyleSheet("QDoubleSpinBox{\n"
+                                        "    color: rgb(255, 255, 255);\n"
+                                        "}")
         self.beta_spinBox.setObjectName("beta_spinBox")
+        self.beta_spinBox.setDecimals(2)
+        self.beta_spinBox.setRange(0.0, 100.0)
+        self.beta_spinBox.setSingleStep(0.1)
         self.gridLayout.addWidget(self.beta_spinBox, 4, 1, 1, 1)
         self.gamma_label = QtWidgets.QLabel(self.active_contour_groupbox)
         font = QtGui.QFont()
@@ -367,11 +379,15 @@ class Ui_MainWindow(object):
 "}")
         self.gamma_label.setObjectName("gamma_label")
         self.gridLayout.addWidget(self.gamma_label, 5, 0, 1, 1)
-        self.gamma_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
-        self.gamma_spinBox.setStyleSheet("QSpinBox{\n"
-"    color: rgb(255, 255, 255);\n"
-"}")
+        self.gamma_spinBox = QtWidgets.QDoubleSpinBox(self.active_contour_groupbox)
+        self.gamma_spinBox.setStyleSheet("QDoubleSpinBox{\n"
+                                         "    color: rgb(255, 255, 255);\n"
+                                         "}")
         self.gamma_spinBox.setObjectName("gamma_spinBox")
+        self.gamma_spinBox.setDecimals(2)
+        self.gamma_spinBox.setRange(0.0, 100.0)
+        self.gamma_spinBox.setSingleStep(0.1)
+
         self.gridLayout.addWidget(self.gamma_spinBox, 5, 1, 1, 1)
         self.sidebar_3.addWidget(self.active_contour_groupbox)
         self.apply_contour_button = QtWidgets.QPushButton(self.sidebar_3_layout)
