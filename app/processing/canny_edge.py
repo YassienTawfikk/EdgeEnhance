@@ -4,7 +4,7 @@ import cv2
 class CannyEdge:
 
     @staticmethod
-    def canny_method(image, gaussianSize, sigma =1, threshold1=100, threshold2=200, apertureSize=3, L2gradient=False):
+    def apply_canny(image, gaussianSize, sigma =1, threshold1=100, threshold2=200, apertureSize=3, L2gradient=False):
         """Full Canny Edge Detector pipeline."""
         # 1. Apply Gaussian filter
         filtered_image=CannyEdge.apply_gaussian_filter(image, gaussianSize, sigma)
@@ -87,47 +87,22 @@ class CannyEdge:
         # calculate the padding size
         pad_size=kernel_size//2
 
-        # if the image is RGB
-        if len(image.shape) == 3:
-            # initialize a zeroed array of the same size of the image
-            filtered_image = np.zeros_like(image, dtype=np.float32)
+        # initialize the filtered image array and pad the image
+        filtered_image = np.zeros_like(image, dtype=np.float32)
+        padded_image = np.pad(image, pad_size, mode='reflect')
 
-            # iterate for each channel
-            for c in range(image.shape[2]):
-                # pad the image
-                padded_channel = np.pad(image[:, :, c], pad_size, mode='reflect')
-
-                # iterate over the rows and columns
-                for i in range(image.shape[0]):
-                    for j in range(image.shape[1]):
-                        # extract a region of the same size of the kernal
-                        region = padded_channel[i:i + kernel_size, j:j + kernel_size]
-
-                        # for average and gaussian filtering, return a pixel value of the summation of the kernel multiplied by the region
-                        if median==False:
-                            filtered_image[i, j, c] = np.sum(region * kernel)
-                        #for median filtering return a pixel value that the median of the region 
-                        if median==True:
-                            filtered_image[i, j, c] = np.median(region)
-
-        # for Grayscale Image, no iteration over the channels                    
-        else:  
-            # initialize the filtered image array and pad the image
-            filtered_image = np.zeros_like(image, dtype=np.float32)
-            padded_image = np.pad(image, pad_size, mode='reflect')
-
-            # loop over the rows and columns to convolve the image with the kernel
-            for i in range(image.shape[0]):
-                for j in range(image.shape[1]):
-                    # region extraction
-                    region = padded_image[i:i + kernel_size, j:j + kernel_size]
-                    
-                    # for average and gaussian filtering, return a pixel value of the summation of the kernel multiplied by the region
-                    if median==False:
-                        filtered_image[i, j] = np.sum(region * kernel)
-                    #for median filtering return a pixel value that the median of the region 
-                    if median==True:
-                        filtered_image[i, j] = np.median(region)
+        # loop over the rows and columns to convolve the image with the kernel
+        for i in range(image.shape[0]):
+            for j in range(image.shape[1]):
+                # region extraction
+                region = padded_image[i:i + kernel_size, j:j + kernel_size]
+                
+                # for average and gaussian filtering, return a pixel value of the summation of the kernel multiplied by the region
+                if median==False:
+                    filtered_image[i, j] = np.sum(region * kernel)
+                #for median filtering return a pixel value that the median of the region 
+                if median==True:
+                    filtered_image[i, j] = np.median(region)
 
         # clip the filtered image values to [0-255] and cast to uint8
         return np.clip(filtered_image, 0, 255).astype(np.uint8)
@@ -150,6 +125,8 @@ class CannyEdge:
 
     @staticmethod
     def apply_gaussian_filter(image, kernel_size=3, sigma=1):
+        if len(image.shape) == 3:
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
         # generate a gaussian kernel 
         kernel = CannyEdge.gaussian_kernel(kernel_size, sigma)
         # convolve the image with the kernel
@@ -215,14 +192,7 @@ class CannyEdge:
     
     @staticmethod
     def generate_sobel_kernel(size, axis):
-        """
-        Generate a Sobel kernel of any odd size for either X or Y direction.
-        :param size: Kernel size (must be odd, e.g., 3, 5, 7)
-        :param axis: 'x' for horizontal, 'y' for vertical
-        :return: Sobel kernel as a NumPy array
-        """
-        # assert size % 2 == 1, "Sobel kernel size must be odd"
-        
+        # assert size % 2 == 1, "Sobel kernel size must be odd" 
         k = size // 2  # Half-size of the kernel
         kernel = np.zeros((size, size), dtype=np.int32)
         
