@@ -1,13 +1,12 @@
 from PyQt5 import QtWidgets
-
-from app.design.design import Ui_MainWindow
+from PyQt5.QtCore import Qt, center
+from app.design2 import Ui_MainWindow
 from app.utils.clean_cache import remove_directories
 from app.services.image_service import ImageServices
 from app.processing.contour import Contour
 import cv2
+import numpy as np
 from skimage.filters import gaussian
-
-
 
 
 
@@ -18,16 +17,24 @@ class MainWindowController:
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self.MainWindow)
 
-        # Hide sidebar_2 and sidebar_3 initially
-        self.ui.sidebar_2_layout.hide()
-        self.ui.sidebar_3_layout.hide()
-        self.ui.parametric_shape_combobox.addItems(["Line", "Circle", "Ellipse"])
+        # Track the previous sidebar
+        self.previous_sidebar = None
+
+        # Show sidebar_1 initially
+        self.show_sidebar_1()
+
+        # Center alignment for shapes_sidebar_layout
+        self.ui.verticalLayout_5.setAlignment(Qt.AlignCenter)
 
         # Connect button signals
         self.ui.quit_app_button.clicked.connect(self.closeApp)
-        self.ui.back_button.clicked.connect(self.show_sidebar_1)  # Connect back button
-        self.ui.edge_detection_button.clicked.connect(self.show_sidebar_2)
+        self.ui.back_button.clicked.connect(self.go_back)  # Connect back button
+        self.ui.shape_detection_button.clicked.connect(self.show_sidebar_2)
         self.ui.object_contour_button.clicked.connect(self.show_sidebar_3)
+        self.ui.canny_edge_detection_button.clicked.connect(self.show_filter_sidebar)
+        self.ui.line_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.line_groupBox))
+        self.ui.circle_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.circle_groupBox))
+        self.ui.ellipse_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.ellipse_groupBox))
         self.srv = ImageServices()
         self.ui.upload_button.clicked.connect(self.drawImage)
         self.ui.save_button.clicked.connect(lambda: self.srv.save_image(self.processed_image))
@@ -73,19 +80,75 @@ class MainWindowController:
         """Show sidebar_1 and hide other sidebars."""
         self.ui.sidebar_2_layout.hide()  # Hide sidebar_2
         self.ui.sidebar_3_layout.hide()  # Hide sidebar_3
+        self.ui.page_filter_layout.hide()
+        self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.sidebar_1_layout.show()  # Show sidebar_1
+        self.previous_sidebar = None  # Reset previous sidebar
 
     def show_sidebar_2(self):
         """Show sidebar_2 and hide other sidebars."""
         self.ui.sidebar_1_layout.hide()  # Hide sidebar_1
         self.ui.sidebar_3_layout.hide()  # Hide sidebar_3
+        self.ui.page_filter_layout.hide()
+        self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.sidebar_2_layout.show()  # Show sidebar_2
+        self.previous_sidebar = "sidebar_1"  # Set previous sidebar
 
     def show_sidebar_3(self):
         """Show sidebar_3 and hide other sidebars."""
         self.ui.sidebar_1_layout.hide()  # Hide sidebar_1
         self.ui.sidebar_2_layout.hide()  # Hide sidebar_2
+        self.ui.page_filter_layout.hide()
+        self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.sidebar_3_layout.show()  # Show sidebar_3
+        self.previous_sidebar = "sidebar_1"  # Set previous sidebar
+
+    def show_filter_sidebar(self):
+        """Show filter sidebar and hide other sidebars."""
+        self.ui.sidebar_1_layout.hide()  # Hide sidebar_1
+        self.ui.sidebar_2_layout.hide()  # Hide sidebar_2
+        self.ui.sidebar_3_layout.hide()  # Hide sidebar_3
+        self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
+        self.ui.page_filter_layout.show()
+        self.previous_sidebar = "sidebar_1"  # Set previous sidebar
+
+    def show_groupbox(self, groupbox_to_show):
+        """
+        Show shapes_sidebar_layout and the specified group box, hide other group boxes.
+
+        Args:
+            groupbox_to_show (QGroupBox): The group box to show (e.g., line_groupBox, circle_groupBox, ellipse_groupBox).
+        """
+        # Hide all sidebars
+        self.ui.sidebar_1_layout.hide()  # Hide sidebar_1
+        self.ui.sidebar_2_layout.hide()  # Hide sidebar_2
+        self.ui.sidebar_3_layout.hide()  # Hide sidebar_3
+        self.ui.page_filter_layout.hide()  # Hide filter sidebar
+
+        # Show the shapes_sidebar_layout
+        self.ui.shapes_sidebar_layout.show()
+
+        # Hide all group boxes
+        self.ui.line_groupBox.hide()
+        self.ui.circle_groupBox.hide()
+        self.ui.ellipse_groupBox.hide()
+
+        # Show the specified group box
+        groupbox_to_show.show()
+
+        # Set previous sidebar to sidebar_2 (Shape Detection)
+        self.previous_sidebar = "sidebar_2"
+
+    def go_back(self):
+        """Handle the back button click."""
+        if self.previous_sidebar == "sidebar_1":
+            self.show_sidebar_1()
+        elif self.previous_sidebar == "sidebar_2":
+            self.show_sidebar_2()
+        elif self.previous_sidebar == "sidebar_3":
+            self.show_sidebar_3()
+        else:
+            self.show_sidebar_1()  # Default to sidebar_1 if no previous sidebar is set
 
     def apply_contour(self):
         if self.original_image is None:
@@ -95,30 +158,31 @@ class MainWindowController:
             print("No image available")
             return
 
-        num_points = self.ui.num_of_points_spin_box.value()
-        num_iterations = self.ui.num_of_itr_spin_box.value()
-        alpha = self.ui.alpha_spin_box.value()
-        beta = self.ui.beta_spin_box.value()
-        gamma = self.ui.gamma_spin_box.value()
+        num_points = self.ui.num_of_points_spinBox.value()
+        num_iterations = self.ui.num_of_itr_spinBox.value()
+        alpha = self.ui.alpha_spinBox.value()
+        beta = self.ui.beta_spinBox.value()
+        gamma = self.ui.gamma_spinBox.value()
         radius = self.ui.circle_radius_spinBox.value()
-        window_size = self.ui.window_size_spin_box.value()
-        center=(self.original_image.shape[0]//2,self.original_image.shape[1]//2)
+        window_size = self.ui.window_size_spinBox.value()
+        center= self.original_image.shape[0]//2, self.original_image.shape[1]//2
 
         # Initialize the contour
-        initial_snake = self.contour.initialize_contour(self.original_image,center, radius, num_points)
+        original_snake = self.contour.initialize_contour(self.original_image, center, radius,num_points)
+
         # Evolve the contour
-        image = gaussian(self.processed_image, sigma=1)
-        final_snake = self.contour.active_contour(image, initial_snake, alpha=0.015, beta=10, gamma=0.01)
+        # Smooth the image
+        image = gaussian(self.original_image, sigma=1)
+        processed_snake = self.contour.active_contour_greedy(image, original_snake, max_num_iter=num_iterations, alpha=alpha, beta=beta, gamma=gamma)
 
-        # Update processed image with the equalized image
-        # self.processed_image = equalized_image
 
-        # Show the processed image
-        processed_image_with_contour =self.draw_contour_on_image(self.processed_image,final_snake)
-        original_image_with_contour =self.draw_contour_on_image(self.original_image,initial_snake)
+        original_image_with_snake = self.draw_contour_on_image(self.original_image,original_snake)
+        self.showImage(original_image_with_snake, self.ui.original_image_groupbox)
 
-        self.showImage(original_image_with_contour, self.ui.original_image_groupbox)
-        self.showImage(processed_image_with_contour, self.ui.processed_image_groupbox)
+        processed_image_with_snake = self.draw_contour_on_image(self.processed_image,processed_snake)
+        self.showImage(processed_image_with_snake, self.ui.processed_image_groupbox)
+
+        # Compute chain code, area, and perimeter
 
 
     def showImage(self, image, groupbox):
@@ -129,18 +193,25 @@ class MainWindowController:
         self.srv.clear_image(groupbox)
         self.srv.set_image_in_groupbox(groupbox, image)
 
-    def draw_contour_on_image(self,image, contour):
-        """ Draws the contour onto the image. """
-        # Create a copy of the image to draw on
+    def draw_contour_on_image(self, image, snake):
+        """
+        Draws the contour (snake) on the image.
+
+        Args:
+            image (ndarray): The original image.
+            snake (ndarray): The contour points.
+
+        Returns:
+            ndarray: The image with the contour drawn on it.
+        """
+        # Create a copy of the original image to draw on
         image_with_contour = image.copy()
 
-        # Draw the contour in red
-        for i in range(len(contour)):
-            next_index = (i + 1) % len(contour)
-            # Draw a line segment between current point and next point
-            cv2.line(image_with_contour, tuple(contour[i].astype(int)), tuple(contour[next_index].astype(int)),
-                     (255, 0, 0), thickness=2)
+        # Convert snake points to integer for drawing
+        snake_points = np.array(snake, dtype=np.int32)
+
+        # Draw the contour on the image
+        for point in snake_points:
+            cv2.circle(image_with_contour, tuple(point), radius=2, color=(0, 255, 0), thickness=-1)  # Green color for contour
 
         return image_with_contour
-
-

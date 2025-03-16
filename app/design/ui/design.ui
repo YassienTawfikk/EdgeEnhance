@@ -26,7 +26,7 @@
       <x>300</x>
       <y>150</y>
       <width>971</width>
-      <height>621</height>
+      <height>531</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="images_layout">
@@ -60,14 +60,14 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>90</y>
-      <width>261</width>
-      <height>701</height>
+      <y>80</y>
+      <width>271</width>
+      <height>721</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="side_bar_1">
      <item>
-      <widget class="QPushButton" name="edge_detection_button">
+      <widget class="QPushButton" name="canny_edge_detection_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -77,7 +77,7 @@
        <property name="maximumSize">
         <size>
          <width>300</width>
-         <height>40</height>
+         <height>45</height>
         </size>
        </property>
        <property name="font">
@@ -100,7 +100,45 @@
 </string>
        </property>
        <property name="text">
-        <string>Edge Detection</string>
+        <string>Canny Edge Detection</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="shape_detection_button">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>45</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>45</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 3px solid rgb(255, 255, 255);
+                                            }
+                                            QPushButton:hover {
+                                            border-color:rgb(5, 255, 142);
+										  color: rgb(5, 255, 142);
+                                            }
+</string>
+       </property>
+       <property name="text">
+        <string>Shape Detection</string>
        </property>
       </widget>
      </item>
@@ -115,7 +153,7 @@
        <property name="maximumSize">
         <size>
          <width>300</width>
-         <height>40</height>
+         <height>45</height>
         </size>
        </property>
        <property name="font">
@@ -147,7 +185,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
+      <y>30</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -201,8 +239,8 @@
    <widget class="QPushButton" name="save_button">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>20</y>
+      <x>440</x>
+      <y>30</y>
       <width>200</width>
       <height>45</height>
      </rect>
@@ -219,6 +257,9 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
@@ -238,8 +279,8 @@
    <widget class="QPushButton" name="reset_button">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>20</y>
+      <x>720</x>
+      <y>30</y>
       <width>200</width>
       <height>45</height>
      </rect>
@@ -256,6 +297,9 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
@@ -275,8 +319,8 @@
    <widget class="QPushButton" name="upload_button">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>20</y>
+      <x>990</x>
+      <y>30</y>
       <width>200</width>
       <height>45</height>
      </rect>
@@ -293,6 +337,9 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
@@ -313,7 +360,7 @@
     <property name="geometry">
      <rect>
       <x>1220</x>
-      <y>20</y>
+      <y>30</y>
       <width>50</width>
       <height>50</height>
      </rect>
@@ -368,9 +415,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>140</y>
+      <y>80</y>
       <width>281</width>
-      <height>631</height>
+      <height>701</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="sidebar_3">
@@ -491,25 +538,8 @@
         <property name="verticalSpacing">
          <number>35</number>
         </property>
-        <item row="0" column="0">
-         <widget class="QLabel" name="window_size_label">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-          <property name="text">
-           <string>Window Size</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="window_size_spinBox">
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="num_of_itr_spinBox">
           <property name="styleSheet">
            <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
@@ -517,8 +547,8 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="num_of_points_label">
+        <item row="3" column="0">
+         <widget class="QLabel" name="alpha_label">
           <property name="font">
            <font>
             <pointsize>12</pointsize>
@@ -530,7 +560,41 @@
 }</string>
           </property>
           <property name="text">
-           <string>Num of Points</string>
+           <string>Alpha</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="beta_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Beta</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="gamma_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Gamma</string>
           </property>
          </widget>
         </item>
@@ -560,55 +624,12 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QSpinBox" name="num_of_itr_spinBox">
+        <item row="5" column="1">
+         <widget class="QSpinBox" name="gamma_spinBox">
           <property name="styleSheet">
            <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
 }</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="alpha_label">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-          <property name="text">
-           <string>Alpha</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QSpinBox" name="alpha_spinBox">
-          <property name="styleSheet">
-           <string notr="true">QSpinBox{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="beta_label">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-          <property name="text">
-           <string>Beta</string>
           </property>
          </widget>
         </item>
@@ -621,8 +642,17 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="gamma_label">
+        <item row="3" column="1">
+         <widget class="QSpinBox" name="alpha_spinBox">
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="num_of_points_label">
           <property name="font">
            <font>
             <pointsize>12</pointsize>
@@ -634,16 +664,33 @@
 }</string>
           </property>
           <property name="text">
-           <string>Gamma</string>
+           <string>Num of Points</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
-         <widget class="QSpinBox" name="gamma_spinBox">
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="window_size_spinBox">
           <property name="styleSheet">
            <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
 }</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="window_size_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Window Size</string>
           </property>
          </widget>
         </item>
@@ -656,6 +703,12 @@
         <size>
          <width>0</width>
          <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>45</height>
         </size>
        </property>
        <property name="font">
@@ -683,30 +736,45 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="sidebar_2_layout" native="true">
+   <widget class="QGroupBox" name="sidebar_2_layout">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>70</y>
-      <width>271</width>
-      <height>731</height>
+      <x>0</x>
+      <y>90</y>
+      <width>291</width>
+      <height>621</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="sidebar_5">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox{
+	color: rgb(255, 255, 255);
+	border :none;
+}</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <property name="spacing">
+      <number>10</number>
      </property>
      <item>
       <widget class="QLabel" name="parametric_shape_label">
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>50</height>
+         <height>55</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>70</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>16</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -714,93 +782,25 @@
        <property name="styleSheet">
         <string notr="true">QLabel{
 	color: rgb(255, 255, 255);
-}
-</string>
+
+}</string>
        </property>
        <property name="text">
         <string>Parametric Shape</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="parametric_shape_combobox">
+      <widget class="QPushButton" name="line_detection_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>25</height>
+         <height>45</height>
         </size>
        </property>
-       <property name="styleSheet">
-        <string notr="true">QComboBox{
-	background-color: rgb(255, 255, 255);
-border: 1px solid white
-}
- QComboBox:hover {
-                                            border-color:rgb(5, 255, 142);
-										  color: rgb(5, 255, 142);
-                                            }</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="line_threshold_label">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>55</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>Line Threshold</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSlider" name="line_threshold_slider">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="circle_label">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>55</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>Circle</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="min_radius_label">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
@@ -808,82 +808,556 @@ border: 1px solid white
          <bold>false</bold>
         </font>
        </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>Minimum Radius</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSlider" name="min_radius_slider">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="max_radius_label">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
-        <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
+        <string notr="true">QPushButton {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 3px solid rgb(255, 255, 255);
+                                            }
+                                            QPushButton:hover {
+                                            border-color:rgb(5, 255, 142);
+										  color: rgb(5, 255, 142);
+                                            }</string>
        </property>
        <property name="text">
-        <string>Maximum Radius</string>
+        <string>Line Detection</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QSlider" name="max_radius_slider">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="circle_threshold_label">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>Circle Threshold</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSlider" name="circle_threshold_slider">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="ellipse_label">
+      <widget class="QPushButton" name="circle_detection_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>55</height>
+         <height>45</height>
         </size>
        </property>
        <property name="font">
         <font>
-         <pointsize>16</pointsize>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 3px solid rgb(255, 255, 255);
+                                            }
+                                            QPushButton:hover {
+                                            border-color:rgb(5, 255, 142);
+										  color: rgb(5, 255, 142);
+                                            }</string>
+       </property>
+       <property name="text">
+        <string>Circle Detection</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ellipse_detection_button">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>45</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 3px solid rgb(255, 255, 255);
+                                            }
+                                            QPushButton:hover {
+                                            border-color:rgb(5, 255, 142);
+										  color: rgb(5, 255, 142);
+                                            }</string>
+       </property>
+       <property name="text">
+        <string>Ellipse Detection</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="shapes_sidebar_layout">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>282</width>
+      <height>725</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox{
+	color: rgb(255, 255, 255);
+	border :none;
+
+}</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <widget class="QGroupBox" name="line_groupBox">
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+	color: rgb(255, 255, 255);
+	border: 1px solid rgb(255, 255, 255);
+
+}</string>
+       </property>
+       <property name="title">
+        <string>Line</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="line_label">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>55</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Line </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="line_threshold_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Circle Threshold</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="line_threshold_slider">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="apply_button">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 3px solid rgb(255, 255, 255);
+                                            }
+                                            QPushButton:hover {
+                                            border-color:rgb(5, 255, 142);
+										  color: rgb(5, 255, 142);
+                                            }</string>
+          </property>
+          <property name="text">
+           <string>Apply</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="circle_groupBox">
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+	color: rgb(255, 255, 255);
+	border: 1px solid rgb(255, 255, 255);
+
+}</string>
+       </property>
+       <property name="title">
+        <string>Circle</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="circle_label">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>55</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Circle</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="min_radius_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Minimum Radius</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="min_radius_slider">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="max_radius_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Maximum Radius</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="max_radius_slider">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="circle_threshold_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Circle Threshold</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="circle_threshold_slider">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="apply_button_2">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 3px solid rgb(255, 255, 255);
+                                            }
+                                            QPushButton:hover {
+                                            border-color:rgb(5, 255, 142);
+										  color: rgb(5, 255, 142);
+                                            }</string>
+          </property>
+          <property name="text">
+           <string>Apply</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="ellipse_groupBox">
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+	color: rgb(255, 255, 255);
+		border: 1px solid rgb(255, 255, 255);
+
+}</string>
+       </property>
+       <property name="title">
+        <string>Ellipse</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <property name="spacing">
+         <number>15</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="ellipse_label">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>55</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Ellipse</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="min_radius_label_2">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Minimum Radius</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="min_radius_slider_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="max_radius_label_2">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Maximum Radius</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="max_radius_slider_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="ellipse_threshold_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Ellipse Threshold</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="ellipse_threshold_slider">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="apply_button_3">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 3px solid rgb(255, 255, 255);
+                                            }
+                                            QPushButton:hover {
+                                            border-color:rgb(5, 255, 142);
+										  color: rgb(5, 255, 142);
+                                            }</string>
+          </property>
+          <property name="text">
+           <string>Apply</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="page_filter_layout">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>271</width>
+      <height>711</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox{
+	color: rgb(255, 255, 255);
+}</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>20</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="gaussian_kernal_size_label">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
@@ -894,94 +1368,22 @@ border: 1px solid white
 }</string>
        </property>
        <property name="text">
-        <string>Ellipse</string>
+        <string>Gaussian Kernel Size</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="min_radius_label_2">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>Minimum Radius</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSlider" name="min_radius_slider_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="max_radius_label_2">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>Maximum Radius</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSlider" name="max_radius_slider_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="ellipse_threshold_label">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>Ellipse Threshold</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSlider" name="ellipse_threshold_slider">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="apply_button">
+      <widget class="QPushButton" name="gaussian_filter_kernel_size_button">
        <property name="minimumSize">
         <size>
          <width>0</width>
          <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>215</width>
+         <height>45</height>
         </size>
        </property>
        <property name="font">
@@ -1003,12 +1405,300 @@ border: 1px solid white
                                             }</string>
        </property>
        <property name="text">
+        <string>size</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="gaussian_filter_sigma_label">
+       <property name="minimumSize">
+        <size>
+         <width>45</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>45</height>
+        </size>
+       </property>
+       <property name="sizeIncrement">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>50</weight>
+         <italic>true</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Sigma - σ</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="gaussian_filter_sigma_spinbox">
+       <property name="styleSheet">
+        <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="high_threshold_label">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>45</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+         <weight>50</weight>
+         <italic>true</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>High Threshold</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="edge_detection_high_threshold_spinbox">
+       <property name="styleSheet">
+        <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="low_threshold_label">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>45</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+         <weight>50</weight>
+         <italic>true</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Low Threshold</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="edge_detection_low_threshold_spinbox">
+       <property name="styleSheet">
+        <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="apply_button_4">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>215</width>
+         <height>45</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 3px solid rgb(255, 255, 255);
+                                            }
+                                            QPushButton:hover {
+                                            border-color:rgb(5, 255, 142);
+										  color: rgb(5, 255, 142);
+                                            }</string>
+       </property>
+       <property name="text">
         <string>Apply</string>
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QLabel" name="kernal_size_label">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Sobel Kernel Size</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="filter_kernel_size_button">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>215</width>
+         <height>45</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 3px solid rgb(255, 255, 255);
+                                            }
+                                            QPushButton:hover {
+                                            border-color:rgb(5, 255, 142);
+										  color: rgb(5, 255, 142);
+                                            }</string>
+       </property>
+       <property name="text">
+        <string>size</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="gradient_method_label">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>Gradient Method</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="sizeIncrement">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox {
+                                            color: rgb(255, 255, 255);
+
+                                            border: 2px solid rgb(255, 255, 255);
+                                            }
+                                            QComboBox:hover {
+                                            border-color:rgb(5, 255, 142);
+										  color: rgb(5, 255, 142);
+                                            }</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>Manhattan Distance</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Euclidean Distance</string>
+        </property>
+       </item>
+      </widget>
+     </item>
     </layout>
    </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>back_button</zorder>
+   <zorder>save_button</zorder>
+   <zorder>reset_button</zorder>
+   <zorder>upload_button</zorder>
+   <zorder>quit_app_button</zorder>
+   <zorder>page_filter_layout</zorder>
+   <zorder>sidebar_1_layout</zorder>
+   <zorder>sidebar_2_layout</zorder>
+   <zorder>shapes_sidebar_layout</zorder>
+   <zorder>sidebar_3_layout</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
