@@ -173,7 +173,7 @@ class MainWindowController:
         # Evolve the contour
         # Smooth the image
         image = gaussian(self.original_image, sigma=1)
-        processed_snake = self.contour.active_contour(image, original_snake, max_iterations=num_iterations, alpha=alpha, beta=beta, gamma=gamma)
+        processed_snake = self.contour.active_contour_greedy(image, original_snake, max_num_iter=num_iterations, alpha=alpha, beta=beta, gamma=gamma)
 
 
         original_image_with_snake = self.draw_contour_on_image(self.original_image,original_snake)
