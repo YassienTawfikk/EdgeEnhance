@@ -1,10 +1,13 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, center
 from app.design2 import Ui_MainWindow
 from app.utils.clean_cache import remove_directories
 from app.services.image_service import ImageServices
 from app.processing.contour import Contour
 import cv2
+import numpy as np
+from skimage.filters import gaussian
+
 
 
 class MainWindowController:
@@ -155,30 +158,32 @@ class MainWindowController:
             print("No image available")
             return
 
-        num_points = self.ui.num_of_points_spin_box.value()
-        num_iterations = self.ui.num_of_itr_spin_box.value()
-        alpha = self.ui.alpha_spin_box.value()
-        beta = self.ui.beta_spin_box.value()
-        gamma = self.ui.gamma_spin_box.value()
+        num_points = self.ui.num_of_points_spinBox.value()
+        num_iterations = self.ui.num_of_itr_spinBox.value()
+        alpha = self.ui.alpha_spinBox.value()
+        beta = self.ui.beta_spinBox.value()
+        gamma = self.ui.gamma_spinBox.value()
         radius = self.ui.circle_radius_spinBox.value()
-        window_size = self.ui.window_size_spin_box.value()
+        window_size = self.ui.window_size_spinBox.value()
+        center= self.original_image.shape[0]//2, self.original_image.shape[1]//2
 
         # Initialize the contour
-        original_snake = self.contour.initialize_contour(self.original_image, num_points, radius)
-        processed_snake = self.contour.initialize_contour(self.processed_image, num_points, radius)
-        # Evolve the contour
-        processed_snake = self.contour.evolve_contour(processed_snake, self.processed_image, num_iterations, alpha, beta, gamma, window_size)
+        original_snake = self.contour.initialize_contour(self.original_image, center, radius,num_points)
 
-        # Show the processed image
-        self.showImage(self.original_image, self.ui.original_image_groupbox)
-        self.showImage(self.processed_image, self.ui.processed_image_groupbox)
+        # Evolve the contour
+        # Smooth the image
+        image = gaussian(self.original_image, sigma=1)
+        processed_snake = self.contour.active_contour(image, original_snake, max_iterations=num_iterations, alpha=alpha, beta=beta, gamma=gamma)
+
+
+        original_image_with_snake = self.draw_contour_on_image(self.original_image,original_snake)
+        self.showImage(original_image_with_snake, self.ui.original_image_groupbox)
+
+        processed_image_with_snake = self.draw_contour_on_image(self.processed_image,processed_snake)
+        self.showImage(processed_image_with_snake, self.ui.processed_image_groupbox)
 
         # Compute chain code, area, and perimeter
-        area, perimeter = self.contour.compute_area_perimeter(processed_snake, self.processed_image)
-        self.ui.perimeter_label.setText(str(perimeter))
-        self.ui.area_label.setText(str(area))
-        print("Area:", area)
-        print("Perimeter:", perimeter)
+
 
     def showImage(self, image, groupbox):
         if image is None:
@@ -187,3 +192,26 @@ class MainWindowController:
 
         self.srv.clear_image(groupbox)
         self.srv.set_image_in_groupbox(groupbox, image)
+
+    def draw_contour_on_image(self, image, snake):
+        """
+        Draws the contour (snake) on the image.
+
+        Args:
+            image (ndarray): The original image.
+            snake (ndarray): The contour points.
+
+        Returns:
+            ndarray: The image with the contour drawn on it.
+        """
+        # Create a copy of the original image to draw on
+        image_with_contour = image.copy()
+
+        # Convert snake points to integer for drawing
+        snake_points = np.array(snake, dtype=np.int32)
+
+        # Draw the contour on the image
+        for point in snake_points:
+            cv2.circle(image_with_contour, tuple(point), radius=2, color=(0, 255, 0), thickness=-1)  # Green color for contour
+
+        return image_with_contour
