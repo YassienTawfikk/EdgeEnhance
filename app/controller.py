@@ -183,6 +183,16 @@ class MainWindowController:
         self.showImage(processed_image_with_snake, self.ui.processed_image_groupbox)
 
         # Compute chain code, area, and perimeter
+        chain_code = self.contour.compute_chain_code(processed_snake)  # Assuming a method to compute chain code
+        area = self.contour.compute_area(processed_snake)  # Assuming a method to compute area
+        perimeter = self.contour.compute_perimeter(processed_snake)  # Assuming a method to compute perimeter
+
+        self.ui.perimeter_spinBox.setValue(perimeter)
+        self.ui.area_spinBox.setValue(area)
+        # Display the results (e.g., in a message box or console)
+        print("Chain Code:", chain_code)
+        print("Area:", area)
+        print("Perimeter:", perimeter)
 
 
     def showImage(self, image, groupbox):
