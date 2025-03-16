@@ -6,6 +6,9 @@ class CannyEdge:
     @staticmethod
     def apply_canny(image, gaussianSize, sigma =1, threshold1=100, threshold2=200, apertureSize=3, L2gradient=False):
         """Full Canny Edge Detector pipeline."""
+        if len(image.shape) == 3:
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+
         # 1. Apply Gaussian filter
         filtered_image=CannyEdge.apply_gaussian_filter(image, gaussianSize, sigma)
 
@@ -125,24 +128,19 @@ class CannyEdge:
 
     @staticmethod
     def apply_gaussian_filter(image, kernel_size=3, sigma=1):
-        if len(image.shape) == 3:
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
         # generate a gaussian kernel 
         kernel = CannyEdge.gaussian_kernel(kernel_size, sigma)
         # convolve the image with the kernel
         output=CannyEdge.__convolve_gaussian(image,kernel,kernel_size)
         return output
     
-    def __convolve_sobel(image, kernel, roberts=False):
+    def __convolve_sobel(image, kernel):
         # determine kernel height and width based on the kernel passed to the function
         kernel_height, kernel_width = kernel.shape
 
         # determine size of image padding. if type is Roberts padding size is always 1
-        if roberts == False:
-            pad_h, pad_w = kernel_height // 2, kernel_width // 2
-        if roberts == True:
-            pad_h, pad_w = 1, 1
-
+        pad_h, pad_w = kernel_height // 2, kernel_width // 2
+        
         # add constant zero padding around the image
         padded_image = np.pad(image, ((pad_h, pad_h), (pad_w, pad_w)), mode='constant', constant_values=0)
         # initialize the output image of an array of zeroes with the same shape as image
@@ -161,10 +159,6 @@ class CannyEdge:
 
     @staticmethod
     def apply_sobel(image, size=3, L2gradient=False):
-
-        if len(image.shape) == 3:
-            image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-            
         # create sobel type kernels for horizontal and vertical edge detection
         sobel_x = CannyEdge.generate_sobel_kernel(size, 'x')
         sobel_y = CannyEdge.generate_sobel_kernel(size, 'y')
@@ -192,7 +186,6 @@ class CannyEdge:
     
     @staticmethod
     def generate_sobel_kernel(size, axis):
-        # assert size % 2 == 1, "Sobel kernel size must be odd" 
         k = size // 2  # Half-size of the kernel
         kernel = np.zeros((size, size), dtype=np.int32)
         
