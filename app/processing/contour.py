@@ -165,4 +165,71 @@ class Contour:
 
         return np.stack([y, x], axis=1)
 
+    def compute_chain_code(self, snake):
+        """
+        Computes the chain code for the given contour points.
+
+        Args:
+            snake (ndarray): The contour points (Nx2 array).
+
+        Returns:
+            list: A list of chain code values representing the direction of each segment.
+        """
+        chain_code = []
+        for i in range(1, len(snake)):
+            dx = snake[i][0] - snake[i - 1][0]
+            dy = snake[i][1] - snake[i - 1][1]
+
+            # Determine the direction based on dx and dy
+            if dx == 0 and dy == 1:
+                chain_code.append(0)  # 0: North
+            elif dx == 1 and dy == 1:
+                chain_code.append(1)  # 1: North-East
+            elif dx == 1 and dy == 0:
+                chain_code.append(2)  # 2: East
+            elif dx == 1 and dy == -1:
+                chain_code.append(3)  # 3: South-East
+            elif dx == 0 and dy == -1:
+                chain_code.append(4)  # 4: South
+            elif dx == -1 and dy == -1:
+                chain_code.append(5)  # 5: South-West
+            elif dx == -1 and dy == 0:
+                chain_code.append(6)  # 6: West
+            elif dx == -1 and dy == 1:
+                chain_code.append(7)  # 7: North-West
+        return chain_code
+
+    def compute_area(self, snake):
+        """
+        Computes the area enclosed by the contour using the shoelace formula.
+
+        Args:
+            snake (ndarray): The contour points (Nx2 array).
+
+        Returns:
+            float: The area of the contour.
+        """
+        area = 0
+        for i in range(len(snake)):
+            x1, y1 = snake[i][0], snake[i][1]
+            x2, y2 = snake[(i + 1) % len(snake)]  # Wrap around to the first point
+            area += (x1 * y2) - (x2 * y1)
+        return abs(area) / 2.0
+
+    def compute_perimeter(self, snake):
+        """
+        Computes the perimeter of the contour.
+
+        Args:
+            snake (ndarray): The contour points (Nx2 array).
+
+        Returns:
+            float: The perimeter of the contour.
+        """
+        perimeter = 0
+        for i in range(len(snake)):
+            x1, y1 = snake[i][0], snake[i][1]
+            x2, y2 = snake[(i + 1) % len(snake)]  # Wrap around to the first point
+            perimeter += np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+        return perimeter
 
