@@ -84,6 +84,7 @@ class MainWindowController:
         self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.sidebar_1_layout.show()  # Show sidebar_1
         self.previous_sidebar = None  # Reset previous sidebar
+        self.ui.back_button.hide()
 
     def show_sidebar_2(self):
         """Show sidebar_2 and hide other sidebars."""
@@ -93,6 +94,7 @@ class MainWindowController:
         self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.sidebar_2_layout.show()  # Show sidebar_2
         self.previous_sidebar = "sidebar_1"  # Set previous sidebar
+        self.ui.back_button.show()
 
     def show_sidebar_3(self):
         """Show sidebar_3 and hide other sidebars."""
@@ -102,6 +104,7 @@ class MainWindowController:
         self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.sidebar_3_layout.show()  # Show sidebar_3
         self.previous_sidebar = "sidebar_1"  # Set previous sidebar
+        self.ui.back_button.show()
 
     def show_filter_sidebar(self):
         """Show filter sidebar and hide other sidebars."""
@@ -111,6 +114,7 @@ class MainWindowController:
         self.ui.shapes_sidebar_layout.hide()  # Hide shapes_sidebar_layout
         self.ui.page_filter_layout.show()
         self.previous_sidebar = "sidebar_1"  # Set previous sidebar
+        self.ui.back_button.show()
 
     def show_groupbox(self, groupbox_to_show):
         """
