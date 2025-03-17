@@ -36,6 +36,7 @@ class MainWindowController:
         self.ui.canny_edge_detection_button.clicked.connect(self.show_filter_sidebar)
         self.ui.line_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.line_groupBox))
         self.ui.circle_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.circle_groupBox))
+        self.ui.apply_button_2.clicked.connect(self.apply_circle_detection)
         self.ui.ellipse_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.ellipse_groupBox))
         self.ui.apply_button_4.clicked.connect(self.apply_canny)
         self.srv = ImageServices()
@@ -202,18 +203,31 @@ class MainWindowController:
         print("Perimeter:", perimeter)
 
     def apply_canny(self):
-        # gaussianKsize=self.ui.gaussian_filter_kernel_size_button.value()
-        # sigma=self.ui.gaussian_filter_sigma_spinbox.value()
-        # low_threshold=self.ui.edge_detection_low_threshold_spinbox.value()
-        # high_threshold=self.ui.edge_detection_high_threshold_spinbox.value()   
+        gaussianKsize=3
+        sigma=self.ui.gaussian_filter_sigma_spinbox.value()
+        print(f"sigma: {sigma}")  
+        low_threshold=self.ui.edge_detection_low_threshold_spinbox.value()
+        print(f"low threshold: {low_threshold}")  
+        high_threshold=self.ui.edge_detection_high_threshold_spinbox.value() 
+        print(f"high threshold: {high_threshold}")  
         # sobelKsize=3   #extract value
-        gradient_method=True #extract value
-        if gradient_method=="manhattan distance":
+        gradient_method=self.ui.gradient_method_label.text() #extract value
+        print(f"l2gradient: {L2gradient}")
+        if gradient_method=="Manhattan Distance":
             L2gradient=False
         else:
             L2gradient=True    
         # processed_image=CannyEdge.apply_canny(gaussianKsize,sigma,low_threshold,high_threshold,sobelKsize,L2gradient)
-        # processed_image=CannyEdge.apply_canny(self.original_image,3,5,100,200,3,False)
+        processed_image=CannyEdge.apply_canny(self.original_image,3,5,100,200,3,L2gradient)
+        self.showImage(processed_image,self.ui.processed_image_groupbox)
+
+    def apply_circle_detection(self):
+        max_radius=self.ui.max_radius_slider.value()
+        min_radius=self.ui.min_radius_slider.value()
+        threshold_factor=self.ui.circle_threshold_slider()
+        print(f"max radius: {max_radius}")
+        print(f"min radius: {min_radius}")
+        print(f"threshold precentage: {threshold_factor}")
         processed_image=DetectCircle.superimpose(self.original_image)
         self.showImage(processed_image,self.ui.processed_image_groupbox)
 
