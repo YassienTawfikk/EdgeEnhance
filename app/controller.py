@@ -1,14 +1,13 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import Qt, center
-from app.design2 import Ui_MainWindow
+from PyQt5.QtCore import Qt
+# from app.design.design2 import Ui_MainWindow
+from app.design.design2 import Ui_MainWindow
 from app.utils.clean_cache import remove_directories
 from app.services.image_service import ImageServices
 from app.processing.contour import Contour
 import cv2
 import numpy as np
 from skimage.filters import gaussian
-
-
 
 class MainWindowController:
     def __init__(self):
@@ -23,6 +22,18 @@ class MainWindowController:
         # Show sidebar_1 initially
         self.show_sidebar_1()
 
+        #Set Ranges
+        self.set_ranges_and_values()
+
+        # Kernel sizes for regular kernel button
+        self.kernel_sizes_array = [3, 5, 7]
+        self.current_kernal_size = self.kernel_sizes_array[0]  # Initialize with the first kernel size
+
+        # Kernel sizes for regular kernel button
+        self.kernel_sizes_array = [3, 5, 7]
+
+        # Kernel sizes for Gaussian filter kernel button
+        self.gaussian_kernel_sizes_array = [3, 5, 7, 9]  # Example sizes for Gaussian filter
         # Center alignment for shapes_sidebar_layout
         self.ui.verticalLayout_5.setAlignment(Qt.AlignCenter)
 
@@ -39,8 +50,52 @@ class MainWindowController:
         self.ui.upload_button.clicked.connect(self.drawImage)
         self.ui.save_button.clicked.connect(lambda: self.srv.save_image(self.processed_image))
         self.ui.reset_button.clicked.connect(self.reset_images)
+
         self.ui.apply_contour_button.clicked.connect(self.apply_contour)
         self.contour = Contour()
+
+        # Initialize kernel size button
+        self.ui.filter_kernel_size_button.setText(f"{self.kernel_sizes_array[0]}×{self.kernel_sizes_array[0]}")
+        self.ui.filter_kernel_size_button.clicked.connect(
+            lambda: self.toggle_kernel_size(self.ui.filter_kernel_size_button, self.kernel_sizes_array)
+        )
+
+        # Initialize Gaussian filter kernel size button
+        self.ui.gaussian_filter_kernel_size_button.setText(
+            f"{self.gaussian_kernel_sizes_array[0]}×{self.gaussian_kernel_sizes_array[0]}")
+        self.ui.gaussian_filter_kernel_size_button.clicked.connect(
+            lambda: self.toggle_kernel_size(self.ui.gaussian_filter_kernel_size_button,
+                                            self.gaussian_kernel_sizes_array)
+        )
+    def toggle_kernel_size(self, button, kernel_sizes_array):
+        """
+        Cycles through predefined kernel sizes and updates the button text to reflect the current selection.
+
+        Args:
+            button (QPushButton): The button whose text needs to be updated.
+            kernel_sizes_array (list): The array of kernel sizes to cycle through.
+        """
+        # Get the current size from the button text
+        current_size = int(button.text().split('×')[0])
+
+        # Find the index of the current size in the kernel sizes array
+        current_index = kernel_sizes_array.index(current_size)
+
+        # Compute the next index; wrap around to the beginning if necessary
+        next_index = (current_index + 1) % len(kernel_sizes_array)
+        next_size = kernel_sizes_array[next_index]
+
+        # Update the button text to the next kernel size
+        button.setText(f"{next_size}×{next_size}")
+
+    def set_ranges_and_values(self):
+        self.ui.circle_radius_spinBox.setRange(0, 200)
+        self.ui.window_size_spinBox.setRange(0, 200)
+        self.ui.num_of_points_spinBox.setRange(0, 200)
+        self.ui.num_of_itr_spinBox.setRange(0, 2500)
+        self.ui.alpha_spinBox.setRange(0.0, 100.0)  # Set the minimum and maximum values
+        self.ui.beta_spinBox.setRange(0.0, 100.0)
+        self.ui.gamma_spinBox.setRange(0.0, 100.0)
 
     def drawImage(self):
         self.path = self.srv.upload_image_file()
@@ -60,21 +115,6 @@ class MainWindowController:
 
         self.srv.clear_image(self.ui.processed_image_groupbox)
         self.srv.set_image_in_groupbox(self.ui.processed_image_groupbox, self.original_image)
-
-    def run(self):
-        """Run the application."""
-        self.MainWindow.showFullScreen()
-        self.app.exec_()
-
-    def quit_app(self):
-        """Quit the application."""
-        self.app.quit()
-        remove_directories()
-
-    def closeApp(self):
-        """Close the application."""
-        remove_directories()
-        self.app.quit()
 
     def show_sidebar_1(self):
         """Show sidebar_1 and hide other sidebars."""
@@ -198,7 +238,6 @@ class MainWindowController:
         print("Area:", area)
         print("Perimeter:", perimeter)
 
-
     def showImage(self, image, groupbox):
         if image is None:
             print("Error: Processed image is None.")
@@ -229,3 +268,18 @@ class MainWindowController:
             cv2.circle(image_with_contour, tuple(point), radius=2, color=(0, 255, 0), thickness=-1)  # Green color for contour
 
         return image_with_contour
+
+    def run(self):
+        """Run the application."""
+        self.MainWindow.showFullScreen()
+        self.app.exec_()
+
+    def quit_app(self):
+        """Quit the application."""
+        self.app.quit()
+        remove_directories()
+
+    def closeApp(self):
+        """Close the application."""
+        remove_directories()
+        self.app.quit()
