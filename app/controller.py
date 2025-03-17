@@ -4,7 +4,7 @@ from app.design.design2 import Ui_MainWindow
 from app.utils.clean_cache import remove_directories
 from app.services.image_service import ImageServices
 from app.processing.canny_edge import CannyEdge
-from app.processing.circle_detection import DetectCircle
+from app.processing.shape_detection import ShapeDetection
 import cv2
 import numpy as np
 from app.processing.activeContour import ActiveContour
@@ -136,10 +136,10 @@ class MainWindowController:
         if self.original_image is None:
             return
 
-        self.srv.clear_image(self.ui.processed_image_groupbox)
-        self.srv.set_image_in_groupbox(self.ui.processed_image_groupbox, self.original_image)
-        self.srv.clear_image(self.ui.original_image_groupbox)
-        self.srv.set_image_in_groupbox(self.ui.original_image_groupbox, self.original_image)
+        self.srv.clear_image(self.ui.processed_groupBox)
+        self.srv.set_image_in_groupbox(self.ui.processed_groupBox, self.original_image)
+        # self.srv.clear_image(self.ui.original_image_groupbox)
+        # self.srv.set_image_in_groupbox(self.ui.original_image_groupbox, self.original_image)
 
     def show_sidebar(self, sidebar_name):
         """Show the specified sidebar and hide others."""
@@ -277,8 +277,8 @@ class MainWindowController:
         """Apply circle detection to the image."""
         max_radius = self.ui.max_radius_slider.value()
         min_radius = self.ui.min_radius_slider.value()
-        threshold_factor = self.ui.circle_threshold_slider()
-        processed_image = DetectCircle.superimpose(self.original_image)
+        threshold_factor = self.ui.circle_threshold_slider.value()
+        processed_image = ShapeDetection.superimpose(self.original_image)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def showImage(self, image, groupbox):
