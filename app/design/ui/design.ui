@@ -1109,6 +1109,9 @@
          <layout class="QHBoxLayout" name="line_threshold_layout">
           <item>
            <widget class="QSlider" name="line_threshold_slider">
+            <property name="maximum">
+             <number>100</number>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1235,7 +1238,7 @@
           <item>
            <widget class="QSlider" name="min_radius_slider">
             <property name="maximum">
-             <number>150</number>
+             <number>100</number>
             </property>
             <property name="singleStep">
              <number>0</number>
@@ -1289,7 +1292,7 @@
           <item>
            <widget class="QSlider" name="max_radius_slider">
             <property name="maximum">
-             <number>500</number>
+             <number>200</number>
             </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -1462,6 +1465,9 @@
          <layout class="QHBoxLayout" name="min_radius_layout_2">
           <item>
            <widget class="QSlider" name="min_radius_slider_2">
+            <property name="maximum">
+             <number>100</number>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1507,6 +1513,9 @@
          <layout class="QHBoxLayout" name="max_radius_layout_2">
           <item>
            <widget class="QSlider" name="max_radius_slider_2">
+            <property name="maximum">
+             <number>200</number>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
