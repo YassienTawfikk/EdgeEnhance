@@ -9,6 +9,8 @@ from app.processing.circle_detection import DetectCircle
 import cv2
 import numpy as np
 from skimage.filters import gaussian
+from app.processing.activeContour import ActiveContour
+
 
 
 
@@ -43,8 +45,9 @@ class MainWindowController:
         self.ui.upload_button.clicked.connect(self.drawImage)
         self.ui.save_button.clicked.connect(lambda: self.srv.save_image(self.processed_image))
         self.ui.reset_button.clicked.connect(self.reset_images)
-        self.ui.apply_contour_button.clicked.connect(self.apply_contour)
+        self.ui.apply_contour_button.clicked.connect(self.apply_contour2)
         self.contour = Contour()
+        self.activeContour=ActiveContour()
 
     def drawImage(self):
         self.path = self.srv.upload_image_file()
@@ -183,24 +186,61 @@ class MainWindowController:
         image = gaussian(self.original_image, sigma=1)
         processed_snake = self.contour.active_contour_greedy(image, original_snake, max_num_iter=num_iterations, alpha=alpha, beta=beta, gamma=gamma)
 
+    def apply_contour2(self):
+        if self.original_image is None:
+            print("No image available")
+            return
+        if self.processed_image is None:
+            print("No image available")
+            return
 
-        original_image_with_snake = self.draw_contour_on_image(self.original_image,original_snake)
+        num_points = self.ui.num_of_points_spinBox.value()
+        num_iterations = self.ui.num_of_itr_spinBox.value()
+        alpha = self.ui.alpha_spinBox.value()
+        beta = self.ui.beta_spinBox.value()
+        gamma = self.ui.gamma_spinBox.value()
+        radius = self.ui.circle_radius_spinBox.value()
+        window_size = self.ui.window_size_spinBox.value()
+        center= self.original_image.shape[0]//2, self.original_image.shape[1]//2
+
+        image_src = np.copy(self.original_image)
+
+        # Create Initial Contour and display it on the GUI
+        # contour_x, contour_y, WindowCoordinates = create_initial_contour(source=image_src, num_points=65)
+        if window_size == 1:
+           contour_x, contour_y, WindowCoordinates = self.activeContour.create_square_contour(source=image_src,
+                                                                        num_xpoints=num_points,
+                                                                        num_ypoints=num_points)
+           # Calculate External Energy which will be used in each iteration of greedy algorithm
+           ExternalEnergy = gamma * self.activeContour.calculate_external_energy(image_src, 1,
+                                                                                 8)
+        elif window_size == 2:
+            contour_x, contour_y, WindowCoordinates = self.activeContour.create_ellipse_contour(source=image_src,num_points=num_points)
+            # Calculate External Energy which will be used in each iteration of greedy algorithm
+            ExternalEnergy = gamma * self.activeContour.calculate_external_energy(image_src, 5,5)
+        else:
+            contour_x, contour_y, WindowCoordinates = self.activeContour.create_ellipse_contour(source=image_src,num_points=num_points,type="circle",radius=radius)
+            # Calculate External Energy which will be used in each iteration of greedy algorithm
+            ExternalEnergy = gamma * self.activeContour.calculate_external_energy(image_src, window_size,
+                                                                                  window_size )
+        # Draw contour on the processed image
+        original_image_with_snake = self.draw_contour_on_image2(self.original_image, contour_x,
+                                                                contour_y)
         self.showImage(original_image_with_snake, self.ui.original_image_groupbox)
 
-        processed_image_with_snake = self.draw_contour_on_image(self.processed_image,processed_snake)
+
+
+        cont_x, cont_y = np.copy(contour_x), np.copy(contour_y)
+
+        for iteration in range(num_iterations):
+            # Start Applying Active Contour Algorithm
+            cont_x, cont_y = self.activeContour.iterate_contour(source=image_src, contour_x=cont_x, contour_y=cont_y,
+                                             external_energy=ExternalEnergy, window_coordinates=WindowCoordinates,
+                                             alpha=alpha, beta=beta)
+
+        # Draw contour on the processed image
+        processed_image_with_snake = self.draw_contour_on_image2(self.original_image, cont_x,cont_y)
         self.showImage(processed_image_with_snake, self.ui.processed_image_groupbox)
-
-        # Compute chain code, area, and perimeter
-        chain_code = self.contour.compute_chain_code(processed_snake)  # Assuming a method to compute chain code
-        area = self.contour.compute_area(processed_snake)  # Assuming a method to compute area
-        perimeter = self.contour.compute_perimeter(processed_snake)  # Assuming a method to compute perimeter
-
-        self.ui.perimeter_spinBox.setValue(perimeter)
-        self.ui.area_spinBox.setValue(area)
-        # Display the results (e.g., in a message box or console)
-        print("Chain Code:", chain_code)
-        print("Area:", area)
-        print("Perimeter:", perimeter)
 
     def apply_canny(self):
         gaussianKsize=3
@@ -259,5 +299,26 @@ class MainWindowController:
         # Draw the contour on the image
         for point in snake_points:
             cv2.circle(image_with_contour, tuple(point), radius=2, color=(0, 255, 0), thickness=-1)  # Green color for contour
+
+        return image_with_contour
+
+    def draw_contour_on_image2(self, image, contour_x, contour_y):
+        """
+        Draws the contour (snake) on the image.
+
+        Args:
+            image (ndarray): The original image.
+            contour_x (ndarray): The x coordinates of the contour.
+            contour_y (ndarray): The y coordinates of the contour.
+
+        Returns:
+            ndarray: The image with the contour drawn on it.
+        """
+        # Create a copy of the original image to draw on
+        image_with_contour = image.copy()
+
+        # Draw the contour on the image
+        for x, y in zip(contour_x.astype(int), contour_y.astype(int)):
+            cv2.circle(image_with_contour, (x, y), radius=2, color=(0, 255, 0), thickness=-1)  # Green color for contour
 
         return image_with_contour
