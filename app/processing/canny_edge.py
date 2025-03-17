@@ -5,7 +5,7 @@ import cv2
 class CannyEdge:
 
     @staticmethod
-    def apply_canny(image, gaussianSize, sigma=1, low_threshold=100, high_threshold=200, apertureSize=3, L2gradient=False):
+    def apply_canny(image, gaussianSize=3, sigma=0.1, low_threshold=100, high_threshold=200, apertureSize=3, L2gradient=False):
         """Full Canny Edge Detector pipeline."""
         if len(image.shape) == 3:
             image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
@@ -26,6 +26,9 @@ class CannyEdge:
         final_edges = CannyEdge.__edge_tracking_hysteresis(thresholded_image)
 
         return final_edges
+    
+    def apply_canny_built_in(image, low_threshold=100, high_threshold=200, apertureSize=3, L2gradient=False):
+        return cv2.Canny(image, low_threshold, high_threshold, apertureSize=apertureSize, L2gradient=L2gradient)
 
     def __non_maximum_suppression(gradient_magnitude, gradient_direction):
         """Thin edges by suppressing non-maximum pixels."""

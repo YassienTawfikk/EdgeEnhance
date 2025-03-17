@@ -318,9 +318,12 @@ class MainWindowController:
     def apply_circle_detection(self):
         """Apply circle detection to the image."""
         max_radius = self.ui.max_radius_slider.value()
+        print(f"max radius: {max_radius}")
         min_radius = self.ui.min_radius_slider.value()
-        threshold_factor = self.ui.circle_threshold_slider.value()
-        processed_image = ShapeDetection.superimpose(self.original_image)
+        print(f"min radius: {min_radius}")
+        threshold_factor = self.ui.circle_threshold_slider.value()/100
+        print(f"threshold: {threshold_factor}")
+        processed_image = ShapeDetection.superimpose_circle(self.original_image)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def apply_line_detection(self):
