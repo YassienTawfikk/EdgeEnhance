@@ -381,3 +381,49 @@ class ActiveContour:
         # Apply the Kernel
         out = apply_kernel(src, kernel, 'same')
         return out.astype('uint8')
+
+    def calculate_area(self, contour_x, contour_y):
+        """Calculate the area of the contour using the Shoelace formula."""
+        area = 0.0
+        n = len(contour_x)
+        for i in range(n):
+            j = (i + 1) % n  # Wrap around to the first point
+            area += contour_x[i] * contour_y[j]
+            area -= contour_y[i] * contour_x[j]
+        area = abs(area) / 2.0
+        return area
+
+    def calculate_perimeter(self, contour_x, contour_y):
+        """Calculate the perimeter of the contour."""
+        perimeter = 0.0
+        n = len(contour_x)
+        for i in range(n):
+            j = (i + 1) % n  # Wrap around to the first point
+            perimeter += np.sqrt((contour_x[j] - contour_x[i]) ** 2 + (contour_y[j] - contour_y[i]) ** 2)
+        return perimeter
+
+    def calculate_chain_code(self, contour_x, contour_y):
+        """Calculate the chain code for the contour."""
+        chain_code = []
+        directions = {
+            (1, 0): 0,  # right
+            (1, 1): 1,  # down-right
+            (0, 1): 2,  # down
+            (-1, 1): 3,  # down-left
+            (-1, 0): 4,  # left
+            (-1, -1): 5,  # up-left
+            (0, -1): 6,  # up
+            (1, -1): 7  # up-right
+        }
+
+        n = len(contour_x)
+        for i in range(n):
+            j = (i + 1) % n  # Wrap around to the first point
+            dx = contour_x[j] - contour_x[i]
+            dy = contour_y[j] - contour_y[i]
+            if dx != 0 or dy != 0:
+                direction = (int(np.sign(dx)), int(np.sign(dy)))
+                if direction in directions:
+                    chain_code.append(directions[direction])
+
+        return chain_code
