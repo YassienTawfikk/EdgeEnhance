@@ -98,10 +98,6 @@ class MainWindowController:
         button.setText(f"{next_size}×{next_size}")
 
     def set_ranges_and_values(self):
-        self.ui.circle_radius_spinBox.setRange(0, 200)
-        self.ui.window_size_spinBox.setRange(0, 200)
-        self.ui.num_of_points_spinBox.setRange(0, 200)
-        self.ui.num_of_itr_spinBox.setRange(0, 2500)
         self.ui.alpha_spinBox.setRange(0.0, 100.0)  # Set the minimum and maximum values
         self.ui.beta_spinBox.setRange(0.0, 100.0)
         self.ui.gamma_spinBox.setRange(0.0, 100.0)

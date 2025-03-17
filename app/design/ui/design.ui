@@ -422,44 +422,6 @@
     </property>
     <layout class="QVBoxLayout" name="sidebar_3">
      <item>
-      <widget class="QGroupBox" name="initial_conour_groupBox">
-       <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
-       </property>
-       <property name="title">
-        <string>Initial Contour</string>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <widget class="QLabel" name="circle_radius_label">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-          <property name="text">
-           <string>Circle Radius</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="circle_radius_spinBox">
-          <property name="styleSheet">
-           <string notr="true">QSpinBox{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
       <widget class="QGroupBox" name="snake_contour_groupBox">
        <property name="styleSheet">
         <string notr="true">color: rgb(255, 255, 255);</string>
@@ -490,10 +452,18 @@
         </item>
         <item row="0" column="1">
          <widget class="QSpinBox" name="area_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
 }</string>
+          </property>
+          <property name="maximum">
+           <number>20000</number>
           </property>
          </widget>
         </item>
@@ -516,10 +486,18 @@
         </item>
         <item row="1" column="1">
          <widget class="QSpinBox" name="perimeter_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
 }</string>
+          </property>
+          <property name="maximum">
+           <number>20000</number>
           </property>
          </widget>
         </item>
@@ -538,16 +516,58 @@
         <property name="verticalSpacing">
          <number>35</number>
         </property>
-        <item row="2" column="1">
-         <widget class="QSpinBox" name="num_of_itr_spinBox">
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="type_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
 }</string>
           </property>
+          <property name="maximum">
+           <number>3</number>
+          </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="0" column="0">
+         <widget class="QLabel" name="circle_radius_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Circle Radius</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="w_line_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>W_Line</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
          <widget class="QLabel" name="alpha_label">
           <property name="font">
            <font>
@@ -564,7 +584,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
+        <item row="7" column="0">
          <widget class="QLabel" name="beta_label">
           <property name="font">
            <font>
@@ -581,8 +601,76 @@
           </property>
          </widget>
         </item>
+        <item row="4" column="1">
+         <widget class="QSpinBox" name="w_line_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="circle_radius_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="maximum">
+           <number>200</number>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QSpinBox" name="beta_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="num_of_points_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="maximum">
+           <number>200</number>
+          </property>
+         </widget>
+        </item>
         <item row="5" column="0">
-         <widget class="QLabel" name="gamma_label">
+         <widget class="QLabel" name="w_edge_label">
           <property name="font">
            <font>
             <pointsize>12</pointsize>
@@ -594,64 +682,11 @@
 }</string>
           </property>
           <property name="text">
-           <string>Gamma</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QSpinBox" name="num_of_points_spinBox">
-          <property name="styleSheet">
-           <string notr="true">QSpinBox{
-	color: rgb(255, 255, 255);
-}</string>
+           <string>W_Edge</string>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QLabel" name="num_of_itr_label">
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-          <property name="text">
-           <string>Num of Itr</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QSpinBox" name="gamma_spinBox">
-          <property name="styleSheet">
-           <string notr="true">QSpinBox{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QSpinBox" name="beta_spinBox">
-          <property name="styleSheet">
-           <string notr="true">QSpinBox{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QSpinBox" name="alpha_spinBox">
-          <property name="styleSheet">
-           <string notr="true">QSpinBox{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
          <widget class="QLabel" name="num_of_points_label">
           <property name="font">
            <font>
@@ -668,17 +703,8 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QSpinBox" name="window_size_spinBox">
-          <property name="styleSheet">
-           <string notr="true">QSpinBox{
-	color: rgb(255, 255, 255);
-}</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="window_size_label">
+        <item row="1" column="0">
+         <widget class="QLabel" name="type_label">
           <property name="font">
            <font>
             <pointsize>12</pointsize>
@@ -690,7 +716,109 @@
 }</string>
           </property>
           <property name="text">
-           <string>Window Size</string>
+           <string>Type</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QSpinBox" name="w_edge_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="num_of_itr_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Num of Itr</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QSpinBox" name="gamma_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QSpinBox" name="num_of_itr_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="maximum">
+           <number>2500</number>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="gamma_label">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Gamma</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QSpinBox" name="alpha_spinBox">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QSpinBox{
+	color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <property name="maximum">
+           <number>100</number>
           </property>
          </widget>
         </item>
@@ -1920,7 +2048,6 @@
     </layout>
    </widget>
    <zorder>page_filter_layout</zorder>
-   <zorder>sidebar_3_layout</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>back_button</zorder>
    <zorder>save_button</zorder>
@@ -1945,6 +2072,7 @@
    <zorder>max_radius_slider_2</zorder>
    <zorder>max_radius_value_2</zorder>
    <zorder>ellipse_threshold_value</zorder>
+   <zorder>sidebar_3_layout</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
