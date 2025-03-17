@@ -39,8 +39,8 @@ class MainWindowController:
         self.set_ranges()
 
         # Add items to combo box
-        self.ui.comboBox.addItem("Manhattan Distance")
-        self.ui.comboBox.addItem("Euclidean Distance")
+        Gradient_methods_list = ["Manhattan Distance" ,"Euclidean Distance"]
+        self.ui.comboBox.addItems(Gradient_methods_list)
 
         # Center alignment for shapes_sidebar_layout
         self.ui.verticalLayout_5.setAlignment(Qt.AlignCenter)
