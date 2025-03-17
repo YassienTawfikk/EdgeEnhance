@@ -336,7 +336,9 @@ class Ui_MainWindow(object):
         self.circle_radius_spinBox.setMaximum(200)
         self.circle_radius_spinBox.setObjectName("circle_radius_spinBox")
         self.gridLayout.addWidget(self.circle_radius_spinBox, 0, 1, 1, 1)
-        self.beta_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
+        self.beta_spinBox = QtWidgets.QDoubleSpinBox(self.active_contour_groupbox)
+        self.beta_spinBox.setDecimals(2)
+        self.beta_spinBox.setSingleStep(0.1)
         font = QtGui.QFont()
         font.setPointSize(10)
         self.beta_spinBox.setFont(font)
@@ -402,15 +404,17 @@ class Ui_MainWindow(object):
 "}")
         self.num_of_itr_label.setObjectName("num_of_itr_label")
         self.gridLayout.addWidget(self.num_of_itr_label, 3, 0, 1, 1)
-        self.gamma_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
+        self.gamma_spinBox = QtWidgets.QDoubleSpinBox(self.active_contour_groupbox)
+        self.gamma_spinBox.setStyleSheet("QDoubleSpinBox{\n"
+                                         "    color: rgb(255, 255, 255);\n"
+                                         "}")
+        self.gamma_spinBox.setObjectName("gamma_spinBox")
+        self.gamma_spinBox.setDecimals(2)
+        self.gamma_spinBox.setSingleStep(0.1)
         font = QtGui.QFont()
         font.setPointSize(10)
         self.gamma_spinBox.setFont(font)
-        self.gamma_spinBox.setStyleSheet("QSpinBox{\n"
-"    color: rgb(255, 255, 255);\n"
-"}")
-        self.gamma_spinBox.setMaximum(100)
-        self.gamma_spinBox.setObjectName("gamma_spinBox")
+
         self.gridLayout.addWidget(self.gamma_spinBox, 8, 1, 1, 1)
         self.num_of_itr_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
         font = QtGui.QFont()
@@ -431,7 +435,9 @@ class Ui_MainWindow(object):
 "}")
         self.gamma_label.setObjectName("gamma_label")
         self.gridLayout.addWidget(self.gamma_label, 8, 0, 1, 1)
-        self.alpha_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
+        self.alpha_spinBox = QtWidgets.QDoubleSpinBox(self.active_contour_groupbox)
+        self.alpha_spinBox.setDecimals(2)  # Set the number of decimal places
+        self.alpha_spinBox.setSingleStep(0.1)  # Set the step size
         font = QtGui.QFont()
         font.setPointSize(10)
         self.alpha_spinBox.setFont(font)
