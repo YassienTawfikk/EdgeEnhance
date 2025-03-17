@@ -49,3 +49,58 @@ class ShapeDetection:
         #     cv2.circle(original_image, (a, b), r, (0, 255, 0), 2)
 
         return original_image
+
+    @staticmethod
+    def superimpose_line(original_image, threshold=150, theta_res=1, rho_res=1):
+        binary_edge_map = CannyEdge.apply_canny(original_image, 5, 3, 25, 100, 3, True)
+
+        # Get image dimensions
+        height, width = binary_edge_map.shape
+
+        # Define the maximum possible value for rho (image diagonal)
+        diagonal = int(np.sqrt(height ** 2 + width ** 2))
+
+        # Define rho and theta ranges
+        rhos = np.arange(-diagonal, diagonal, rho_res)
+        thetas = np.deg2rad(np.arange(-90, 90, theta_res))  # Convert degrees to radians
+
+        # Create the accumulator array (votes)
+        accumulator = np.zeros((len(rhos), len(thetas)), dtype=np.int32)
+
+        # Get edge points
+        edge_points = np.argwhere(binary_edge_map > 0)
+
+        # Precompute cos(theta) and sin(theta) values
+        cos_thetas = np.cos(thetas)
+        sin_thetas = np.sin(thetas)
+
+        # Voting process (optimized)
+        for y, x in edge_points:  # For each edge pixel
+            rhos_calc = (x * cos_thetas + y * sin_thetas).astype(int)  # Compute rho values for all thetas at once
+            rho_indices = np.clip(rhos_calc + diagonal, 0, len(rhos) - 1)  # Map rho to index
+            accumulator[rho_indices, np.arange(len(thetas))] += 1  # Increment votes in one operation
+
+        # Extract lines based on threshold
+        detected_lines = np.argwhere(accumulator > threshold)
+
+        # Convert the grayscale image to BGR for visualization
+        processed_image = cv2.cvtColor(binary_edge_map, cv2.COLOR_GRAY2BGR)
+
+        # Draw the detected lines
+        for rho_idx, theta_idx in detected_lines:
+            rho = rhos[rho_idx]
+            theta = thetas[theta_idx]
+
+            # Convert (rho, theta) to two points for line drawing
+            a = np.cos(theta)
+            b = np.sin(theta)
+            x0 = a * rho
+            y0 = b * rho
+            x1 = int(x0 + 1000 * (-b))
+            y1 = int(y0 + 1000 * (a))
+            x2 = int(x0 - 1000 * (-b))
+            y2 = int(y0 - 1000 * (a))
+
+            cv2.line(original_image, (x1, y1), (x2, y2), (0, 255, 0), 2)  # Green lines
+
+        return original_image

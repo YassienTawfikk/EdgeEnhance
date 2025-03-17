@@ -77,6 +77,7 @@ class MainWindowController:
         self.ui.reset_button.clicked.connect(self.reset_images)
 
         # Processing buttons
+        self.ui.apply_button.clicked.connect(self.apply_line_detection)
         self.ui.apply_button_2.clicked.connect(self.apply_circle_detection)
         self.ui.apply_button_4.clicked.connect(self.apply_canny)
         self.ui.apply_contour_button.clicked.connect(self.apply_contour)
@@ -117,8 +118,8 @@ class MainWindowController:
             lambda: self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
         )
         self.ui.gaussian_filter_sigma_horizontalSlider.valueChanged.connect(
-                    lambda: self.update_label_from_slider(self.ui.gaussian_filter_sigma_horizontalSlider, self.ui.gaussian_filter_sigma_label_2)
-                )
+            lambda: self.update_label_from_slider(self.ui.gaussian_filter_sigma_horizontalSlider, self.ui.gaussian_filter_sigma_label_2)
+        )
 
         # Initialize labels with default slider values
         self.update_label_from_slider(self.ui.line_threshold_slider, self.ui.line_threshold_value)
@@ -179,10 +180,8 @@ class MainWindowController:
         if self.original_image is None:
             return
 
-        self.srv.clear_image(self.ui.processed_groupBox)
-        self.srv.set_image_in_groupbox(self.ui.processed_groupBox, self.original_image)
-        # self.srv.clear_image(self.ui.original_image_groupbox)
-        # self.srv.set_image_in_groupbox(self.ui.original_image_groupbox, self.original_image)
+        self.srv.clear_image(self.ui.processed_image_groupbox)
+        self.srv.set_image_in_groupbox(self.ui.processed_image_groupbox, self.original_image)
 
     def show_sidebar(self, sidebar_name):
         """Show the specified sidebar and hide others."""
@@ -322,6 +321,12 @@ class MainWindowController:
         min_radius = self.ui.min_radius_slider.value()
         threshold_factor = self.ui.circle_threshold_slider.value()
         processed_image = ShapeDetection.superimpose(self.original_image)
+        self.showImage(processed_image, self.ui.processed_image_groupbox)
+
+    def apply_line_detection(self):
+        """Apply circle detection to the image."""
+        threshold_factor = self.ui.line_threshold_slider.value()
+        processed_image = ShapeDetection.superimpose_line(self.original_image)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def showImage(self, image, groupbox):
