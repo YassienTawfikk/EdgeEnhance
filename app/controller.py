@@ -39,7 +39,7 @@ class MainWindowController:
         self.set_ranges()
 
         # Add items to combo box
-        Gradient_methods_list = ["Manhattan Distance" ,"Euclidean Distance"]
+        Gradient_methods_list = ["Manhattan Distance", "Euclidean Distance"]
         self.ui.comboBox.addItems(Gradient_methods_list)
 
         # Center alignment for shapes_sidebar_layout
