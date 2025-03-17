@@ -319,9 +319,11 @@ class MainWindowController:
 
     def apply_canny(self):
         """Apply Canny edge detection to the image."""
+        # gaussian kernel size
         sigma = self.ui.gaussian_filter_sigma_horizontalSlider.value()
         low_threshold = self.ui.edge_detection_low_threshold_spinbox.value()
         high_threshold = self.ui.edge_detection_high_threshold_spinbox.value()
+        # sobel kernel size
         gradient_method = self.ui.comboBox.text()
         print(f"gradient method:{gradient_method}")
 
