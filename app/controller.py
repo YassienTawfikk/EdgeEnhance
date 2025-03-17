@@ -322,10 +322,12 @@ class MainWindowController:
         sigma = self.ui.gaussian_filter_sigma_horizontalSlider.value()
         low_threshold = self.ui.edge_detection_low_threshold_spinbox.value()
         high_threshold = self.ui.edge_detection_high_threshold_spinbox.value()
-        gradient_method = self.ui.gradient_method_label.text()
+        gradient_method = self.ui.comboBox.text()
+        print(f"gradient method:{gradient_method}")
 
         L2gradient = False if gradient_method == "Manhattan Distance" else True
-        processed_image = CannyEdge.apply_canny(self.original_image, 3, 5, 100, 200, 3, L2gradient)
+        print(f"l2grad:{L2gradient}")
+        processed_image = CannyEdge.apply_canny(self.original_image, 3, sigma, low_threshold, high_threshold, 3, L2gradient)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def apply_circle_detection(self):
