@@ -10,10 +10,10 @@ class CannyEdge:
             image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
         # 1. Apply Gaussian filter
-        filtered_image=CannyEdge.apply_gaussian_filter(image, gaussianSize, sigma)
+        filtered_image=CannyEdge.__apply_gaussian_filter(image, gaussianSize, sigma)
 
         # 2. Compute gradients
-        gradient_magnitude, gradient_direction=CannyEdge.apply_sobel(filtered_image, apertureSize, L2gradient)
+        gradient_magnitude, gradient_direction=CannyEdge.__apply_sobel(filtered_image, apertureSize, L2gradient)
 
         # 3. Apply Non-Maximum Suppression
         thinner_edges=CannyEdge.__non_maximum_suppression(gradient_magnitude,gradient_direction)
@@ -110,8 +110,8 @@ class CannyEdge:
         # clip the filtered image values to [0-255] and cast to uint8
         return np.clip(filtered_image, 0, 255).astype(np.uint8)
 
-    @staticmethod
-    def gaussian_kernel(kernel_size, sigma):
+
+    def __gaussian_kernel(kernel_size, sigma):
         """Generates a 2D Gaussian kernel."""
         # Create a 1D array of equally spaced points centered around 0
         ax = np.linspace(-(kernel_size // 2), kernel_size // 2, kernel_size)
@@ -126,10 +126,10 @@ class CannyEdge:
         # normalize the kernal to that its sum=1 and return it
         return kernel / np.sum(kernel)
 
-    @staticmethod
-    def apply_gaussian_filter(image, kernel_size=3, sigma=1):
+    
+    def __apply_gaussian_filter(image, kernel_size=3, sigma=1):
         # generate a gaussian kernel 
-        kernel = CannyEdge.gaussian_kernel(kernel_size, sigma)
+        kernel = CannyEdge.__gaussian_kernel(kernel_size, sigma)
         # convolve the image with the kernel
         output=CannyEdge.__convolve_gaussian(image,kernel,kernel_size)
         return output
@@ -157,11 +157,11 @@ class CannyEdge:
         # return the convolved output
         return output
 
-    @staticmethod
-    def apply_sobel(image, size=3, L2gradient=False):
+    
+    def __apply_sobel(image, size=3, L2gradient=False):
         # create sobel type kernels for horizontal and vertical edge detection
-        sobel_x = CannyEdge.generate_sobel_kernel(size, 'x')
-        sobel_y = CannyEdge.generate_sobel_kernel(size, 'y')
+        sobel_x = CannyEdge.__generate_sobel_kernel(size, 'x')
+        sobel_y = CannyEdge.__generate_sobel_kernel(size, 'y')
 
         # get the gradient (convolution) of each kernel over the image
         grad_x = CannyEdge.__convolve_sobel(image, sobel_x)
@@ -184,8 +184,8 @@ class CannyEdge:
 
         return magnitude, direction
     
-    @staticmethod
-    def generate_sobel_kernel(size, axis):
+    
+    def __generate_sobel_kernel(size, axis):
         k = size // 2  # Half-size of the kernel
         kernel = np.zeros((size, size), dtype=np.int32)
         
