@@ -26,6 +26,8 @@ class MainWindowController:
         self.kernel_sizes_array = [3, 5, 7]
         self.current_kernal_size = self.kernel_sizes_array[0]
         self.gaussian_kernel_sizes_array = [3, 5, 7, 9]
+        self.current_filter_kernel_size = self.kernel_sizes_array[0]  # Default 3
+        self.current_gaussian_kernel_size = self.gaussian_kernel_sizes_array[0]  # Default 3
 
         # Setup UI
         self.setup_ui()
@@ -136,18 +138,29 @@ class MainWindowController:
         self.ui.alpha_spinBox.setRange(0.0, 100.0)
         self.ui.beta_spinBox.setRange(0.0, 100.0)
         self.ui.gamma_spinBox.setRange(0.0, 100.0)
+        self.ui.gaussian_filter_sigma_horizontalSlider.setRange(0, 5)
 
     def update_label_from_slider(self, slider, label):
         value = slider.value()
         label.setText(f"{value}")
 
     def toggle_kernel_size(self, button, kernel_sizes_array):
-        """Toggle kernel size for the given button."""
-        current_size = int(button.text().split('×')[0])
-        current_index = kernel_sizes_array.index(current_size)
-        next_index = (current_index + 1) % len(kernel_sizes_array)
-        next_size = kernel_sizes_array[next_index]
-        button.setText(f"{next_size}×{next_size}")
+        """Toggle kernel size for the given button and update the corresponding variable."""
+        current_size = int(button.text().split('×')[0])  # Extract current kernel size from button text
+        current_index = kernel_sizes_array.index(current_size)  # Find index in array
+        next_index = (current_index + 1) % len(kernel_sizes_array)  # Get next index cyclically
+        next_size = kernel_sizes_array[next_index]  # Get new size
+
+        button.setText(f"{next_size}×{next_size}")  # Update button text
+
+        # Update the correct kernel size variable
+        if button == self.ui.filter_kernel_size_button:
+            self.current_filter_kernel_size = next_size
+        elif button == self.ui.gaussian_filter_kernel_size_button:
+            self.current_gaussian_kernel_size = next_size
+
+        print(
+            f"Filter Kernel Size: {self.current_filter_kernel_size}, Gaussian Kernel Size: {self.current_gaussian_kernel_size}")
 
     def update_high_threshold(self, low_threshold_value):
         """Update high threshold based on low threshold."""
