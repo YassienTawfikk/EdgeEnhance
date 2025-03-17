@@ -4,6 +4,8 @@ from app.design2 import Ui_MainWindow
 from app.utils.clean_cache import remove_directories
 from app.services.image_service import ImageServices
 from app.processing.contour import Contour
+from app.processing.canny_edge import CannyEdge
+from app.processing.circle_detection import DetectCircle
 import cv2
 import numpy as np
 from skimage.filters import gaussian
@@ -35,6 +37,7 @@ class MainWindowController:
         self.ui.line_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.line_groupBox))
         self.ui.circle_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.circle_groupBox))
         self.ui.ellipse_detection_button.clicked.connect(lambda: self.show_groupbox(self.ui.ellipse_groupBox))
+        self.ui.apply_button_4.clicked.connect(self.apply_canny)
         self.srv = ImageServices()
         self.ui.upload_button.clicked.connect(self.drawImage)
         self.ui.save_button.clicked.connect(lambda: self.srv.save_image(self.processed_image))
@@ -198,6 +201,21 @@ class MainWindowController:
         print("Area:", area)
         print("Perimeter:", perimeter)
 
+    def apply_canny(self):
+        # gaussianKsize=self.ui.gaussian_filter_kernel_size_button.value()
+        # sigma=self.ui.gaussian_filter_sigma_spinbox.value()
+        # low_threshold=self.ui.edge_detection_low_threshold_spinbox.value()
+        # high_threshold=self.ui.edge_detection_high_threshold_spinbox.value()   
+        # sobelKsize=3   #extract value
+        gradient_method=True #extract value
+        if gradient_method=="manhattan distance":
+            L2gradient=False
+        else:
+            L2gradient=True    
+        # processed_image=CannyEdge.apply_canny(gaussianKsize,sigma,low_threshold,high_threshold,sobelKsize,L2gradient)
+        # processed_image=CannyEdge.apply_canny(self.original_image,3,5,100,200,3,False)
+        processed_image=DetectCircle.superimpose(self.original_image)
+        self.showImage(processed_image,self.ui.processed_image_groupbox)
 
     def showImage(self, image, groupbox):
         if image is None:

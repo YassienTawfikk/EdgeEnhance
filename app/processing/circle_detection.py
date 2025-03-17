@@ -12,13 +12,14 @@ class DetectCircle:
         image_edges=CannyEdge.apply_canny(original_image,5,3,100,200,3,True)
 
         height,width=image_edges.shape
-        max_radius=100
+        max_radius=min(height,width)//2
+        print(max_radius)
         min_radius=15
 
         accumulator=np.zeros((height,width,max_radius),dtype=np.uint8)
 
         edge_points = np.argwhere(image_edges>0)  
-        angle_step=10
+        angle_step=5
 
         angles = np.deg2rad(np.arange(0, 360, angle_step))
         #having x,y coords, and looping through r, and through angle, we want to find a,b
@@ -31,10 +32,11 @@ class DetectCircle:
                         accumulator[b, a, r] += 1
 
         threshold = 65  # Adjust based on your image
-        threshold = np.max(accumulator) * 0.8  # Try a dynamic threshold
+        threshold = np.max(accumulator) * 0.7  # Try a dynamic threshold
         print(threshold)
 
         circles = np.argwhere(accumulator > threshold)  # Get (a, b, r) where votes are high
+        print(accumulator)
 
         for b, a, r in circles:
             print(f"Detected circle at ({a}, {b}) with radius {r}")
