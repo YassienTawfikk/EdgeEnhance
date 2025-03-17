@@ -1235,7 +1235,7 @@
           <item>
            <widget class="QSlider" name="min_radius_slider">
             <property name="maximum">
-             <number>1</number>
+             <number>150</number>
             </property>
             <property name="singleStep">
              <number>0</number>
@@ -1288,6 +1288,9 @@
          <layout class="QHBoxLayout" name="max_radius_layout">
           <item>
            <widget class="QSlider" name="max_radius_slider">
+            <property name="maximum">
+             <number>500</number>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -2055,24 +2058,9 @@
    <zorder>quit_app_button</zorder>
    <zorder>sidebar_1_layout</zorder>
    <zorder>sidebar_2_layout</zorder>
-   <zorder>gaussian_filter_sigma_horizontalSlider</zorder>
-   <zorder>gaussian_filter_sigma_label_2</zorder>
-   <zorder>shapes_sidebar_layout</zorder>
-   <zorder>line_threshold_slider</zorder>
-   <zorder>line_threshold_value</zorder>
-   <zorder>min_radius_slider</zorder>
-   <zorder>min_radius_value</zorder>
-   <zorder>min_radius_slider_2</zorder>
-   <zorder>min_radius_value_2</zorder>
-   <zorder>max_radius_slider</zorder>
-   <zorder>max_radius_value</zorder>
-   <zorder>circle_threshold_slider</zorder>
-   <zorder>circle_threshold_value</zorder>
-   <zorder>max_radius_slider_2</zorder>
-   <zorder>max_radius_value_2</zorder>
-   <zorder>ellipse_threshold_value</zorder>
    <zorder>sidebar_3_layout</zorder>
    <zorder>page_filter_layout</zorder>
+   <zorder>shapes_sidebar_layout</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

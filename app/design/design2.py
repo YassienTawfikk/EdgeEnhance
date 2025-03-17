@@ -665,7 +665,7 @@ class Ui_MainWindow(object):
         self.min_radius_layout = QtWidgets.QHBoxLayout()
         self.min_radius_layout.setObjectName("min_radius_layout")
         self.min_radius_slider = QtWidgets.QSlider(self.circle_groupBox)
-        self.min_radius_slider.setMaximum(1)
+        self.min_radius_slider.setMaximum(150)
         self.min_radius_slider.setSingleStep(0)
         self.min_radius_slider.setTracking(False)
         self.min_radius_slider.setOrientation(QtCore.Qt.Horizontal)
