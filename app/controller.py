@@ -37,6 +37,8 @@ class MainWindowController:
 
         # Set ranges for spin boxes
         self.set_ranges()
+        # Connect sliders to update value
+        self.connect_sliders()
 
         # Add items to combo box
         Gradient_methods_list = ["Manhattan Distance", "Euclidean Distance"]
@@ -91,11 +93,52 @@ class MainWindowController:
         self.ui.edge_detection_low_threshold_spinbox.valueChanged.connect(self.update_high_threshold)
         self.ui.edge_detection_high_threshold_spinbox.valueChanged.connect(self.update_low_threshold)
 
+    def connect_sliders(self):
+        # Connect sliders to update functions
+        self.ui.line_threshold_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.line_threshold_slider, self.ui.line_threshold_value)
+        )
+        self.ui.min_radius_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.min_radius_slider, self.ui.min_radius_value)
+        )
+        self.ui.max_radius_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.max_radius_slider, self.ui.max_radius_value)
+        )
+        self.ui.circle_threshold_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.circle_threshold_slider, self.ui.circle_threshold_value)
+        )
+        self.ui.min_radius_slider_2.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.min_radius_slider_2, self.ui.min_radius_value_2)
+        )
+        self.ui.max_radius_slider_2.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.max_radius_slider_2, self.ui.max_radius_value_2)
+        )
+        self.ui.ellipse_threshold_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
+        )
+        self.ui.gaussian_filter_sigma_horizontalSlider.valueChanged.connect(
+                    lambda: self.update_label_from_slider(self.ui.gaussian_filter_sigma_horizontalSlider, self.ui.gaussian_filter_sigma_label_2)
+                )
+
+        # Initialize labels with default slider values
+        self.update_label_from_slider(self.ui.line_threshold_slider, self.ui.line_threshold_value)
+        self.update_label_from_slider(self.ui.min_radius_slider, self.ui.min_radius_value)
+        self.update_label_from_slider(self.ui.max_radius_slider, self.ui.max_radius_value)
+        self.update_label_from_slider(self.ui.circle_threshold_slider, self.ui.circle_threshold_value)
+        self.update_label_from_slider(self.ui.min_radius_slider_2, self.ui.min_radius_value_2)
+        self.update_label_from_slider(self.ui.max_radius_slider_2, self.ui.max_radius_value_2)
+        self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
+        self.update_label_from_slider(self.ui.gaussian_filter_sigma_horizontalSlider, self.ui.gaussian_filter_sigma_label_2)
+
     def set_ranges(self):
         """Set ranges for spin boxes."""
         self.ui.alpha_spinBox.setRange(0.0, 100.0)
         self.ui.beta_spinBox.setRange(0.0, 100.0)
         self.ui.gamma_spinBox.setRange(0.0, 100.0)
+
+    def update_label_from_slider(self, slider, label):
+        value = slider.value()
+        label.setText(f"{value}")
 
     def toggle_kernel_size(self, button, kernel_sizes_array):
         """Toggle kernel size for the given button."""
