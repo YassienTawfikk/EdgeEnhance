@@ -1819,6 +1819,11 @@
      </item>
      <item>
       <widget class="QSpinBox" name="edge_detection_high_threshold_spinbox">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="styleSheet">
         <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
@@ -1860,6 +1865,11 @@
      </item>
      <item>
       <widget class="QSpinBox" name="edge_detection_low_threshold_spinbox">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="styleSheet">
         <string notr="true">QSpinBox{
 	color: rgb(255, 255, 255);
@@ -1993,16 +2003,6 @@
 										  color: rgb(5, 255, 142);
                                             }</string>
        </property>
-       <item>
-        <property name="text">
-         <string>Manhattan Distance</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Euclidean Distance</string>
-        </property>
-       </item>
       </widget>
      </item>
      <item>
@@ -2047,7 +2047,6 @@
      </item>
     </layout>
    </widget>
-   <zorder>page_filter_layout</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>back_button</zorder>
    <zorder>save_button</zorder>
@@ -2073,6 +2072,7 @@
    <zorder>max_radius_value_2</zorder>
    <zorder>ellipse_threshold_value</zorder>
    <zorder>sidebar_3_layout</zorder>
+   <zorder>page_filter_layout</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

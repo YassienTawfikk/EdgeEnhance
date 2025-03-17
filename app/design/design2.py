@@ -957,6 +957,9 @@ class Ui_MainWindow(object):
         self.high_threshold_label.setObjectName("high_threshold_label")
         self.verticalLayout.addWidget(self.high_threshold_label)
         self.edge_detection_high_threshold_spinbox = QtWidgets.QSpinBox(self.page_filter_layout)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.edge_detection_high_threshold_spinbox.setFont(font)
         self.edge_detection_high_threshold_spinbox.setStyleSheet("QSpinBox{\n"
 "    color: rgb(255, 255, 255);\n"
 "}")
@@ -978,6 +981,9 @@ class Ui_MainWindow(object):
         self.low_threshold_label.setObjectName("low_threshold_label")
         self.verticalLayout.addWidget(self.low_threshold_label)
         self.edge_detection_low_threshold_spinbox = QtWidgets.QSpinBox(self.page_filter_layout)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.edge_detection_low_threshold_spinbox.setFont(font)
         self.edge_detection_low_threshold_spinbox.setStyleSheet("QSpinBox{\n"
 "    color: rgb(255, 255, 255);\n"
 "}")
@@ -1045,8 +1051,6 @@ class Ui_MainWindow(object):
 "                                          color: rgb(5, 255, 142);\n"
 "                                            }")
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
         self.verticalLayout.addWidget(self.comboBox)
         self.apply_button_4 = QtWidgets.QPushButton(self.page_filter_layout)
         self.apply_button_4.setMinimumSize(QtCore.QSize(0, 55))
@@ -1068,7 +1072,6 @@ class Ui_MainWindow(object):
 "                                            }")
         self.apply_button_4.setObjectName("apply_button_4")
         self.verticalLayout.addWidget(self.apply_button_4)
-        self.page_filter_layout.raise_()
         self.layoutWidget.raise_()
         self.back_button.raise_()
         self.save_button.raise_()
@@ -1094,6 +1097,7 @@ class Ui_MainWindow(object):
         self.max_radius_value_2.raise_()
         self.ellipse_threshold_value.raise_()
         self.sidebar_3_layout.raise_()
+        self.page_filter_layout.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 25))
@@ -1169,6 +1173,4 @@ class Ui_MainWindow(object):
         self.kernal_size_label.setText(_translate("MainWindow", "Sobel Kernel Size"))
         self.filter_kernel_size_button.setText(_translate("MainWindow", "size"))
         self.gradient_method_label.setText(_translate("MainWindow", "Gradient Method"))
-        self.comboBox.setItemText(0, _translate("MainWindow", "Manhattan Distance"))
-        self.comboBox.setItemText(1, _translate("MainWindow", "Euclidean Distance"))
         self.apply_button_4.setText(_translate("MainWindow", "Apply"))

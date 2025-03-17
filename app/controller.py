@@ -12,8 +12,6 @@ from skimage.filters import gaussian
 from app.processing.activeContour import ActiveContour
 
 
-
-
 class MainWindowController:
     def __init__(self):
         self.app = QtWidgets.QApplication([])
@@ -36,6 +34,8 @@ class MainWindowController:
 
         # Kernel sizes for regular kernel button
         self.kernel_sizes_array = [3, 5, 7]
+        self.ui.comboBox.addItem("Manhattan Distance")
+        self.ui.comboBox.addItem("Euclidean Distance")
 
         # Kernel sizes for Gaussian filter kernel button
         self.gaussian_kernel_sizes_array = [3, 5, 7, 9]  # Example sizes for Gaussian filter
