@@ -146,12 +146,11 @@ class MainWindowController:
         self.ui.alpha_spinBox.setRange(0.0, 100.0)
         self.ui.beta_spinBox.setRange(0.0, 100.0)
         self.ui.gamma_spinBox.setRange(0.0, 100.0)
-        self.ui.sigma_spinBox.setRange(0, 1)
         self.ui.alpha_spinBox.setSingleStep(0.1)
         self.ui.beta_spinBox.setSingleStep(0.1)
         self.ui.gamma_spinBox.setSingleStep(0.1)
-        self.ui.sigma_spinBox.setRange(0.0, 1.0)
-        self.ui.sigma_spinBox.setSingleStep(0.01)
+        self.ui.sigma_spinBox.setRange(0.0, 5.0)
+        self.ui.sigma_spinBox.setSingleStep(0.05)
 
     def update_label_from_slider(self, slider, label):
         value = slider.value()
@@ -332,20 +331,16 @@ class MainWindowController:
 
     def apply_canny(self):
         """Apply Canny edge detection to the image."""
-        sigma = self.ui.sigma_spinBox.value()
         gaussian_kernel_size = self.current_gaussian_kernel_size
-        print(f"gaussian:{gaussian_kernel_size}")
         sigma = self.ui.sigma_spinBox.value()
+        print(sigma)
         low_threshold = self.ui.edge_detection_low_threshold_spinbox.value()
         high_threshold = self.ui.edge_detection_high_threshold_spinbox.value()
         sobel_kernel_size = self.current_filter_kernel_size
-        print(f"sobel:{sobel_kernel_size}")
         gradient_method = self.ui.comboBox.currentText()
-        print(f"gradient method:{gradient_method}")
-
         L2gradient = False if gradient_method == "Manhattan Distance" else True
-        print(f"l2grad:{L2gradient}")
-        processed_image = CannyEdge.apply_canny(self.original_image, gaussian_kernel_size, 0.8, low_threshold, high_threshold, sobel_kernel_size, L2gradient)
+     
+        processed_image = CannyEdge.apply_canny(self.original_image, gaussian_kernel_size, sigma, low_threshold, high_threshold, sobel_kernel_size, L2gradient)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def apply_line_detection(self):
