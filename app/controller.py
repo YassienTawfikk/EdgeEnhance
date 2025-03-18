@@ -108,7 +108,8 @@ class MainWindowController:
             lambda: self.update_label_from_slider(self.ui.max_radius_slider, self.ui.max_radius_value)
         )
         self.ui.accumulator_threshold_slider.valueChanged.connect(
-            lambda: self.update_label_from_slider(self.ui.accumulator_threshold_slider, self.ui.accumulator_threshold_value)
+            lambda: self.update_label_from_slider(self.ui.accumulator_threshold_slider,
+                                                  self.ui.accumulator_threshold_value)
         )
         self.ui.canny_threshold_slider.valueChanged.connect(
             lambda: self.update_label_from_slider(self.ui.canny_threshold_slider,
