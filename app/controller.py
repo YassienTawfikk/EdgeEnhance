@@ -1,7 +1,6 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 from app.design.design2 import Ui_MainWindow
-# from design2 import Ui_MainWindow
 from app.utils.clean_cache import remove_directories
 from app.services.image_service import ImageServices
 from app.processing.canny_edge import CannyEdge
@@ -325,14 +324,19 @@ class MainWindowController:
     def apply_canny(self):
         """Apply Canny edge detection to the image."""
         sigma = self.ui.gaussian_filter_sigma_comboBox.value()
+        gaussian_kernel_size = self.current_gaussian_kernel_size
+        print(f"gaussian:{gaussian_kernel_size}")
+        sigma = self.ui.gaussian_filter_sigma_horizontalSlider.value()
         low_threshold = self.ui.edge_detection_low_threshold_spinbox.value()
         high_threshold = self.ui.edge_detection_high_threshold_spinbox.value()
-        gradient_method = self.ui.comboBox.text()
+        sobel_kernel_size = self.current_filter_kernel_size
+        print(f"sobel:{sobel_kernel_size}")
+        gradient_method = self.ui.comboBox.currentText()
         print(f"gradient method:{gradient_method}")
 
         L2gradient = False if gradient_method == "Manhattan Distance" else True
         print(f"l2grad:{L2gradient}")
-        processed_image = CannyEdge.apply_canny(self.original_image, 3, sigma, low_threshold, high_threshold, 3, L2gradient)
+        processed_image = CannyEdge.apply_canny(self.original_image, gaussian_kernel_size, 0.8, low_threshold, high_threshold, sobel_kernel_size, L2gradient)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def apply_circle_detection(self):
@@ -349,7 +353,7 @@ class MainWindowController:
     def apply_line_detection(self):
         """Apply circle detection to the image."""
         threshold_factor = self.ui.line_threshold_slider.value()
-        processed_image = ShapeDetection.superimpose_line(self.original_image)
+        processed_image = ShapeDetection.superimpose_line(self.original_image, threshold_factor)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def showImage(self, image, groupbox):
