@@ -6,10 +6,11 @@ from app.processing.canny_edge import CannyEdge
 class ShapeDetection:
     # HAYA5OD KOL ARGUMENTS EL CANNY PLUX EL ORIGINAL IMAGE
     @staticmethod
-    def superimpose_circle(original_image, max_radius=100, min_radius=0, threshold_factor=0.7):
+    def superimpose_circle(original_image, canny_high_threshold=200, max_radius=190, min_radius=0, threshold_factor=0.8):
 
+        canny_low_threshold=canny_high_threshold/2
         # HANTALA3 DA FEL CONTROLLER TO AVOID COMPUTING EVERY TIME
-        image_edges = CannyEdge.apply_canny(original_image, 5, 3, 100, 200, 3, True)
+        image_edges = CannyEdge.apply_canny(original_image, 3, 0.1, canny_low_threshold, canny_high_threshold, 3, True)
 
         height, width = image_edges.shape
         max_radius = min(height, width) // 2
