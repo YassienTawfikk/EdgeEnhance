@@ -115,14 +115,17 @@ class MainWindowController:
             lambda: self.update_label_from_slider(self.ui.canny_threshold_slider,
                                                   self.ui.canny_threshold_value)
         )
-        self.ui.min_radius_slider_2.valueChanged.connect(
-            lambda: self.update_label_from_slider(self.ui.min_radius_slider_2, self.ui.min_radius_value_2)
+        self.ui.min_axis_len_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.min_axis_len_slider, self.ui.min_axis_len_value)
         )
-        self.ui.max_radius_slider_2.valueChanged.connect(
-            lambda: self.update_label_from_slider(self.ui.max_radius_slider_2, self.ui.max_radius_value_2)
+        self.ui.max_axis_len_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.max_axis_len_slider, self.ui.max_axis_len_value)
         )
         self.ui.ellipse_threshold_slider.valueChanged.connect(
             lambda: self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
+        )
+        self.ui.ellipse_orientation_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.ellipse_orientation_slider, self.ui.ellipse_orientation_value)
         )
 
         # Initialize labels with default slider values
@@ -131,8 +134,9 @@ class MainWindowController:
         self.update_label_from_slider(self.ui.max_radius_slider, self.ui.max_radius_value)
         self.update_label_from_slider(self.ui.accumulator_threshold_slider, self.ui.accumulator_threshold_value)
         self.update_label_from_slider(self.ui.canny_threshold_slider, self.ui.canny_threshold_value)
-        self.update_label_from_slider(self.ui.min_radius_slider_2, self.ui.min_radius_value_2)
-        self.update_label_from_slider(self.ui.max_radius_slider_2, self.ui.max_radius_value_2)
+        self.update_label_from_slider(self.ui.min_axis_len_slider, self.ui.min_axis_len_value)
+        self.update_label_from_slider(self.ui.max_axis_len_slider, self.ui.max_axis_len_value)
+        self.update_label_from_slider(self.ui.ellipse_orientation_slider, self.ui.ellipse_orientation_value)
         self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
 
     def set_ranges(self):
@@ -348,7 +352,7 @@ class MainWindowController:
         print(f"max radius: {max_radius}")
         min_radius = self.ui.min_radius_slider.value()
         print(f"min radius: {min_radius}")
-        threshold_factor = self.ui.accumulator_threshold_slider.value()/100
+        threshold_factor = self.ui.accumulator_threshold_slider.value() / 100
         print(f"threshold: {threshold_factor}")
         processed_image = ShapeDetection.superimpose_circle(self.original_image)
         self.showImage(processed_image, self.ui.processed_image_groupbox)

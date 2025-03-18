@@ -238,23 +238,23 @@ class Ui_MainWindow(object):
         self.sidebar_5.addWidget(self.ellipse_label)
 
         self.min_radius_label_2 = self.create_label(
-            "Minimum Radius", self.sidebar_2_layout, "min_radius_label_2"
+            "Minimum Radius", self.sidebar_2_layout, "min_axis_len_label"
         )
         self.sidebar_5.addWidget(self.min_radius_label_2)
 
         self.min_radius_slider_2 = QtWidgets.QSlider(self.sidebar_2_layout)
         self.min_radius_slider_2.setOrientation(QtCore.Qt.Horizontal)
-        self.min_radius_slider_2.setObjectName("min_radius_slider_2")
+        self.min_radius_slider_2.setObjectName("min_axis_len_slider")
         self.sidebar_5.addWidget(self.min_radius_slider_2)
 
         self.max_radius_label_2 = self.create_label(
-            "Maximum Radius", self.sidebar_2_layout, "max_radius_label_2"
+            "Maximum Radius", self.sidebar_2_layout, "max_axis_len_label"
         )
         self.sidebar_5.addWidget(self.max_radius_label_2)
 
         self.max_radius_slider_2 = QtWidgets.QSlider(self.sidebar_2_layout)
         self.max_radius_slider_2.setOrientation(QtCore.Qt.Horizontal)
-        self.max_radius_slider_2.setObjectName("max_radius_slider_2")
+        self.max_radius_slider_2.setObjectName("max_axis_len_slider")
         self.sidebar_5.addWidget(self.max_radius_slider_2)
 
         # Apply Button
