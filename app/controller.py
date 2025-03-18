@@ -319,12 +319,12 @@ class MainWindowController:
 
     def apply_canny(self):
         """Apply Canny edge detection to the image."""
-        gaussian_kernel_size=self.current_gaussian_kernel_size
+        gaussian_kernel_size = self.current_gaussian_kernel_size
         print(f"gaussian:{gaussian_kernel_size}")
         sigma = self.ui.gaussian_filter_sigma_horizontalSlider.value()
         low_threshold = self.ui.edge_detection_low_threshold_spinbox.value()
         high_threshold = self.ui.edge_detection_high_threshold_spinbox.value()
-        sobel_kernel_size=self.current_filter_kernel_size
+        sobel_kernel_size = self.current_filter_kernel_size
         print(f"sobel:{sobel_kernel_size}")
         gradient_method = self.ui.comboBox.currentText()
         print(f"gradient method:{gradient_method}")
@@ -340,7 +340,7 @@ class MainWindowController:
         print(f"max radius: {max_radius}")
         min_radius = self.ui.min_radius_slider.value()
         print(f"min radius: {min_radius}")
-        threshold_factor = self.ui.circle_threshold_slider.value()/100
+        threshold_factor = self.ui.circle_threshold_slider.value() / 100
         print(f"threshold: {threshold_factor}")
         processed_image = ShapeDetection.superimpose_circle(self.original_image)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
@@ -348,7 +348,7 @@ class MainWindowController:
     def apply_line_detection(self):
         """Apply circle detection to the image."""
         threshold_factor = self.ui.line_threshold_slider.value()
-        processed_image = ShapeDetection.superimpose_line(self.original_image)
+        processed_image = ShapeDetection.superimpose_line(self.original_image, threshold_factor)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def showImage(self, image, groupbox):

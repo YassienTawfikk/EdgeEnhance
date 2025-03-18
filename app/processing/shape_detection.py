@@ -8,7 +8,7 @@ class ShapeDetection:
     @staticmethod
     def superimpose_circle(original_image, canny_high_threshold=200, max_radius=190, min_radius=0, threshold_factor=0.8):
 
-        canny_low_threshold=canny_high_threshold/2
+        canny_low_threshold = canny_high_threshold / 2
         # HANTALA3 DA FEL CONTROLLER TO AVOID COMPUTING EVERY TIME
         image_edges = CannyEdge.apply_canny(original_image, 3, 0.1, canny_low_threshold, canny_high_threshold, 3, True)
 
@@ -96,6 +96,6 @@ class ShapeDetection:
             x2 = int(x0 - 1000 * (-b))
             y2 = int(y0 - 1000 * (a))
 
-            cv2.line(original_image, (x1, y1), (x2, y2), (0, 255, 0), 2)  # Green lines
+            cv2.line(original_image, (x1, y1), (x2, y2), (0, 0, 255), 2)
 
         return original_image
