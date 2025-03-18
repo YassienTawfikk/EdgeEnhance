@@ -1843,7 +1843,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="gaussian_filter_sigma_comboBox">
+      <widget class="QSpinBox" name="sigma_spinBox">
        <property name="font">
         <font>
          <pointsize>10</pointsize>

@@ -978,10 +978,10 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.sigma_spinBox.setFont(font)
+
         self.sigma_spinBox.setStyleSheet("QSpinBox{\n"
 "    color: rgb(255, 255, 255);\n"
 "}")
-        self.sigma_spinBox.setProperty("value", 99)
         self.sigma_spinBox.setObjectName("sigma_spinBox")
         self.verticalLayout.addWidget(self.sigma_spinBox)
         self.high_threshold_label = QtWidgets.QLabel(self.page_filter_layout)

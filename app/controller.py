@@ -144,6 +144,7 @@ class MainWindowController:
         self.ui.alpha_spinBox.setSingleStep(0.1)
         self.ui.beta_spinBox.setSingleStep(0.1)
         self.ui.gamma_spinBox.setSingleStep(0.1)
+        self.ui.sigma_spinBox.setRange(0.0, 1.0)
         self.ui.sigma_spinBox.setSingleStep(0.01)
 
     def update_label_from_slider(self, slider, label):
