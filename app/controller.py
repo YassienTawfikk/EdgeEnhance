@@ -372,7 +372,9 @@ class MainWindowController:
         orientation = self.ui.ellipse_orientation_slider.value()
         threshold_factor = self.ui.ellipse_threshold_slider.value()
 
-        processed_image = ShapeDetection.superimpose_ellipse(self.original_image)
+        # processed_image = ShapeDetection.superimpose_ellipse(self.original_image)
+        # processed_image = ShapeDetection.detect_ellipses(self.original_image)
+        processed_image = ShapeDetection.detect_ellipses_manually(self.original_image)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def showImage(self, image, groupbox):

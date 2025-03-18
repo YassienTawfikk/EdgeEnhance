@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 from app.processing.canny_edge import CannyEdge
+import random
 
 
 class ShapeDetection:
@@ -39,7 +40,7 @@ class ShapeDetection:
         detected_lines = np.argwhere(accumulator > threshold)
 
         # Convert the grayscale image to BGR for visualization
-        processed_image = cv2.cvtColor(binary_edge_map, cv2.COLOR_GRAY2BGR)
+        processed_image = original_image
 
         # Draw the detected lines
         for rho_idx, theta_idx in detected_lines:
@@ -56,9 +57,9 @@ class ShapeDetection:
             x2 = int(x0 - 1000 * (-b))
             y2 = int(y0 - 1000 * (a))
 
-            cv2.line(original_image, (x1, y1), (x2, y2), (0, 0, 255), 2)
+            cv2.line(processed_image, (x1, y1), (x2, y2), (0, 0, 255), 2)
 
-        return original_image
+        return processed_image
 
     @staticmethod
     def superimpose_circle(original_image, canny_high_threshold=200, max_radius=190, min_radius=0, threshold_factor=0.8):
@@ -225,3 +226,158 @@ class ShapeDetection:
             print("No ellipse found that satisfies the threshold.")
 
         return original_image
+
+    @staticmethod
+    def detect_ellipses(original_image, low_threshold=50, high_threshold=150):
+        # Apply the Canny edge detector
+        gray = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
+        edges = cv2.Canny(gray, low_threshold, high_threshold)
+
+        # Find contours from the edge map
+        contours, _ = cv2.findContours(edges, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+
+        # Superimpose ellipses on the original image
+        processed_image = original_image.copy()
+        for contour in contours:
+            if len(contour) >= 5:  # Need at least 5 points to fit ellipse
+                ellipse = cv2.fitEllipse(contour)
+                cv2.ellipse(processed_image, ellipse, (0, 0, 255), 2)
+
+        return processed_image
+
+    @staticmethod
+    def detect_ellipses_manually(original_image, min_axis_length=10, max_axis_length=200, max_iterations=1000, sample_size=5, inlier_tolerance=0.2, inlier_ratio_threshold=0.21):
+        """
+        Detect ellipses in the image using a RANSAC-like approach with cv2.fitEllipse():
+
+        1) Apply Canny to get edge pixels.
+        2) Randomly sample small sets of edge points.
+        3) Fit an ellipse to each set (if possible).
+        4) Count how many total edge points lie on that ellipse (within a tolerance).
+        5) Keep ellipses that exceed an inlier ratio threshold.
+
+        :param original_image: Input BGR image (as read by cv2).
+        :param low_threshold: Lower threshold for Canny edge detection.
+        :param high_threshold: Upper threshold for Canny edge detection.
+        :param min_axis_length: Minimum axis length to keep an ellipse (post-fit filter).
+        :param max_axis_length: Maximum axis length to keep an ellipse (post-fit filter).
+        :param max_iterations: How many random samples to try (RANSAC iterations).
+        :param sample_size: How many points to sample for each fit (minimum for cv2.fitEllipse is 5).
+        :param inlier_tolerance: How close a point’s “ellipse equation” value must be to 1.0 to be counted as an inlier.
+        :param inlier_ratio_threshold: Fraction of total edge points that must fit the ellipse to consider it valid.
+        :return: A copy of the input image with the detected ellipses drawn.
+        """
+
+        # -----------------------------
+        # 1. Edge detection
+        # -----------------------------
+        edges = CannyEdge.apply_canny(original_image, 5, 3, 25, 100, 3, True)
+
+        edge_points = np.argwhere(edges > 0)  # shape: (num_points, 2) in (y, x)
+        total_points = len(edge_points)
+        if total_points < sample_size:
+            # Not enough points to fit an ellipse
+            return original_image.copy()
+
+        # For speed, you can also random-subset your edge points if there are too many:
+        max_points_for_speed = 5000
+        if total_points > max_points_for_speed:
+            chosen_idx = np.random.choice(total_points, max_points_for_speed, replace=False)
+            edge_points = edge_points[chosen_idx]
+            total_points = len(edge_points)
+
+        # -----------------------------
+        # 2. RANSAC loop
+        # -----------------------------
+        best_ellipses = []
+        best_scores = []
+
+        for _ in range(max_iterations):
+            # 2a) Randomly pick a small subset of points (at least 5 for fitEllipse)
+            sample_indices = random.sample(range(total_points), sample_size)
+            sample = edge_points[sample_indices]
+
+            # OpenCV's fitEllipse requires the contour to be shaped [N,1,2],
+            # and coordinates in (x, y) order.
+            # Our sample is in (y, x) so we flip it.
+            contour = np.array([[[pt[1], pt[0]]] for pt in sample], dtype=np.int32)
+
+            # Attempt to fit ellipse
+            try:
+                ellipse = cv2.fitEllipse(contour)
+            except:
+                # fitEllipse may fail if the points are degenerate (collinear, etc.)
+                continue
+
+            # 2b) Filter out extremely small or large axes
+            (center_x, center_y), (major_axis, minor_axis), angle_deg = ellipse
+            # Ensure major_axis >= minor_axis (OpenCV doesn't guarantee which is which)
+            big = max(major_axis, minor_axis)
+            small = min(major_axis, minor_axis)
+            if big < min_axis_length or small < min_axis_length:
+                continue
+            if big > max_axis_length or small > max_axis_length:
+                continue
+
+            # 2c) Score how many points from all edges fit this ellipse
+            inliers = 0
+            for (py, px) in edge_points:
+                # Convert the ellipse from cv2's format into an equation check
+                #  - center = (center_x, center_y)
+                #  - axes = (major_axis, minor_axis)
+                #  - rotation = angle_deg
+                val = ShapeDetection.__ellipse_equation(px, py, center_x, center_y, big, small, angle_deg)
+                # If val is ~1, point is near the ellipse
+                if abs(val - 1.0) < inlier_tolerance:
+                    inliers += 1
+
+            inlier_ratio = inliers / total_points
+            if inlier_ratio >= inlier_ratio_threshold:
+                # This ellipse passes our threshold
+                best_ellipses.append(ellipse)
+                best_scores.append(inlier_ratio)
+
+        # -----------------------------
+        # 3. Draw the detected ellipses
+        # -----------------------------
+        processed_image = original_image.copy()
+
+        # If you want to draw *all* ellipses that passed the threshold:
+        for ellipse, score in zip(best_ellipses, best_scores):
+            # ellipse is in the format: ((cx, cy), (major, minor), angle)
+            cv2.ellipse(processed_image, ellipse, (0, 0, 255), 2)
+
+        return processed_image
+
+    @staticmethod
+    def __ellipse_equation(x, y, cx, cy, major, minor, angle_deg):
+        """
+        Returns the "ellipse equation" value for point (x, y) relative to
+        an ellipse described by:
+            center (cx, cy),
+            axes (major >= minor),
+            rotation angle in degrees.
+
+        The ellipse equation in its local frame is:
+          (x'^2 / major^2) + (y'^2 / minor^2) = 1
+        where x', y' is the point (x, y) rotated into the ellipse's frame.
+        We return that computed value. If exactly 1, the point lies on the ellipse.
+        """
+
+        # Convert angle to radians
+        theta = np.deg2rad(angle_deg)
+
+        # Translate
+        dx = x - cx
+        dy = y - cy
+
+        # Rotate to ellipse-aligned coordinates:
+        cos_t = np.cos(theta)
+        sin_t = np.sin(theta)
+
+        x_prime = dx * cos_t + dy * sin_t
+        y_prime = -dx * sin_t + dy * cos_t
+
+        # Normalize by axes
+        val = (x_prime ** 2) / (major ** 2) + (y_prime ** 2) / (minor ** 2)
+        return val
