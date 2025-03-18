@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 from app.design.design2 import Ui_MainWindow
+# from design2 import Ui_MainWindow
 from app.utils.clean_cache import remove_directories
 from app.services.image_service import ImageServices
 from app.processing.canny_edge import CannyEdge
@@ -107,8 +108,12 @@ class MainWindowController:
         self.ui.max_radius_slider.valueChanged.connect(
             lambda: self.update_label_from_slider(self.ui.max_radius_slider, self.ui.max_radius_value)
         )
-        self.ui.circle_threshold_slider.valueChanged.connect(
-            lambda: self.update_label_from_slider(self.ui.circle_threshold_slider, self.ui.circle_threshold_value)
+        self.ui.accumulator_threshold_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.accumulator_threshold_slider, self.ui.accumulator_threshold_value)
+        )
+        self.ui.canny_threshold_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.canny_threshold_slider,
+                                                  self.ui.canny_threshold_value)
         )
         self.ui.min_radius_slider_2.valueChanged.connect(
             lambda: self.update_label_from_slider(self.ui.min_radius_slider_2, self.ui.min_radius_value_2)
@@ -119,26 +124,26 @@ class MainWindowController:
         self.ui.ellipse_threshold_slider.valueChanged.connect(
             lambda: self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
         )
-        self.ui.gaussian_filter_sigma_horizontalSlider.valueChanged.connect(
-            lambda: self.update_label_from_slider(self.ui.gaussian_filter_sigma_horizontalSlider, self.ui.gaussian_filter_sigma_label_2)
+        self.ui.gaussian_filter_sigma_comboBox.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.gaussian_filter_sigma_comboBox, self.ui.gaussian_filter_sigma_label_2)
         )
 
         # Initialize labels with default slider values
         self.update_label_from_slider(self.ui.line_threshold_slider, self.ui.line_threshold_value)
         self.update_label_from_slider(self.ui.min_radius_slider, self.ui.min_radius_value)
         self.update_label_from_slider(self.ui.max_radius_slider, self.ui.max_radius_value)
-        self.update_label_from_slider(self.ui.circle_threshold_slider, self.ui.circle_threshold_value)
+        self.update_label_from_slider(self.ui.accumulator_threshold_slider, self.ui.accumulator_threshold_value)
+        self.update_label_from_slider(self.ui.canny_threshold_slider, self.ui.canny_threshold_value)
         self.update_label_from_slider(self.ui.min_radius_slider_2, self.ui.min_radius_value_2)
         self.update_label_from_slider(self.ui.max_radius_slider_2, self.ui.max_radius_value_2)
         self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
-        self.update_label_from_slider(self.ui.gaussian_filter_sigma_horizontalSlider, self.ui.gaussian_filter_sigma_label_2)
 
     def set_ranges(self):
         """Set ranges for spin boxes."""
         self.ui.alpha_spinBox.setRange(0.0, 100.0)
         self.ui.beta_spinBox.setRange(0.0, 100.0)
         self.ui.gamma_spinBox.setRange(0.0, 100.0)
-        self.ui.gaussian_filter_sigma_horizontalSlider.setRange(0, 5)
+        self.ui.gaussian_filter_sigma_comboBox.setRange(0, 5)
 
     def update_label_from_slider(self, slider, label):
         value = slider.value()
@@ -319,7 +324,7 @@ class MainWindowController:
 
     def apply_canny(self):
         """Apply Canny edge detection to the image."""
-        sigma = self.ui.gaussian_filter_sigma_horizontalSlider.value()
+        sigma = self.ui.gaussian_filter_sigma_comboBox.value()
         low_threshold = self.ui.edge_detection_low_threshold_spinbox.value()
         high_threshold = self.ui.edge_detection_high_threshold_spinbox.value()
         gradient_method = self.ui.comboBox.text()
@@ -336,7 +341,7 @@ class MainWindowController:
         print(f"max radius: {max_radius}")
         min_radius = self.ui.min_radius_slider.value()
         print(f"min radius: {min_radius}")
-        threshold_factor = self.ui.circle_threshold_slider.value()/100
+        threshold_factor = self.ui.accumulator_threshold_slider.value()/100
         print(f"threshold: {threshold_factor}")
         processed_image = ShapeDetection.superimpose_circle(self.original_image)
         self.showImage(processed_image, self.ui.processed_image_groupbox)

@@ -27,14 +27,14 @@ class Ui_MainWindow(object):
         self.images_layout.setObjectName("images_layout")
         self.original_image_groupbox = QtWidgets.QGroupBox(self.layoutWidget)
         self.original_image_groupbox.setStyleSheet("QGroupBox{\n"
-                                                   "    color: rgb(255, 255, 255);\n"
-                                                   "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.original_image_groupbox.setObjectName("original_image_groupbox")
         self.images_layout.addWidget(self.original_image_groupbox)
         self.processed_image_groupbox = QtWidgets.QGroupBox(self.layoutWidget)
         self.processed_image_groupbox.setStyleSheet("QGroupBox{\n"
-                                                    "    color: rgb(255, 255, 255);\n"
-                                                    "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.processed_image_groupbox.setObjectName("processed_image_groupbox")
         self.images_layout.addWidget(self.processed_image_groupbox)
         self.sidebar_1_layout = QtWidgets.QWidget(self.centralwidget)
@@ -52,15 +52,15 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.canny_edge_detection_button.setFont(font)
         self.canny_edge_detection_button.setStyleSheet("QPushButton {\n"
-                                                       "                                            color: rgb(255, 255, 255);\n"
-                                                       "\n"
-                                                       "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                                       "                                            }\n"
-                                                       "                                            QPushButton:hover {\n"
-                                                       "                                            border-color:rgb(5, 255, 142);\n"
-                                                       "                                          color: rgb(5, 255, 142);\n"
-                                                       "                                            }\n"
-                                                       "")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }\n"
+"")
         self.canny_edge_detection_button.setObjectName("canny_edge_detection_button")
         self.side_bar_1.addWidget(self.canny_edge_detection_button)
         self.shape_detection_button = QtWidgets.QPushButton(self.sidebar_1_layout)
@@ -72,15 +72,15 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.shape_detection_button.setFont(font)
         self.shape_detection_button.setStyleSheet("QPushButton {\n"
-                                                  "                                            color: rgb(255, 255, 255);\n"
-                                                  "\n"
-                                                  "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                                  "                                            }\n"
-                                                  "                                            QPushButton:hover {\n"
-                                                  "                                            border-color:rgb(5, 255, 142);\n"
-                                                  "                                          color: rgb(5, 255, 142);\n"
-                                                  "                                            }\n"
-                                                  "")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }\n"
+"")
         self.shape_detection_button.setObjectName("shape_detection_button")
         self.side_bar_1.addWidget(self.shape_detection_button)
         self.object_contour_button = QtWidgets.QPushButton(self.sidebar_1_layout)
@@ -92,14 +92,14 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.object_contour_button.setFont(font)
         self.object_contour_button.setStyleSheet("QPushButton {\n"
-                                                 "                                            color: rgb(255, 255, 255);\n"
-                                                 "\n"
-                                                 "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                                 "                                            }\n"
-                                                 "                                             QPushButton:hover {\n"
-                                                 "                                            border-color:rgb(5, 255, 142);\n"
-                                                 "                                          color: rgb(5, 255, 142);\n"
-                                                 "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                             QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.object_contour_button.setObjectName("object_contour_button")
         self.side_bar_1.addWidget(self.object_contour_button)
         self.back_button = QtWidgets.QPushButton(self.centralwidget)
@@ -118,15 +118,15 @@ class Ui_MainWindow(object):
         self.back_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.back_button.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.back_button.setStyleSheet("QPushButton {\n"
-                                       "                                            color: rgb(255, 255, 255);\n"
-                                       "\n"
-                                       "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                       "                                            }\n"
-                                       "                                            QPushButton:hover {\n"
-                                       "                                            border-color:rgb(253, 94, 80);\n"
-                                       "                                            color:rgb(253, 94, 80);\n"
-                                       "                                            }\n"
-                                       "                                        ")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(253, 94, 80);\n"
+"                                            color:rgb(253, 94, 80);\n"
+"                                            }\n"
+"                                        ")
         self.back_button.setIconSize(QtCore.QSize(25, 16))
         self.back_button.setObjectName("back_button")
         self.save_button = QtWidgets.QPushButton(self.centralwidget)
@@ -139,14 +139,14 @@ class Ui_MainWindow(object):
         self.save_button.setFont(font)
         self.save_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.save_button.setStyleSheet("QPushButton {\n"
-                                       "                                            color: rgb(255, 255, 255);\n"
-                                       "\n"
-                                       "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                       "                                            }\n"
-                                       "                                            QPushButton:hover {\n"
-                                       "                                            border-color:rgb(5, 255, 142);\n"
-                                       "                                          color: rgb(5, 255, 142);\n"
-                                       "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.save_button.setObjectName("save_button")
         self.reset_button = QtWidgets.QPushButton(self.centralwidget)
         self.reset_button.setGeometry(QtCore.QRect(720, 30, 200, 45))
@@ -158,14 +158,14 @@ class Ui_MainWindow(object):
         self.reset_button.setFont(font)
         self.reset_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.reset_button.setStyleSheet("QPushButton {\n"
-                                        "                                            color: rgb(255, 255, 255);\n"
-                                        "\n"
-                                        "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                        "                                            }\n"
-                                        "                                             QPushButton:hover {\n"
-                                        "                                            border-color:rgb(5, 255, 142);\n"
-                                        "                                          color: rgb(5, 255, 142);\n"
-                                        "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                             QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.reset_button.setObjectName("reset_button")
         self.upload_button = QtWidgets.QPushButton(self.centralwidget)
         self.upload_button.setGeometry(QtCore.QRect(990, 30, 200, 45))
@@ -177,14 +177,14 @@ class Ui_MainWindow(object):
         self.upload_button.setFont(font)
         self.upload_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.upload_button.setStyleSheet("QPushButton {\n"
-                                         "                                            color: rgb(255, 255, 255);\n"
-                                         "\n"
-                                         "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                         "                                            }\n"
-                                         "                                             QPushButton:hover {\n"
-                                         "                                            border-color:rgb(5, 255, 142);\n"
-                                         "                                          color: rgb(5, 255, 142);\n"
-                                         "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                             QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.upload_button.setObjectName("upload_button")
         self.quit_app_button = QtWidgets.QPushButton(self.centralwidget)
         self.quit_app_button.setGeometry(QtCore.QRect(1220, 30, 50, 50))
@@ -202,15 +202,15 @@ class Ui_MainWindow(object):
         self.quit_app_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.quit_app_button.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.quit_app_button.setStyleSheet("QPushButton {\n"
-                                           "                                            color: rgb(255, 255, 255);\n"
-                                           "\n"
-                                           "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                           "                                            }\n"
-                                           "                                            QPushButton:hover {\n"
-                                           "                                            border-color:rgb(253, 94, 80);\n"
-                                           "                                            color:rgb(253, 94, 80);\n"
-                                           "                                            }\n"
-                                           "                                        ")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(253, 94, 80);\n"
+"                                            color:rgb(253, 94, 80);\n"
+"                                            }\n"
+"                                        ")
         self.quit_app_button.setIconSize(QtCore.QSize(25, 16))
         self.quit_app_button.setObjectName("quit_app_button")
         self.sidebar_3_layout = QtWidgets.QWidget(self.centralwidget)
@@ -230,8 +230,8 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.area_label.setFont(font)
         self.area_label.setStyleSheet("QLabel{\n"
-                                      "    color: rgb(255, 255, 255);\n"
-                                      "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.area_label.setObjectName("area_label")
         self.gridLayout_2.addWidget(self.area_label, 0, 0, 1, 1)
         self.area_spinBox = QtWidgets.QSpinBox(self.snake_contour_groupBox)
@@ -239,8 +239,8 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.area_spinBox.setFont(font)
         self.area_spinBox.setStyleSheet("QSpinBox{\n"
-                                        "    color: rgb(255, 255, 255);\n"
-                                        "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.area_spinBox.setMaximum(20000)
         self.area_spinBox.setObjectName("area_spinBox")
         self.gridLayout_2.addWidget(self.area_spinBox, 0, 1, 1, 1)
@@ -249,8 +249,8 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.perimeter_label.setFont(font)
         self.perimeter_label.setStyleSheet("QLabel{\n"
-                                           "    color: rgb(255, 255, 255);\n"
-                                           "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.perimeter_label.setObjectName("perimeter_label")
         self.gridLayout_2.addWidget(self.perimeter_label, 1, 0, 1, 1)
         self.perimeter_spinBox = QtWidgets.QSpinBox(self.snake_contour_groupBox)
@@ -258,8 +258,8 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.perimeter_spinBox.setFont(font)
         self.perimeter_spinBox.setStyleSheet("QSpinBox{\n"
-                                             "    color: rgb(255, 255, 255);\n"
-                                             "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.perimeter_spinBox.setMaximum(20000)
         self.perimeter_spinBox.setObjectName("perimeter_spinBox")
         self.gridLayout_2.addWidget(self.perimeter_spinBox, 1, 1, 1, 1)
@@ -270,41 +270,41 @@ class Ui_MainWindow(object):
         self.gridLayout = QtWidgets.QGridLayout(self.active_contour_groupbox)
         self.gridLayout.setVerticalSpacing(35)
         self.gridLayout.setObjectName("gridLayout")
-        self.type_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.type_spinBox.setFont(font)
-        self.type_spinBox.setStyleSheet("QSpinBox{\n"
-                                        "    color: rgb(255, 255, 255);\n"
-                                        "}")
-        self.type_spinBox.setMaximum(3)
-        self.type_spinBox.setObjectName("type_spinBox")
-        self.gridLayout.addWidget(self.type_spinBox, 1, 1, 1, 1)
-        self.circle_radius_label = QtWidgets.QLabel(self.active_contour_groupbox)
+        self.num_of_points_label = QtWidgets.QLabel(self.active_contour_groupbox)
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.circle_radius_label.setFont(font)
-        self.circle_radius_label.setStyleSheet("QLabel{\n"
-                                               "    color: rgb(255, 255, 255);\n"
-                                               "}")
-        self.circle_radius_label.setObjectName("circle_radius_label")
-        self.gridLayout.addWidget(self.circle_radius_label, 0, 0, 1, 1)
+        self.num_of_points_label.setFont(font)
+        self.num_of_points_label.setStyleSheet("QLabel{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.num_of_points_label.setObjectName("num_of_points_label")
+        self.gridLayout.addWidget(self.num_of_points_label, 2, 0, 1, 1)
         self.w_line_label = QtWidgets.QLabel(self.active_contour_groupbox)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.w_line_label.setFont(font)
         self.w_line_label.setStyleSheet("QLabel{\n"
-                                        "    color: rgb(255, 255, 255);\n"
-                                        "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.w_line_label.setObjectName("w_line_label")
         self.gridLayout.addWidget(self.w_line_label, 4, 0, 1, 1)
+        self.type_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.type_spinBox.setFont(font)
+        self.type_spinBox.setStyleSheet("QSpinBox{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.type_spinBox.setMaximum(3)
+        self.type_spinBox.setObjectName("type_spinBox")
+        self.gridLayout.addWidget(self.type_spinBox, 1, 1, 1, 1)
         self.alpha_label = QtWidgets.QLabel(self.active_contour_groupbox)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.alpha_label.setFont(font)
         self.alpha_label.setStyleSheet("QLabel{\n"
-                                       "    color: rgb(255, 255, 255);\n"
-                                       "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.alpha_label.setObjectName("alpha_label")
         self.gridLayout.addWidget(self.alpha_label, 6, 0, 1, 1)
         self.beta_label = QtWidgets.QLabel(self.active_contour_groupbox)
@@ -312,49 +312,17 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.beta_label.setFont(font)
         self.beta_label.setStyleSheet("QLabel{\n"
-                                      "    color: rgb(255, 255, 255);\n"
-                                      "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.beta_label.setObjectName("beta_label")
         self.gridLayout.addWidget(self.beta_label, 7, 0, 1, 1)
-        self.w_line_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.w_line_spinBox.setFont(font)
-        self.w_line_spinBox.setStyleSheet("QSpinBox{\n"
-                                          "    color: rgb(255, 255, 255);\n"
-                                          "}")
-        self.w_line_spinBox.setMaximum(100)
-        self.w_line_spinBox.setObjectName("w_line_spinBox")
-        self.gridLayout.addWidget(self.w_line_spinBox, 4, 1, 1, 1)
-        self.circle_radius_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.circle_radius_spinBox.setFont(font)
-        self.circle_radius_spinBox.setStyleSheet("QSpinBox{\n"
-                                                 "    color: rgb(255, 255, 255);\n"
-                                                 "}")
-        self.circle_radius_spinBox.setMaximum(200)
-        self.circle_radius_spinBox.setObjectName("circle_radius_spinBox")
-        self.gridLayout.addWidget(self.circle_radius_spinBox, 0, 1, 1, 1)
-        self.beta_spinBox = QtWidgets.QDoubleSpinBox(self.active_contour_groupbox)
-        self.beta_spinBox.setDecimals(2)
-        self.beta_spinBox.setSingleStep(0.1)
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.beta_spinBox.setFont(font)
-        self.beta_spinBox.setStyleSheet("QSpinBox{\n"
-                                        "    color: rgb(255, 255, 255);\n"
-                                        "}")
-        self.beta_spinBox.setMaximum(100)
-        self.beta_spinBox.setObjectName("beta_spinBox")
-        self.gridLayout.addWidget(self.beta_spinBox, 7, 1, 1, 1)
         self.num_of_points_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
         font = QtGui.QFont()
         font.setPointSize(10)
         self.num_of_points_spinBox.setFont(font)
         self.num_of_points_spinBox.setStyleSheet("QSpinBox{\n"
-                                                 "    color: rgb(255, 255, 255);\n"
-                                                 "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.num_of_points_spinBox.setMaximum(200)
         self.num_of_points_spinBox.setObjectName("num_of_points_spinBox")
         self.gridLayout.addWidget(self.num_of_points_spinBox, 2, 1, 1, 1)
@@ -363,35 +331,75 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.w_edge_label.setFont(font)
         self.w_edge_label.setStyleSheet("QLabel{\n"
-                                        "    color: rgb(255, 255, 255);\n"
-                                        "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.w_edge_label.setObjectName("w_edge_label")
         self.gridLayout.addWidget(self.w_edge_label, 5, 0, 1, 1)
-        self.num_of_points_label = QtWidgets.QLabel(self.active_contour_groupbox)
+        self.gamma_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
         font = QtGui.QFont()
-        font.setPointSize(12)
-        self.num_of_points_label.setFont(font)
-        self.num_of_points_label.setStyleSheet("QLabel{\n"
-                                               "    color: rgb(255, 255, 255);\n"
-                                               "}")
-        self.num_of_points_label.setObjectName("num_of_points_label")
-        self.gridLayout.addWidget(self.num_of_points_label, 2, 0, 1, 1)
+        font.setPointSize(10)
+        self.gamma_spinBox.setFont(font)
+        self.gamma_spinBox.setStyleSheet("QSpinBox{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.gamma_spinBox.setMaximum(100)
+        self.gamma_spinBox.setObjectName("gamma_spinBox")
+        self.gridLayout.addWidget(self.gamma_spinBox, 8, 1, 1, 1)
         self.type_label = QtWidgets.QLabel(self.active_contour_groupbox)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.type_label.setFont(font)
         self.type_label.setStyleSheet("QLabel{\n"
-                                      "    color: rgb(255, 255, 255);\n"
-                                      "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.type_label.setObjectName("type_label")
         self.gridLayout.addWidget(self.type_label, 1, 0, 1, 1)
+        self.circle_radius_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.circle_radius_spinBox.setFont(font)
+        self.circle_radius_spinBox.setStyleSheet("QSpinBox{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.circle_radius_spinBox.setMaximum(200)
+        self.circle_radius_spinBox.setObjectName("circle_radius_spinBox")
+        self.gridLayout.addWidget(self.circle_radius_spinBox, 0, 1, 1, 1)
+        self.gamma_label = QtWidgets.QLabel(self.active_contour_groupbox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.gamma_label.setFont(font)
+        self.gamma_label.setStyleSheet("QLabel{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.gamma_label.setObjectName("gamma_label")
+        self.gridLayout.addWidget(self.gamma_label, 8, 0, 1, 1)
+        self.alpha_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.alpha_spinBox.setFont(font)
+        self.alpha_spinBox.setStyleSheet("QSpinBox{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.alpha_spinBox.setMaximum(100)
+        self.alpha_spinBox.setObjectName("alpha_spinBox")
+        self.gridLayout.addWidget(self.alpha_spinBox, 6, 1, 1, 1)
+        self.w_line_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.w_line_spinBox.setFont(font)
+        self.w_line_spinBox.setStyleSheet("QSpinBox{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.w_line_spinBox.setMaximum(100)
+        self.w_line_spinBox.setObjectName("w_line_spinBox")
+        self.gridLayout.addWidget(self.w_line_spinBox, 4, 1, 1, 1)
         self.w_edge_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
         font = QtGui.QFont()
         font.setPointSize(10)
         self.w_edge_spinBox.setFont(font)
         self.w_edge_spinBox.setStyleSheet("QSpinBox{\n"
-                                          "    color: rgb(255, 255, 255);\n"
-                                          "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.w_edge_spinBox.setMaximum(100)
         self.w_edge_spinBox.setObjectName("w_edge_spinBox")
         self.gridLayout.addWidget(self.w_edge_spinBox, 5, 1, 1, 1)
@@ -400,79 +408,84 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.num_of_itr_label.setFont(font)
         self.num_of_itr_label.setStyleSheet("QLabel{\n"
-                                            "    color: rgb(255, 255, 255);\n"
-                                            "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.num_of_itr_label.setObjectName("num_of_itr_label")
         self.gridLayout.addWidget(self.num_of_itr_label, 3, 0, 1, 1)
-        self.gamma_spinBox = QtWidgets.QDoubleSpinBox(self.active_contour_groupbox)
-        self.gamma_spinBox.setStyleSheet("QDoubleSpinBox{\n"
-                                         "    color: rgb(255, 255, 255);\n"
-                                         "}")
-        self.gamma_spinBox.setObjectName("gamma_spinBox")
-        self.gamma_spinBox.setDecimals(2)
-        self.gamma_spinBox.setSingleStep(0.1)
+        self.beta_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.gamma_spinBox.setFont(font)
-
-        self.gridLayout.addWidget(self.gamma_spinBox, 8, 1, 1, 1)
+        self.beta_spinBox.setFont(font)
+        self.beta_spinBox.setStyleSheet("QSpinBox{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.beta_spinBox.setMaximum(100)
+        self.beta_spinBox.setObjectName("beta_spinBox")
+        self.gridLayout.addWidget(self.beta_spinBox, 7, 1, 1, 1)
+        self.circle_radius_label = QtWidgets.QLabel(self.active_contour_groupbox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.circle_radius_label.setFont(font)
+        self.circle_radius_label.setStyleSheet("QLabel{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.circle_radius_label.setObjectName("circle_radius_label")
+        self.gridLayout.addWidget(self.circle_radius_label, 0, 0, 1, 1)
         self.num_of_itr_spinBox = QtWidgets.QSpinBox(self.active_contour_groupbox)
         font = QtGui.QFont()
         font.setPointSize(10)
         self.num_of_itr_spinBox.setFont(font)
         self.num_of_itr_spinBox.setStyleSheet("QSpinBox{\n"
-                                              "    color: rgb(255, 255, 255);\n"
-                                              "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.num_of_itr_spinBox.setMaximum(2500)
         self.num_of_itr_spinBox.setObjectName("num_of_itr_spinBox")
         self.gridLayout.addWidget(self.num_of_itr_spinBox, 3, 1, 1, 1)
-        self.gamma_label = QtWidgets.QLabel(self.active_contour_groupbox)
+        self.sidebar_3.addWidget(self.active_contour_groupbox)
+        self.chain_code_button = QtWidgets.QPushButton(self.sidebar_3_layout)
+        self.chain_code_button.setMinimumSize(QtCore.QSize(0, 50))
+        self.chain_code_button.setMaximumSize(QtCore.QSize(16777215, 55))
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.gamma_label.setFont(font)
-        self.gamma_label.setStyleSheet("QLabel{\n"
-                                       "    color: rgb(255, 255, 255);\n"
-                                       "}")
-        self.gamma_label.setObjectName("gamma_label")
-        self.gridLayout.addWidget(self.gamma_label, 8, 0, 1, 1)
-        self.alpha_spinBox = QtWidgets.QDoubleSpinBox(self.active_contour_groupbox)
-        self.alpha_spinBox.setDecimals(2)  # Set the number of decimal places
-        self.alpha_spinBox.setSingleStep(0.1)  # Set the step size
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.alpha_spinBox.setFont(font)
-        self.alpha_spinBox.setStyleSheet("QSpinBox{\n"
-                                         "    color: rgb(255, 255, 255);\n"
-                                         "}")
-        self.alpha_spinBox.setMaximum(100)
-        self.alpha_spinBox.setObjectName("alpha_spinBox")
-        self.gridLayout.addWidget(self.alpha_spinBox, 6, 1, 1, 1)
-        self.sidebar_3.addWidget(self.active_contour_groupbox)
+        font.setBold(False)
+        font.setWeight(50)
+        self.chain_code_button.setFont(font)
+        self.chain_code_button.setStyleSheet("QPushButton {\n"
+"                                            color: rgb(255, 255, 255);\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                        margin :5px 0px;\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
+        self.chain_code_button.setObjectName("chain_code_button")
+        self.sidebar_3.addWidget(self.chain_code_button)
         self.apply_contour_button = QtWidgets.QPushButton(self.sidebar_3_layout)
-        self.apply_contour_button.setMinimumSize(QtCore.QSize(0, 40))
-        self.apply_contour_button.setMaximumSize(QtCore.QSize(16777215, 45))
+        self.apply_contour_button.setMinimumSize(QtCore.QSize(0, 50))
+        self.apply_contour_button.setMaximumSize(QtCore.QSize(16777215, 55))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(False)
         font.setWeight(50)
         self.apply_contour_button.setFont(font)
         self.apply_contour_button.setStyleSheet("QPushButton {\n"
-                                                "                                            color: rgb(255, 255, 255);\n"
-                                                "\n"
-                                                "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                                "                                            }\n"
-                                                "                                            QPushButton:hover {\n"
-                                                "                                            border-color:rgb(5, 255, 142);\n"
-                                                "                                          color: rgb(5, 255, 142);\n"
-                                                "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                        margin :5px 0px;\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.apply_contour_button.setObjectName("apply_contour_button")
         self.sidebar_3.addWidget(self.apply_contour_button)
         self.sidebar_2_layout = QtWidgets.QGroupBox(self.centralwidget)
         self.sidebar_2_layout.setGeometry(QtCore.QRect(0, 90, 291, 621))
         self.sidebar_2_layout.setStyleSheet("QGroupBox{\n"
-                                            "    color: rgb(255, 255, 255);\n"
-                                            "    border :none;\n"
-                                            "}")
+"    color: rgb(255, 255, 255);\n"
+"    border :none;\n"
+"}")
         self.sidebar_2_layout.setTitle("")
         self.sidebar_2_layout.setObjectName("sidebar_2_layout")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.sidebar_2_layout)
@@ -482,15 +495,16 @@ class Ui_MainWindow(object):
         self.parametric_shape_label.setMinimumSize(QtCore.QSize(0, 55))
         self.parametric_shape_label.setMaximumSize(QtCore.QSize(16777215, 70))
         font = QtGui.QFont()
+        font.setFamily("MS Sans Serif")
         font.setPointSize(21)
         font.setBold(True)
         font.setItalic(True)
         font.setWeight(75)
         self.parametric_shape_label.setFont(font)
         self.parametric_shape_label.setStyleSheet("QLabel{\n"
-                                                  "    color: rgb(255, 255, 255);\n"
-                                                  "\n"
-                                                  "}")
+"    color: rgb(255, 255, 255);\n"
+"\n"
+"}")
         self.parametric_shape_label.setAlignment(QtCore.Qt.AlignCenter)
         self.parametric_shape_label.setObjectName("parametric_shape_label")
         self.verticalLayout_4.addWidget(self.parametric_shape_label)
@@ -503,14 +517,14 @@ class Ui_MainWindow(object):
         self.line_detection_button.setFont(font)
         self.line_detection_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.line_detection_button.setStyleSheet("QPushButton {\n"
-                                                 "                                            color: rgb(255, 255, 255);\n"
-                                                 "\n"
-                                                 "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                                 "                                            }\n"
-                                                 "                                            QPushButton:hover {\n"
-                                                 "                                            border-color:rgb(5, 255, 142);\n"
-                                                 "                                          color: rgb(5, 255, 142);\n"
-                                                 "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.line_detection_button.setObjectName("line_detection_button")
         self.verticalLayout_4.addWidget(self.line_detection_button)
         self.circle_detection_button = QtWidgets.QPushButton(self.sidebar_2_layout)
@@ -522,14 +536,14 @@ class Ui_MainWindow(object):
         self.circle_detection_button.setFont(font)
         self.circle_detection_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.circle_detection_button.setStyleSheet("QPushButton {\n"
-                                                   "                                            color: rgb(255, 255, 255);\n"
-                                                   "\n"
-                                                   "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                                   "                                            }\n"
-                                                   "                                            QPushButton:hover {\n"
-                                                   "                                            border-color:rgb(5, 255, 142);\n"
-                                                   "                                          color: rgb(5, 255, 142);\n"
-                                                   "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.circle_detection_button.setObjectName("circle_detection_button")
         self.verticalLayout_4.addWidget(self.circle_detection_button)
         self.ellipse_detection_button = QtWidgets.QPushButton(self.sidebar_2_layout)
@@ -541,33 +555,33 @@ class Ui_MainWindow(object):
         self.ellipse_detection_button.setFont(font)
         self.ellipse_detection_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.ellipse_detection_button.setStyleSheet("QPushButton {\n"
-                                                    "                                            color: rgb(255, 255, 255);\n"
-                                                    "\n"
-                                                    "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                                    "                                            }\n"
-                                                    "                                            QPushButton:hover {\n"
-                                                    "                                            border-color:rgb(5, 255, 142);\n"
-                                                    "                                          color: rgb(5, 255, 142);\n"
-                                                    "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.ellipse_detection_button.setObjectName("ellipse_detection_button")
         self.verticalLayout_4.addWidget(self.ellipse_detection_button)
         self.shapes_sidebar_layout = QtWidgets.QGroupBox(self.centralwidget)
         self.shapes_sidebar_layout.setGeometry(QtCore.QRect(10, 80, 282, 725))
         self.shapes_sidebar_layout.setStyleSheet("QGroupBox{\n"
-                                                 "    color: rgb(255, 255, 255);\n"
-                                                 "    border :none;\n"
-                                                 "\n"
-                                                 "}")
+"    color: rgb(255, 255, 255);\n"
+"    border :none;\n"
+"\n"
+"}")
         self.shapes_sidebar_layout.setTitle("")
         self.shapes_sidebar_layout.setObjectName("shapes_sidebar_layout")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.shapes_sidebar_layout)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.line_groupBox = QtWidgets.QGroupBox(self.shapes_sidebar_layout)
         self.line_groupBox.setStyleSheet("QGroupBox{\n"
-                                         "    color: rgb(255, 255, 255);\n"
-                                         "    border: 1px solid rgb(255, 255, 255);\n"
-                                         "\n"
-                                         "}")
+"    color: rgb(255, 255, 255);\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"\n"
+"}")
         self.line_groupBox.setObjectName("line_groupBox")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.line_groupBox)
         self.verticalLayout_2.setSpacing(15)
@@ -580,8 +594,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.line_label.setFont(font)
         self.line_label.setStyleSheet("QLabel{\n"
-                                      "    color: rgb(255, 255, 255);\n"
-                                      "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.line_label.setObjectName("line_label")
         self.verticalLayout_2.addWidget(self.line_label)
         self.line_threshold_label = QtWidgets.QLabel(self.line_groupBox)
@@ -589,13 +603,14 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.line_threshold_label.setFont(font)
         self.line_threshold_label.setStyleSheet("QLabel{\n"
-                                                "    color: rgb(255, 255, 255);\n"
-                                                "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.line_threshold_label.setObjectName("line_threshold_label")
         self.verticalLayout_2.addWidget(self.line_threshold_label)
         self.line_threshold_layout = QtWidgets.QHBoxLayout()
         self.line_threshold_layout.setObjectName("line_threshold_layout")
         self.line_threshold_slider = QtWidgets.QSlider(self.line_groupBox)
+        self.line_threshold_slider.setMaximum(100)
         self.line_threshold_slider.setOrientation(QtCore.Qt.Horizontal)
         self.line_threshold_slider.setObjectName("line_threshold_slider")
         self.line_threshold_layout.addWidget(self.line_threshold_slider)
@@ -604,8 +619,8 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.line_threshold_value.setFont(font)
         self.line_threshold_value.setStyleSheet("QLabel{\n"
-                                                "    color: rgb(255, 255, 255);\n"
-                                                "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.line_threshold_value.setObjectName("line_threshold_value")
         self.line_threshold_layout.addWidget(self.line_threshold_value)
         self.verticalLayout_2.addLayout(self.line_threshold_layout)
@@ -618,23 +633,23 @@ class Ui_MainWindow(object):
         self.apply_button.setFont(font)
         self.apply_button.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.apply_button.setStyleSheet("QPushButton {\n"
-                                        "                                            color: rgb(255, 255, 255);\n"
-                                        "\n"
-                                        "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                        "                                            }\n"
-                                        "                                            QPushButton:hover {\n"
-                                        "                                            border-color:rgb(5, 255, 142);\n"
-                                        "                                          color: rgb(5, 255, 142);\n"
-                                        "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.apply_button.setObjectName("apply_button")
         self.verticalLayout_2.addWidget(self.apply_button)
         self.verticalLayout_5.addWidget(self.line_groupBox)
         self.circle_groupBox = QtWidgets.QGroupBox(self.shapes_sidebar_layout)
         self.circle_groupBox.setStyleSheet("QGroupBox{\n"
-                                           "    color: rgb(255, 255, 255);\n"
-                                           "    border: 1px solid rgb(255, 255, 255);\n"
-                                           "\n"
-                                           "}")
+"    color: rgb(255, 255, 255);\n"
+"    border: 1px solid rgb(255, 255, 255);\n"
+"\n"
+"}")
         self.circle_groupBox.setObjectName("circle_groupBox")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.circle_groupBox)
         self.verticalLayout_3.setSpacing(15)
@@ -647,8 +662,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.circle_label.setFont(font)
         self.circle_label.setStyleSheet("QLabel{\n"
-                                        "    color: rgb(255, 255, 255);\n"
-                                        "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.circle_label.setObjectName("circle_label")
         self.verticalLayout_3.addWidget(self.circle_label)
         self.min_radius_label = QtWidgets.QLabel(self.circle_groupBox)
@@ -658,14 +673,14 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.min_radius_label.setFont(font)
         self.min_radius_label.setStyleSheet("QLabel{\n"
-                                            "    color: rgb(255, 255, 255);\n"
-                                            "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.min_radius_label.setObjectName("min_radius_label")
         self.verticalLayout_3.addWidget(self.min_radius_label)
         self.min_radius_layout = QtWidgets.QHBoxLayout()
         self.min_radius_layout.setObjectName("min_radius_layout")
         self.min_radius_slider = QtWidgets.QSlider(self.circle_groupBox)
-        self.min_radius_slider.setMaximum(100)
+        self.min_radius_slider.setMaximum(50)
         self.min_radius_slider.setSingleStep(0)
         self.min_radius_slider.setTracking(False)
         self.min_radius_slider.setOrientation(QtCore.Qt.Horizontal)
@@ -676,8 +691,8 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.min_radius_value.setFont(font)
         self.min_radius_value.setStyleSheet("QLabel{\n"
-                                            "    color: rgb(255, 255, 255);\n"
-                                            "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.min_radius_value.setObjectName("min_radius_value")
         self.min_radius_layout.addWidget(self.min_radius_value)
         self.verticalLayout_3.addLayout(self.min_radius_layout)
@@ -686,52 +701,79 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.max_radius_label.setFont(font)
         self.max_radius_label.setStyleSheet("QLabel{\n"
-                                            "    color: rgb(255, 255, 255);\n"
-                                            "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.max_radius_label.setObjectName("max_radius_label")
         self.verticalLayout_3.addWidget(self.max_radius_label)
         self.max_radius_layout = QtWidgets.QHBoxLayout()
         self.max_radius_layout.setObjectName("max_radius_layout")
         self.max_radius_slider = QtWidgets.QSlider(self.circle_groupBox)
+        self.max_radius_slider.setMaximum(100)
         self.max_radius_slider.setOrientation(QtCore.Qt.Horizontal)
         self.max_radius_slider.setObjectName("max_radius_slider")
-        self.max_radius_slider.setMaximum(200)
         self.max_radius_layout.addWidget(self.max_radius_slider)
         self.max_radius_value = QtWidgets.QLabel(self.circle_groupBox)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.max_radius_value.setFont(font)
         self.max_radius_value.setStyleSheet("QLabel{\n"
-                                            "    color: rgb(255, 255, 255);\n"
-                                            "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.max_radius_value.setObjectName("max_radius_value")
         self.max_radius_layout.addWidget(self.max_radius_value)
         self.verticalLayout_3.addLayout(self.max_radius_layout)
-        self.circle_threshold_label = QtWidgets.QLabel(self.circle_groupBox)
+        self.canny_threshold_label = QtWidgets.QLabel(self.circle_groupBox)
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.circle_threshold_label.setFont(font)
-        self.circle_threshold_label.setStyleSheet("QLabel{\n"
-                                                  "    color: rgb(255, 255, 255);\n"
-                                                  "}")
-        self.circle_threshold_label.setObjectName("circle_threshold_label")
-        self.verticalLayout_3.addWidget(self.circle_threshold_label)
+        self.canny_threshold_label.setFont(font)
+        self.canny_threshold_label.setStyleSheet("QLabel{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.canny_threshold_label.setObjectName("canny_threshold_label")
+        self.verticalLayout_3.addWidget(self.canny_threshold_label)
+        self.canny_threshold_layout = QtWidgets.QHBoxLayout()
+        self.canny_threshold_layout.setObjectName("canny_threshold_layout")
+        self.canny_threshold_slider = QtWidgets.QSlider(self.circle_groupBox)
+        self.canny_threshold_slider.setMinimum(50)
+        self.canny_threshold_slider.setMaximum(200)
+        self.canny_threshold_slider.setOrientation(QtCore.Qt.Horizontal)
+        self.canny_threshold_slider.setObjectName("canny_threshold_slider")
+        self.canny_threshold_layout.addWidget(self.canny_threshold_slider)
+        self.canny_threshold_value = QtWidgets.QLabel(self.circle_groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.canny_threshold_value.setFont(font)
+        self.canny_threshold_value.setStyleSheet("QLabel{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.canny_threshold_value.setObjectName("canny_threshold_value")
+        self.canny_threshold_layout.addWidget(self.canny_threshold_value)
+        self.verticalLayout_3.addLayout(self.canny_threshold_layout)
+        self.accumulator_threshold_label = QtWidgets.QLabel(self.circle_groupBox)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.accumulator_threshold_label.setFont(font)
+        self.accumulator_threshold_label.setStyleSheet("QLabel{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.accumulator_threshold_label.setObjectName("accumulator_threshold_label")
+        self.verticalLayout_3.addWidget(self.accumulator_threshold_label)
         self.circle_threshold_layout = QtWidgets.QHBoxLayout()
         self.circle_threshold_layout.setObjectName("circle_threshold_layout")
-        self.circle_threshold_slider = QtWidgets.QSlider(self.circle_groupBox)
-        self.circle_threshold_slider.setMaximum(100)
-        self.circle_threshold_slider.setOrientation(QtCore.Qt.Horizontal)
-        self.circle_threshold_slider.setObjectName("circle_threshold_slider")
-        self.circle_threshold_layout.addWidget(self.circle_threshold_slider)
-        self.circle_threshold_value = QtWidgets.QLabel(self.circle_groupBox)
+        self.accumulator_threshold_slider = QtWidgets.QSlider(self.circle_groupBox)
+        self.accumulator_threshold_slider.setMaximum(100)
+        self.accumulator_threshold_slider.setOrientation(QtCore.Qt.Horizontal)
+        self.accumulator_threshold_slider.setObjectName("accumulator_threshold_slider")
+        self.circle_threshold_layout.addWidget(self.accumulator_threshold_slider)
+        self.accumulator_threshold_value = QtWidgets.QLabel(self.circle_groupBox)
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.circle_threshold_value.setFont(font)
-        self.circle_threshold_value.setStyleSheet("QLabel{\n"
-                                                  "    color: rgb(255, 255, 255);\n"
-                                                  "}")
-        self.circle_threshold_value.setObjectName("circle_threshold_value")
-        self.circle_threshold_layout.addWidget(self.circle_threshold_value)
+        self.accumulator_threshold_value.setFont(font)
+        self.accumulator_threshold_value.setStyleSheet("QLabel{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.accumulator_threshold_value.setObjectName("accumulator_threshold_value")
+        self.circle_threshold_layout.addWidget(self.accumulator_threshold_value)
         self.verticalLayout_3.addLayout(self.circle_threshold_layout)
         self.apply_button_2 = QtWidgets.QPushButton(self.circle_groupBox)
         self.apply_button_2.setMinimumSize(QtCore.QSize(0, 40))
@@ -742,23 +784,23 @@ class Ui_MainWindow(object):
         self.apply_button_2.setFont(font)
         self.apply_button_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.apply_button_2.setStyleSheet("QPushButton {\n"
-                                          "                                            color: rgb(255, 255, 255);\n"
-                                          "\n"
-                                          "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                          "                                            }\n"
-                                          "                                            QPushButton:hover {\n"
-                                          "                                            border-color:rgb(5, 255, 142);\n"
-                                          "                                          color: rgb(5, 255, 142);\n"
-                                          "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.apply_button_2.setObjectName("apply_button_2")
         self.verticalLayout_3.addWidget(self.apply_button_2)
         self.verticalLayout_5.addWidget(self.circle_groupBox)
         self.ellipse_groupBox = QtWidgets.QGroupBox(self.shapes_sidebar_layout)
         self.ellipse_groupBox.setStyleSheet("QGroupBox{\n"
-                                            "    color: rgb(255, 255, 255);\n"
-                                            "        border: 1px solid rgb(255, 255, 255);\n"
-                                            "\n"
-                                            "}")
+"    color: rgb(255, 255, 255);\n"
+"        border: 1px solid rgb(255, 255, 255);\n"
+"\n"
+"}")
         self.ellipse_groupBox.setObjectName("ellipse_groupBox")
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.ellipse_groupBox)
         self.verticalLayout_9.setSpacing(15)
@@ -771,8 +813,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.ellipse_label.setFont(font)
         self.ellipse_label.setStyleSheet("QLabel{\n"
-                                         "    color: rgb(255, 255, 255);\n"
-                                         "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.ellipse_label.setObjectName("ellipse_label")
         self.verticalLayout_9.addWidget(self.ellipse_label)
         self.min_radius_label_2 = QtWidgets.QLabel(self.ellipse_groupBox)
@@ -780,25 +822,24 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.min_radius_label_2.setFont(font)
         self.min_radius_label_2.setStyleSheet("QLabel{\n"
-                                              "    color: rgb(255, 255, 255);\n"
-                                              "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.min_radius_label_2.setObjectName("min_radius_label_2")
         self.verticalLayout_9.addWidget(self.min_radius_label_2)
         self.min_radius_layout_2 = QtWidgets.QHBoxLayout()
         self.min_radius_layout_2.setObjectName("min_radius_layout_2")
         self.min_radius_slider_2 = QtWidgets.QSlider(self.ellipse_groupBox)
+        self.min_radius_slider_2.setMaximum(50)
         self.min_radius_slider_2.setOrientation(QtCore.Qt.Horizontal)
         self.min_radius_slider_2.setObjectName("min_radius_slider_2")
-        self.min_radius_slider_2.setMaximum(100)
-
         self.min_radius_layout_2.addWidget(self.min_radius_slider_2)
         self.min_radius_value_2 = QtWidgets.QLabel(self.ellipse_groupBox)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.min_radius_value_2.setFont(font)
         self.min_radius_value_2.setStyleSheet("QLabel{\n"
-                                              "    color: rgb(255, 255, 255);\n"
-                                              "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.min_radius_value_2.setObjectName("min_radius_value_2")
         self.min_radius_layout_2.addWidget(self.min_radius_value_2)
         self.verticalLayout_9.addLayout(self.min_radius_layout_2)
@@ -807,25 +848,24 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.max_radius_label_2.setFont(font)
         self.max_radius_label_2.setStyleSheet("QLabel{\n"
-                                              "    color: rgb(255, 255, 255);\n"
-                                              "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.max_radius_label_2.setObjectName("max_radius_label_2")
         self.verticalLayout_9.addWidget(self.max_radius_label_2)
         self.max_radius_layout_2 = QtWidgets.QHBoxLayout()
         self.max_radius_layout_2.setObjectName("max_radius_layout_2")
         self.max_radius_slider_2 = QtWidgets.QSlider(self.ellipse_groupBox)
+        self.max_radius_slider_2.setMaximum(100)
         self.max_radius_slider_2.setOrientation(QtCore.Qt.Horizontal)
         self.max_radius_slider_2.setObjectName("max_radius_slider_2")
         self.max_radius_layout_2.addWidget(self.max_radius_slider_2)
-        self.max_radius_slider_2.setMaximum(200)
-
         self.max_radius_value_2 = QtWidgets.QLabel(self.ellipse_groupBox)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.max_radius_value_2.setFont(font)
         self.max_radius_value_2.setStyleSheet("QLabel{\n"
-                                              "    color: rgb(255, 255, 255);\n"
-                                              "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.max_radius_value_2.setObjectName("max_radius_value_2")
         self.max_radius_layout_2.addWidget(self.max_radius_value_2)
         self.verticalLayout_9.addLayout(self.max_radius_layout_2)
@@ -834,8 +874,8 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.ellipse_threshold_label.setFont(font)
         self.ellipse_threshold_label.setStyleSheet("QLabel{\n"
-                                                   "    color: rgb(255, 255, 255);\n"
-                                                   "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.ellipse_threshold_label.setObjectName("ellipse_threshold_label")
         self.verticalLayout_9.addWidget(self.ellipse_threshold_label)
         self.ellipse_threshold_layout = QtWidgets.QHBoxLayout()
@@ -850,8 +890,8 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.ellipse_threshold_value.setFont(font)
         self.ellipse_threshold_value.setStyleSheet("QLabel{\n"
-                                                   "    color: rgb(255, 255, 255);\n"
-                                                   "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.ellipse_threshold_value.setObjectName("ellipse_threshold_value")
         self.ellipse_threshold_layout.addWidget(self.ellipse_threshold_value)
         self.verticalLayout_9.addLayout(self.ellipse_threshold_layout)
@@ -864,22 +904,22 @@ class Ui_MainWindow(object):
         self.apply_button_3.setFont(font)
         self.apply_button_3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.apply_button_3.setStyleSheet("QPushButton {\n"
-                                          "                                            color: rgb(255, 255, 255);\n"
-                                          "\n"
-                                          "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                          "                                            }\n"
-                                          "                                            QPushButton:hover {\n"
-                                          "                                            border-color:rgb(5, 255, 142);\n"
-                                          "                                          color: rgb(5, 255, 142);\n"
-                                          "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.apply_button_3.setObjectName("apply_button_3")
         self.verticalLayout_9.addWidget(self.apply_button_3)
         self.verticalLayout_5.addWidget(self.ellipse_groupBox)
         self.page_filter_layout = QtWidgets.QGroupBox(self.centralwidget)
         self.page_filter_layout.setGeometry(QtCore.QRect(20, 90, 271, 711))
         self.page_filter_layout.setStyleSheet("QGroupBox{\n"
-                                              "    color: rgb(255, 255, 255);\n"
-                                              "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.page_filter_layout.setTitle("")
         self.page_filter_layout.setObjectName("page_filter_layout")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.page_filter_layout)
@@ -893,8 +933,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.gaussian_kernal_size_label.setFont(font)
         self.gaussian_kernal_size_label.setStyleSheet("QLabel{\n"
-                                                      "    color: rgb(255, 255, 255);\n"
-                                                      "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.gaussian_kernal_size_label.setObjectName("gaussian_kernal_size_label")
         self.verticalLayout.addWidget(self.gaussian_kernal_size_label)
         self.gaussian_filter_kernel_size_button = QtWidgets.QPushButton(self.page_filter_layout)
@@ -906,14 +946,14 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.gaussian_filter_kernel_size_button.setFont(font)
         self.gaussian_filter_kernel_size_button.setStyleSheet("QPushButton {\n"
-                                                              "                                            color: rgb(255, 255, 255);\n"
-                                                              "\n"
-                                                              "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                                              "                                            }\n"
-                                                              "                                            QPushButton:hover {\n"
-                                                              "                                            border-color:rgb(5, 255, 142);\n"
-                                                              "                                          color: rgb(5, 255, 142);\n"
-                                                              "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.gaussian_filter_kernel_size_button.setObjectName("gaussian_filter_kernel_size_button")
         self.verticalLayout.addWidget(self.gaussian_filter_kernel_size_button)
         self.gaussian_filter_sigma_label = QtWidgets.QLabel(self.page_filter_layout)
@@ -927,32 +967,20 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.gaussian_filter_sigma_label.setFont(font)
         self.gaussian_filter_sigma_label.setStyleSheet("QLabel{\n"
-                                                       "    color: rgb(255, 255, 255);\n"
-                                                       "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.gaussian_filter_sigma_label.setObjectName("gaussian_filter_sigma_label")
         self.verticalLayout.addWidget(self.gaussian_filter_sigma_label)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.gaussian_filter_sigma_horizontalSlider = QtWidgets.QSlider(self.page_filter_layout)
-        self.gaussian_filter_sigma_horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.gaussian_filter_sigma_horizontalSlider.setObjectName("gaussian_filter_sigma_horizontalSlider")
-        self.horizontalLayout.addWidget(self.gaussian_filter_sigma_horizontalSlider)
-        self.gaussian_filter_sigma_label_2 = QtWidgets.QLabel(self.page_filter_layout)
-        self.gaussian_filter_sigma_label_2.setMinimumSize(QtCore.QSize(45, 0))
-        self.gaussian_filter_sigma_label_2.setMaximumSize(QtCore.QSize(16777215, 45))
-        self.gaussian_filter_sigma_label_2.setSizeIncrement(QtCore.QSize(0, 40))
+        self.gaussian_filter_sigma_comboBox = QtWidgets.QSpinBox(self.page_filter_layout)
         font = QtGui.QFont()
-        font.setPointSize(16)
-        font.setBold(False)
-        font.setItalic(True)
-        font.setWeight(50)
-        self.gaussian_filter_sigma_label_2.setFont(font)
-        self.gaussian_filter_sigma_label_2.setStyleSheet("QLabel{\n"
-                                                         "    color: rgb(255, 255, 255);\n"
-                                                         "}")
-        self.gaussian_filter_sigma_label_2.setObjectName("gaussian_filter_sigma_label_2")
-        self.horizontalLayout.addWidget(self.gaussian_filter_sigma_label_2)
-        self.verticalLayout.addLayout(self.horizontalLayout)
+        font.setPointSize(10)
+        self.gaussian_filter_sigma_comboBox.setFont(font)
+        self.gaussian_filter_sigma_comboBox.setStyleSheet("QSpinBox{\n"
+"    color: rgb(255, 255, 255);\n"
+"}")
+        self.gaussian_filter_sigma_comboBox.setProperty("value", 99)
+        self.gaussian_filter_sigma_comboBox.setObjectName("gaussian_filter_sigma_comboBox")
+        self.verticalLayout.addWidget(self.gaussian_filter_sigma_comboBox)
         self.high_threshold_label = QtWidgets.QLabel(self.page_filter_layout)
         self.high_threshold_label.setMaximumSize(QtCore.QSize(16777215, 45))
         font = QtGui.QFont()
@@ -962,8 +990,8 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.high_threshold_label.setFont(font)
         self.high_threshold_label.setStyleSheet("QLabel{\n"
-                                                "    color: rgb(255, 255, 255);\n"
-                                                "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.high_threshold_label.setObjectName("high_threshold_label")
         self.verticalLayout.addWidget(self.high_threshold_label)
         self.edge_detection_high_threshold_spinbox = QtWidgets.QSpinBox(self.page_filter_layout)
@@ -971,8 +999,8 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.edge_detection_high_threshold_spinbox.setFont(font)
         self.edge_detection_high_threshold_spinbox.setStyleSheet("QSpinBox{\n"
-                                                                 "    color: rgb(255, 255, 255);\n"
-                                                                 "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.edge_detection_high_threshold_spinbox.setMaximum(800)
         self.edge_detection_high_threshold_spinbox.setProperty("value", 200)
         self.edge_detection_high_threshold_spinbox.setObjectName("edge_detection_high_threshold_spinbox")
@@ -986,8 +1014,8 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.low_threshold_label.setFont(font)
         self.low_threshold_label.setStyleSheet("QLabel{\n"
-                                               "    color: rgb(255, 255, 255);\n"
-                                               "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.low_threshold_label.setObjectName("low_threshold_label")
         self.verticalLayout.addWidget(self.low_threshold_label)
         self.edge_detection_low_threshold_spinbox = QtWidgets.QSpinBox(self.page_filter_layout)
@@ -995,8 +1023,8 @@ class Ui_MainWindow(object):
         font.setPointSize(10)
         self.edge_detection_low_threshold_spinbox.setFont(font)
         self.edge_detection_low_threshold_spinbox.setStyleSheet("QSpinBox{\n"
-                                                                "    color: rgb(255, 255, 255);\n"
-                                                                "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.edge_detection_low_threshold_spinbox.setMaximum(500)
         self.edge_detection_low_threshold_spinbox.setProperty("value", 100)
         self.edge_detection_low_threshold_spinbox.setObjectName("edge_detection_low_threshold_spinbox")
@@ -1009,8 +1037,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.kernal_size_label.setFont(font)
         self.kernal_size_label.setStyleSheet("QLabel{\n"
-                                             "    color: rgb(255, 255, 255);\n"
-                                             "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.kernal_size_label.setObjectName("kernal_size_label")
         self.verticalLayout.addWidget(self.kernal_size_label)
         self.filter_kernel_size_button = QtWidgets.QPushButton(self.page_filter_layout)
@@ -1022,14 +1050,14 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.filter_kernel_size_button.setFont(font)
         self.filter_kernel_size_button.setStyleSheet("QPushButton {\n"
-                                                     "                                            color: rgb(255, 255, 255);\n"
-                                                     "\n"
-                                                     "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                                     "                                            }\n"
-                                                     "                                            QPushButton:hover {\n"
-                                                     "                                            border-color:rgb(5, 255, 142);\n"
-                                                     "                                          color: rgb(5, 255, 142);\n"
-                                                     "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.filter_kernel_size_button.setObjectName("filter_kernel_size_button")
         self.verticalLayout.addWidget(self.filter_kernel_size_button)
         self.gradient_method_label = QtWidgets.QLabel(self.page_filter_layout)
@@ -1040,8 +1068,8 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.gradient_method_label.setFont(font)
         self.gradient_method_label.setStyleSheet("QLabel{\n"
-                                                 "    color: rgb(255, 255, 255);\n"
-                                                 "}")
+"    color: rgb(255, 255, 255);\n"
+"}")
         self.gradient_method_label.setObjectName("gradient_method_label")
         self.verticalLayout.addWidget(self.gradient_method_label)
         self.comboBox = QtWidgets.QComboBox(self.page_filter_layout)
@@ -1052,14 +1080,14 @@ class Ui_MainWindow(object):
         self.comboBox.setFont(font)
         self.comboBox.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.comboBox.setStyleSheet("QComboBox {\n"
-                                    "                                            color: rgb(255, 255, 255);\n"
-                                    "\n"
-                                    "                                            border: 2px solid rgb(255, 255, 255);\n"
-                                    "                                            }\n"
-                                    "                                            QComboBox:hover {\n"
-                                    "                                            border-color:rgb(5, 255, 142);\n"
-                                    "                                          color: rgb(5, 255, 142);\n"
-                                    "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"\n"
+"                                            border: 2px solid rgb(255, 255, 255);\n"
+"                                            }\n"
+"                                            QComboBox:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.comboBox.setObjectName("comboBox")
         self.verticalLayout.addWidget(self.comboBox)
         self.apply_button_4 = QtWidgets.QPushButton(self.page_filter_layout)
@@ -1072,14 +1100,14 @@ class Ui_MainWindow(object):
         self.apply_button_4.setFont(font)
         self.apply_button_4.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.apply_button_4.setStyleSheet("QPushButton {\n"
-                                          "                                            color: rgb(255, 255, 255);\n"
-                                          "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                          "                            margin-top :10px;\n"
-                                          "                                            }\n"
-                                          "                                            QPushButton:hover {\n"
-                                          "                                            border-color:rgb(5, 255, 142);\n"
-                                          "                                          color: rgb(5, 255, 142);\n"
-                                          "                                            }")
+"                                            color: rgb(255, 255, 255);\n"
+"                                            border: 3px solid rgb(255, 255, 255);\n"
+"                            margin-top :10px;\n"
+"                                            }\n"
+"                                            QPushButton:hover {\n"
+"                                            border-color:rgb(5, 255, 142);\n"
+"                                          color: rgb(5, 255, 142);\n"
+"                                            }")
         self.apply_button_4.setObjectName("apply_button_4")
         self.verticalLayout.addWidget(self.apply_button_4)
         self.layoutWidget.raise_()
@@ -1090,24 +1118,9 @@ class Ui_MainWindow(object):
         self.quit_app_button.raise_()
         self.sidebar_1_layout.raise_()
         self.sidebar_2_layout.raise_()
-        self.gaussian_filter_sigma_horizontalSlider.raise_()
-        self.gaussian_filter_sigma_label_2.raise_()
-        self.shapes_sidebar_layout.raise_()
-        self.line_threshold_slider.raise_()
-        self.line_threshold_value.raise_()
-        self.min_radius_slider.raise_()
-        self.min_radius_value.raise_()
-        self.min_radius_slider_2.raise_()
-        self.min_radius_value_2.raise_()
-        self.max_radius_slider.raise_()
-        self.max_radius_value.raise_()
-        self.circle_threshold_slider.raise_()
-        self.circle_threshold_value.raise_()
-        self.max_radius_slider_2.raise_()
-        self.max_radius_value_2.raise_()
-        self.ellipse_threshold_value.raise_()
-        self.sidebar_3_layout.raise_()
         self.page_filter_layout.raise_()
+        self.shapes_sidebar_layout.raise_()
+        self.sidebar_3_layout.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 25))
@@ -1137,15 +1150,16 @@ class Ui_MainWindow(object):
         self.area_label.setText(_translate("MainWindow", "Area"))
         self.perimeter_label.setText(_translate("MainWindow", "Perimeter"))
         self.active_contour_groupbox.setTitle(_translate("MainWindow", "Active Contour "))
-        self.circle_radius_label.setText(_translate("MainWindow", "Circle Radius"))
+        self.num_of_points_label.setText(_translate("MainWindow", "Num of Points"))
         self.w_line_label.setText(_translate("MainWindow", "W_Line"))
         self.alpha_label.setText(_translate("MainWindow", "Alpha"))
         self.beta_label.setText(_translate("MainWindow", "Beta"))
         self.w_edge_label.setText(_translate("MainWindow", "W_Edge"))
-        self.num_of_points_label.setText(_translate("MainWindow", "Num of Points"))
         self.type_label.setText(_translate("MainWindow", "Type"))
-        self.num_of_itr_label.setText(_translate("MainWindow", "Num of Itr"))
         self.gamma_label.setText(_translate("MainWindow", "Gamma"))
+        self.num_of_itr_label.setText(_translate("MainWindow", "Num of Itr"))
+        self.circle_radius_label.setText(_translate("MainWindow", "Circle Radius"))
+        self.chain_code_button.setText(_translate("MainWindow", "Chain Code"))
         self.apply_contour_button.setText(_translate("MainWindow", "Apply Contour"))
         self.parametric_shape_label.setText(_translate("MainWindow", "Parametric Shape"))
         self.line_detection_button.setText(_translate("MainWindow", "Line Detection"))
@@ -1162,8 +1176,10 @@ class Ui_MainWindow(object):
         self.min_radius_value.setText(_translate("MainWindow", " Value"))
         self.max_radius_label.setText(_translate("MainWindow", "Maximum Radius"))
         self.max_radius_value.setText(_translate("MainWindow", " Value"))
-        self.circle_threshold_label.setText(_translate("MainWindow", "Circle Threshold"))
-        self.circle_threshold_value.setText(_translate("MainWindow", " Value"))
+        self.canny_threshold_label.setText(_translate("MainWindow", "Canny Threshold"))
+        self.canny_threshold_value.setText(_translate("MainWindow", " Value"))
+        self.accumulator_threshold_label.setText(_translate("MainWindow", "Accumulator Threshold"))
+        self.accumulator_threshold_value.setText(_translate("MainWindow", " Value"))
         self.apply_button_2.setText(_translate("MainWindow", "Apply"))
         self.ellipse_groupBox.setTitle(_translate("MainWindow", "Ellipse"))
         self.ellipse_label.setText(_translate("MainWindow", "Ellipse"))
@@ -1177,7 +1193,6 @@ class Ui_MainWindow(object):
         self.gaussian_kernal_size_label.setText(_translate("MainWindow", "Gaussian Kernel Size"))
         self.gaussian_filter_kernel_size_button.setText(_translate("MainWindow", "size"))
         self.gaussian_filter_sigma_label.setText(_translate("MainWindow", "Sigma - σ"))
-        self.gaussian_filter_sigma_label_2.setText(_translate("MainWindow", "value"))
         self.high_threshold_label.setText(_translate("MainWindow", "High Threshold"))
         self.low_threshold_label.setText(_translate("MainWindow", "Low Threshold"))
         self.kernal_size_label.setText(_translate("MainWindow", "Sobel Kernel Size"))
