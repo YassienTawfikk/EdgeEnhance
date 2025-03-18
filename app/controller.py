@@ -81,6 +81,8 @@ class MainWindowController:
         # Processing buttons
         self.ui.apply_button.clicked.connect(self.apply_line_detection)
         self.ui.apply_button_2.clicked.connect(self.apply_circle_detection)
+        self.ui.ellipse_detection_apply_button.clicked.connect(self.apply_ellipse_detection)
+
         self.ui.apply_button_4.clicked.connect(self.apply_canny)
         self.ui.apply_contour_button.clicked.connect(self.apply_contour)
 
@@ -346,6 +348,12 @@ class MainWindowController:
         processed_image = CannyEdge.apply_canny(self.original_image, gaussian_kernel_size, 0.8, low_threshold, high_threshold, sobel_kernel_size, L2gradient)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
+    def apply_line_detection(self):
+        """Apply circle detection to the image."""
+        threshold_factor = self.ui.line_threshold_slider.value()
+        processed_image = ShapeDetection.superimpose_line(self.original_image, threshold_factor)
+        self.showImage(processed_image, self.ui.processed_image_groupbox)
+
     def apply_circle_detection(self):
         """Apply circle detection to the image."""
         max_radius = self.ui.max_radius_slider.value()
@@ -357,10 +365,14 @@ class MainWindowController:
         processed_image = ShapeDetection.superimpose_circle(self.original_image)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
-    def apply_line_detection(self):
+    def apply_ellipse_detection(self):
         """Apply circle detection to the image."""
-        threshold_factor = self.ui.line_threshold_slider.value()
-        processed_image = ShapeDetection.superimpose_line(self.original_image, threshold_factor)
+        min_axis_len = self.ui.min_axis_len_slider.value()
+        max_axis_len = self.ui.max_axis_len_slider.value()
+        orientation = self.ui.ellipse_orientation_slider.value()
+        threshold_factor = self.ui.ellipse_threshold_slider.value()
+
+        processed_image = ShapeDetection.superimpose_ellipse(self.original_image)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def showImage(self, image, groupbox):
