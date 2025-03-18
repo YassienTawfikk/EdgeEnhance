@@ -2123,9 +2123,9 @@
    <zorder>quit_app_button</zorder>
    <zorder>sidebar_1_layout</zorder>
    <zorder>sidebar_2_layout</zorder>
-   <zorder>page_filter_layout</zorder>
    <zorder>shapes_sidebar_layout</zorder>
    <zorder>sidebar_3_layout</zorder>
+   <zorder>page_filter_layout</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

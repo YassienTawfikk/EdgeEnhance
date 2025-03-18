@@ -124,9 +124,6 @@ class MainWindowController:
         self.ui.ellipse_threshold_slider.valueChanged.connect(
             lambda: self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
         )
-        self.ui.gaussian_filter_sigma_comboBox.valueChanged.connect(
-            lambda: self.update_label_from_slider(self.ui.gaussian_filter_sigma_comboBox, self.ui.gaussian_filter_sigma_label_2)
-        )
 
         # Initialize labels with default slider values
         self.update_label_from_slider(self.ui.line_threshold_slider, self.ui.line_threshold_value)
@@ -143,7 +140,11 @@ class MainWindowController:
         self.ui.alpha_spinBox.setRange(0.0, 100.0)
         self.ui.beta_spinBox.setRange(0.0, 100.0)
         self.ui.gamma_spinBox.setRange(0.0, 100.0)
-        self.ui.gaussian_filter_sigma_comboBox.setRange(0, 5)
+        self.ui.sigma_spinBox.setRange(0, 1)
+        self.ui.alpha_spinBox.setSingleStep(0.1)
+        self.ui.beta_spinBox.setSingleStep(0.1)
+        self.ui.gamma_spinBox.setSingleStep(0.1)
+        self.ui.sigma_spinBox.setSingleStep(0.01)
 
     def update_label_from_slider(self, slider, label):
         value = slider.value()
@@ -324,10 +325,10 @@ class MainWindowController:
 
     def apply_canny(self):
         """Apply Canny edge detection to the image."""
-        sigma = self.ui.gaussian_filter_sigma_comboBox.value()
+        sigma = self.ui.sigma_spinBox.value()
         gaussian_kernel_size = self.current_gaussian_kernel_size
         print(f"gaussian:{gaussian_kernel_size}")
-        sigma = self.ui.gaussian_filter_sigma_horizontalSlider.value()
+        sigma = self.ui.sigma_spinBox.value()
         low_threshold = self.ui.edge_detection_low_threshold_spinbox.value()
         high_threshold = self.ui.edge_detection_high_threshold_spinbox.value()
         sobel_kernel_size = self.current_filter_kernel_size
