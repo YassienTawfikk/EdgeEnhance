@@ -64,13 +64,13 @@ class ShapeDetection:
     def superimpose_circle(original_image, canny_high_threshold=200, max_radius=190, min_radius=0, threshold_factor=0.8):
 
         canny_low_threshold = canny_high_threshold / 2
-        # HANTALA3 DA FEL CONTROLLER TO AVOID COMPUTING EVERY TIME
+        
         image_edges = CannyEdge.apply_canny(original_image, 3, 0.1, canny_low_threshold, canny_high_threshold, 3, True)
 
         height, width = image_edges.shape
-        max_radius = min(height, width) // 2
-        print(max_radius)
-        min_radius = 15
+        # max_radius = min(height, width) // 2
+        # print(max_radius)
+        # min_radius = 15
 
         accumulator = np.zeros((max_radius, width, height), dtype=np.uint8)
 
