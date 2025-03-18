@@ -319,17 +319,19 @@ class MainWindowController:
 
     def apply_canny(self):
         """Apply Canny edge detection to the image."""
-        # gaussian kernel size
+        gaussian_kernel_size=self.current_gaussian_kernel_size
+        print(f"gaussian:{gaussian_kernel_size}")
         sigma = self.ui.gaussian_filter_sigma_horizontalSlider.value()
         low_threshold = self.ui.edge_detection_low_threshold_spinbox.value()
         high_threshold = self.ui.edge_detection_high_threshold_spinbox.value()
-        # sobel kernel size
-        gradient_method = self.ui.comboBox.text()
+        sobel_kernel_size=self.current_filter_kernel_size
+        print(f"sobel:{sobel_kernel_size}")
+        gradient_method = self.ui.comboBox.currentText()
         print(f"gradient method:{gradient_method}")
 
         L2gradient = False if gradient_method == "Manhattan Distance" else True
         print(f"l2grad:{L2gradient}")
-        processed_image = CannyEdge.apply_canny(self.original_image, 3, sigma, low_threshold, high_threshold, 3, L2gradient)
+        processed_image = CannyEdge.apply_canny(self.original_image, gaussian_kernel_size, 0.8, low_threshold, high_threshold, sobel_kernel_size, L2gradient)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def apply_circle_detection(self):
