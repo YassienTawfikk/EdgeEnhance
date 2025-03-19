@@ -28,7 +28,7 @@ class MainWindowController:
         self.gaussian_kernel_sizes_array = [3, 5, 7, 9]
         self.current_filter_kernel_size = self.kernel_sizes_array[0]  # Default 3
         self.current_gaussian_kernel_size = self.gaussian_kernel_sizes_array[0]  # Default 3
-
+        self.chain_code = []
         # Setup UI
         self.setup_ui()
 
@@ -318,7 +318,7 @@ class MainWindowController:
         # Calculate and display area, perimeter, and chain code
         area = self.activeContour.calculate_area(cont_x, cont_y)
         perimeter = self.activeContour.calculate_perimeter(cont_x, cont_y)
-        chain_code = self.activeContour.calculate_chain_code(cont_x, cont_y)
+        self.chain_code = self.activeContour.calculate_chain_code(cont_x, cont_y)
 
         self.ui.area_spinBox.clear()
         self.ui.perimeter_spinBox.clear()
@@ -327,7 +327,16 @@ class MainWindowController:
 
         print(f"Area: {area}")
         print(f"Perimeter: {perimeter}")
-        print(f"Chain Code: {chain_code}")
+        print(f"Chain Code: {self.chain_code}")
+
+        self.save_to_file()
+
+    def save_to_file(self):
+        # Create a text file and write the contents of chain_code
+        with open("chain_code.txt", "w") as file:
+            for item in self.chain_code:
+                file.write(f"{item}\n")
+        print("Data saved to chain_code.txt")
 
     def apply_canny(self):
         """Apply Canny edge detection to the image."""
