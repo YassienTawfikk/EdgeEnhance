@@ -8,6 +8,7 @@ from app.processing.shape_detection import ShapeDetection
 import cv2
 import numpy as np
 from app.processing.activeContour import ActiveContour
+import os
 
 
 class MainWindowController:
@@ -333,10 +334,12 @@ class MainWindowController:
 
     def save_to_file(self):
         # Create a text file and write the contents of chain_code
-        with open("chain_code.txt", "w") as file:
-            for item in self.chain_code:
-                file.write(f"{item}\n")
-        print("Data saved to chain_code.txt")
+        if self.path == None:
+            return
+        image_name = os.path.basename(self.path)
+        filename = os.path.join("static/chain_code", f"{image_name}_chain_code.txt")
+        with open(filename, "a") as file:
+            file.write(", ".join(map(str, self.chain_code)) + "\n")
 
     def apply_canny(self):
         """Apply Canny edge detection to the image."""
