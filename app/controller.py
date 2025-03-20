@@ -8,6 +8,7 @@ from app.processing.shape_detection import ShapeDetection
 import cv2
 import numpy as np
 from app.processing.activeContour import ActiveContour
+import os
 
 
 class MainWindowController:
@@ -28,7 +29,7 @@ class MainWindowController:
         self.gaussian_kernel_sizes_array = [3, 5, 7, 9]
         self.current_filter_kernel_size = self.kernel_sizes_array[0]  # Default 3
         self.current_gaussian_kernel_size = self.gaussian_kernel_sizes_array[0]  # Default 3
-
+        self.chain_code = []
         # Setup UI
         self.setup_ui()
 
@@ -318,7 +319,7 @@ class MainWindowController:
         # Calculate and display area, perimeter, and chain code
         area = self.activeContour.calculate_area(cont_x, cont_y)
         perimeter = self.activeContour.calculate_perimeter(cont_x, cont_y)
-        chain_code = self.activeContour.calculate_chain_code(cont_x, cont_y)
+        self.chain_code = self.activeContour.calculate_chain_code(cont_x, cont_y)
 
         self.ui.area_spinBox.clear()
         self.ui.perimeter_spinBox.clear()
@@ -327,7 +328,18 @@ class MainWindowController:
 
         print(f"Area: {area}")
         print(f"Perimeter: {perimeter}")
-        print(f"Chain Code: {chain_code}")
+        print(f"Chain Code: {self.chain_code}")
+
+        self.save_to_file()
+
+    def save_to_file(self):
+        # Create a text file and write the contents of chain_code
+        if self.path == None:
+            return
+        image_name = os.path.basename(self.path)
+        filename = os.path.join("static/chain_code", f"{image_name}_chain_code.txt")
+        with open(filename, "a") as file:
+            file.write(", ".join(map(str, self.chain_code)) + "\n")
 
     def apply_canny(self):
         """Apply Canny edge detection to the image."""
