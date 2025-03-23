@@ -442,25 +442,25 @@ class Ui_MainWindow(object):
         self.num_of_itr_spinBox.setObjectName("num_of_itr_spinBox")
         self.gridLayout.addWidget(self.num_of_itr_spinBox, 3, 1, 1, 1)
         self.sidebar_3.addWidget(self.active_contour_groupbox)
-        self.chain_code_button = QtWidgets.QPushButton(self.sidebar_3_layout)
-        self.chain_code_button.setMinimumSize(QtCore.QSize(0, 50))
-        self.chain_code_button.setMaximumSize(QtCore.QSize(16777215, 55))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setWeight(50)
-        self.chain_code_button.setFont(font)
-        self.chain_code_button.setStyleSheet("QPushButton {\n"
-                                             "                                            color: rgb(255, 255, 255);\n"
-                                             "                                            border: 3px solid rgb(255, 255, 255);\n"
-                                             "                                        margin :5px 0px;\n"
-                                             "                                            }\n"
-                                             "                                            QPushButton:hover {\n"
-                                             "                                            border-color:rgb(5, 255, 142);\n"
-                                             "                                          color: rgb(5, 255, 142);\n"
-                                             "                                            }")
-        self.chain_code_button.setObjectName("chain_code_button")
-        self.sidebar_3.addWidget(self.chain_code_button)
+        # self.chain_code_button = QtWidgets.QPushButton(self.sidebar_3_layout)
+        # self.chain_code_button.setMinimumSize(QtCore.QSize(0, 50))
+        # self.chain_code_button.setMaximumSize(QtCore.QSize(16777215, 55))
+        # font = QtGui.QFont()
+        # font.setPointSize(12)
+        # font.setBold(False)
+        # font.setWeight(50)
+        # self.chain_code_button.setFont(font)
+        # self.chain_code_button.setStyleSheet("QPushButton {\n"
+        #                                      "                                            color: rgb(255, 255, 255);\n"
+        #                                      "                                            border: 3px solid rgb(255, 255, 255);\n"
+        #                                      "                                        margin :5px 0px;\n"
+        #                                      "                                            }\n"
+        #                                      "                                            QPushButton:hover {\n"
+        #                                      "                                            border-color:rgb(5, 255, 142);\n"
+        #                                      "                                          color: rgb(5, 255, 142);\n"
+        #                                      "                                            }")
+        # self.chain_code_button.setObjectName("chain_code_button")
+        # self.sidebar_3.addWidget(self.chain_code_button)
         self.apply_contour_button = QtWidgets.QPushButton(self.sidebar_3_layout)
         self.apply_contour_button.setMinimumSize(QtCore.QSize(0, 50))
         self.apply_contour_button.setMaximumSize(QtCore.QSize(16777215, 55))
@@ -1190,7 +1190,7 @@ class Ui_MainWindow(object):
         self.gamma_label.setText(_translate("MainWindow", "Gamma"))
         self.num_of_itr_label.setText(_translate("MainWindow", "Num of Itr"))
         self.circle_radius_label.setText(_translate("MainWindow", "Circle Radius"))
-        self.chain_code_button.setText(_translate("MainWindow", "Chain Code"))
+        # self.chain_code_button.setText(_translate("MainWindow", "Chain Code"))
         self.apply_contour_button.setText(_translate("MainWindow", "Apply Contour"))
         self.parametric_shape_label.setText(_translate("MainWindow", "Parametric Shape"))
         self.line_detection_button.setText(_translate("MainWindow", "Line Detection"))
