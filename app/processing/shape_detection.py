@@ -66,7 +66,7 @@ class ShapeDetection:
 
         canny_low_threshold = canny_high_threshold / 2
         
-        image_edges = CannyEdge.apply_canny(original_image, 3, 0.1, canny_low_threshold, canny_high_threshold, 3, True)
+        image_edges = CannyEdge.apply_canny(original_image, 3, 0.1, canny_low_threshold, canny_high_threshold, 3, False)
 
         height, width = image_edges.shape
         # max_radius = min(height, width) // 2
