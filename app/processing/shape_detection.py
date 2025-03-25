@@ -42,7 +42,7 @@ class ShapeDetection:
         detected_lines = np.argwhere(accumulator > threshold)
 
         # Convert the grayscale image to BGR for visualization
-        processed_image = original_image
+        processed_image = original_image.copy()
 
         # Draw the detected lines
         for rho_idx, theta_idx in detected_lines:
