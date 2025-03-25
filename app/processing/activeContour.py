@@ -112,7 +112,7 @@ class ActiveContour:
         """
 
         # Create x and y lists coordinates to initialize the contour
-        t = np.arange(0, num_points , 1)
+        t = np.arange(0, num_points/10 , 0.1)
 
 
         if type == "ellipse":
