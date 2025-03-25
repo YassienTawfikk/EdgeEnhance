@@ -127,9 +127,9 @@ class MainWindowController:
         self.ui.ellipse_threshold_slider.valueChanged.connect(
             lambda: self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
         )
-        self.ui.ellipse_orientation_slider.valueChanged.connect(
-            lambda: self.update_label_from_slider(self.ui.ellipse_orientation_slider, self.ui.ellipse_orientation_value)
-        )
+        # self.ui.ellipse_orientation_slider.valueChanged.connect(
+        #     lambda: self.update_label_from_slider(self.ui.ellipse_orientation_slider, self.ui.ellipse_orientation_value)
+        # )
 
         # Initialize labels with default slider values
         self.update_label_from_slider(self.ui.line_threshold_slider, self.ui.line_threshold_value)
@@ -139,7 +139,7 @@ class MainWindowController:
         self.update_label_from_slider(self.ui.canny_threshold_slider, self.ui.canny_threshold_value)
         self.update_label_from_slider(self.ui.min_axis_len_slider, self.ui.min_axis_len_value)
         self.update_label_from_slider(self.ui.max_axis_len_slider, self.ui.max_axis_len_value)
-        self.update_label_from_slider(self.ui.ellipse_orientation_slider, self.ui.ellipse_orientation_value)
+        # self.update_label_from_slider(self.ui.ellipse_orientation_slider, self.ui.ellipse_orientation_value)
         self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
 
     def set_ranges(self):
@@ -351,7 +351,7 @@ class MainWindowController:
         sobel_kernel_size = self.current_filter_kernel_size
         gradient_method = self.ui.comboBox.currentText()
         L2gradient = False if gradient_method == "Manhattan Distance" else True
-     
+
         processed_image = CannyEdge.apply_canny(self.original_image, gaussian_kernel_size, sigma, low_threshold, high_threshold, sobel_kernel_size, L2gradient)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
@@ -365,22 +365,19 @@ class MainWindowController:
         """Apply circle detection to the image."""
         max_radius = self.ui.max_radius_slider.value()
         min_radius = self.ui.min_radius_slider.value()
-        canny_high_threshold= self.ui.canny_threshold_slider.value()
+        canny_high_threshold = self.ui.canny_threshold_slider.value()
         accumulator_threshold = self.ui.accumulator_threshold_slider.value() / 100
 
-        processed_image = ShapeDetection.superimpose_circle(self.original_image,canny_high_threshold,max_radius,min_radius,accumulator_threshold)
+        processed_image = ShapeDetection.superimpose_circle(self.original_image, canny_high_threshold, max_radius, min_radius, accumulator_threshold)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def apply_ellipse_detection(self):
         """Apply circle detection to the image."""
         min_axis_len = self.ui.min_axis_len_slider.value()
         max_axis_len = self.ui.max_axis_len_slider.value()
-        orientation = self.ui.ellipse_orientation_slider.value()
-        threshold_factor = self.ui.ellipse_threshold_slider.value()
+        threshold_factor = self.ui.ellipse_threshold_slider.value() / 100
 
-        # processed_image = ShapeDetection.superimpose_ellipse(self.original_image)
-        # processed_image = ShapeDetection.detect_ellipses(self.original_image)
-        processed_image = ShapeDetection.detect_ellipses_manually(self.original_image)
+        processed_image = ShapeDetection.superimpose_ellipse(self.original_image, 0, 0, 0)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def showImage(self, image, groupbox):
