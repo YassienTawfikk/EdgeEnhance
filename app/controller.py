@@ -209,6 +209,9 @@ class MainWindowController:
         self.srv.clear_image(self.ui.processed_image_groupbox)
         self.srv.set_image_in_groupbox(self.ui.processed_image_groupbox, self.original_image)
 
+        self.srv.clear_image(self.ui.original_image_groupbox)
+        self.srv.set_image_in_groupbox(self.ui.original_image_groupbox, self.original_image)
+
     def show_sidebar(self, sidebar_name):
         """Show the specified sidebar and hide others."""
         # Hide all sidebars
