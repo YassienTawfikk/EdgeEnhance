@@ -118,11 +118,11 @@ class MainWindowController:
             lambda: self.update_label_from_slider(self.ui.canny_threshold_slider,
                                                   self.ui.canny_threshold_value)
         )
-        self.ui.min_axis_len_slider.valueChanged.connect(
-            lambda: self.update_label_from_slider(self.ui.min_axis_len_slider, self.ui.min_axis_len_value)
+        self.ui.min_major_axis_len_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.min_major_axis_len_slider, self.ui.min_axis_len_value)
         )
-        self.ui.max_axis_len_slider.valueChanged.connect(
-            lambda: self.update_label_from_slider(self.ui.max_axis_len_slider, self.ui.max_axis_len_value)
+        self.ui.max_major_axis_len_slider.valueChanged.connect(
+            lambda: self.update_label_from_slider(self.ui.max_major_axis_len_slider, self.ui.max_axis_len_value)
         )
         self.ui.ellipse_threshold_slider.valueChanged.connect(
             lambda: self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
@@ -137,8 +137,8 @@ class MainWindowController:
         self.update_label_from_slider(self.ui.max_radius_slider, self.ui.max_radius_value)
         self.update_label_from_slider(self.ui.accumulator_threshold_slider, self.ui.accumulator_threshold_value)
         self.update_label_from_slider(self.ui.canny_threshold_slider, self.ui.canny_threshold_value)
-        self.update_label_from_slider(self.ui.min_axis_len_slider, self.ui.min_axis_len_value)
-        self.update_label_from_slider(self.ui.max_axis_len_slider, self.ui.max_axis_len_value)
+        self.update_label_from_slider(self.ui.min_major_axis_len_slider, self.ui.min_axis_len_value)
+        self.update_label_from_slider(self.ui.max_major_axis_len_slider, self.ui.max_axis_len_value)
         # self.update_label_from_slider(self.ui.ellipse_orientation_slider, self.ui.ellipse_orientation_value)
         self.update_label_from_slider(self.ui.ellipse_threshold_slider, self.ui.ellipse_threshold_value)
 
@@ -373,11 +373,13 @@ class MainWindowController:
 
     def apply_ellipse_detection(self):
         """Apply circle detection to the image."""
-        min_axis_len = self.ui.min_axis_len_slider.value()
-        max_axis_len = self.ui.max_axis_len_slider.value()
+        min_major_axis = self.ui.min_major_axis_len_slider.value()
+        max_major_axis = self.ui.max_major_axis_len_slider.value()
         threshold_factor = self.ui.ellipse_threshold_slider.value() / 100
 
-        processed_image = ShapeDetection.superimpose_ellipse(self.original_image, 0, 0, 0)
+        # processed_image = ShapeDetection.superimpose_ellipse(self.original_image)
+        processed_image = ShapeDetection.detect_and_draw_hough_ellipses(self.original_image)
+        # processed_image = ShapeDetection.detect_ellipses(self.original_image)
         self.showImage(processed_image, self.ui.processed_image_groupbox)
 
     def showImage(self, image, groupbox):
