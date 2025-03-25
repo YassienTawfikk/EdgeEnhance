@@ -66,37 +66,45 @@ class ShapeDetection:
     @staticmethod
     def superimpose_circle(original_image, canny_high_threshold=200, max_radius=190, min_radius=0, threshold_factor=0.8):
 
+        # set low threshold to be half the high
         canny_low_threshold = canny_high_threshold / 2
 
+        # apply canny to extract edges
         image_edges = CannyEdge.apply_canny(original_image, 3, 0.1, canny_low_threshold, canny_high_threshold, 3, False)
 
         height, width = image_edges.shape
-        # max_radius = min(height, width) // 2
-        # print(max_radius)
-        # min_radius = 15
-
+   
+        # initialize the accumulator array to hold the votes
         accumulator = np.zeros((max_radius, width, height), dtype=np.uint8)
 
+        # extract the coordinates where there are edges 
         edge_points = np.argwhere(image_edges > 0)
-        angle_step = 5
 
+        # set an angle step size and convert to radiends to avoid extra computation in the loop
+        angle_step = 5
         angles = np.deg2rad(np.arange(0, 360, angle_step))
+
         # having x,y coords, and looping through r, and through angle, we want to find a,b
         for y, x in edge_points:
             for r in range(min_radius, max_radius):
                 a_vals = (x - r * np.cos(angles)).astype(int)
                 b_vals = (y - r * np.sin(angles)).astype(int)
                 for a, b in zip(a_vals, b_vals):
+                    # ensure a and b are withing image coordinates
                     if 0 <= a < width and 0 <= b < height:
+                        # increment the votes for those values of a, b and r
                         accumulator[r, a, b] += 1
 
-        threshold = np.max(accumulator) * threshold_factor  # dynamic threshold
+        # have a dynamic threshold to only include circles above a certain percentage of max votes
+        threshold = np.max(accumulator) * threshold_factor  
         print(threshold)
 
-        circles = np.argwhere(accumulator > threshold)  # Get (r, a, b) where votes are high
+        # Get (r, a, b) where votes are high
+        circles = np.argwhere(accumulator > threshold)  
         print(accumulator)
         print(circles)
 
+        # draw the circles
         for r, a, b in circles:
             print(f"Detected circle at ({a}, {b}) with radius {r}")
             cv2.circle(original_image, (a, b), r, (0, 0, 255), 1)

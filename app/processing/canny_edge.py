@@ -7,6 +7,8 @@ class CannyEdge:
     @staticmethod
     def apply_canny(image, gaussianSize=3, sigma=0.1, low_threshold=100, high_threshold=200, apertureSize=3, L2gradient=False):
         """Full Canny Edge Detector pipeline."""
+
+        # grayscaling the image
         if len(image.shape) == 3:
             image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
@@ -32,15 +34,18 @@ class CannyEdge:
 
     def __non_maximum_suppression(gradient_magnitude, gradient_direction):
         """Thin edges by suppressing non-maximum pixels."""
+
+        # define height and width dimensions and initialize output image array with zeros
         h, w = gradient_magnitude.shape
         output = np.zeros((h, w), dtype=np.uint8)
 
-        # Convert gradient direction to 4 possible angles (0, 45, 90, 135)
+        # approximate gradient direction to 4 possible angles (0, 45, 90, 135)
         angle = np.round(gradient_direction / 45) * 45 % 180
 
+        # loop over the image 
         for i in range(1, h - 1):
             for j in range(1, w - 1):
-                q, r = 255, 255  # Default values
+                q, r = 255, 255  # Default values to store neighboring pixels
 
                 # Determine neighboring pixels based on gradient direction
                 if angle[i, j] == 0:
@@ -60,13 +65,18 @@ class CannyEdge:
 
     def __double_threshold(image, low_threshold, high_threshold):
         """Classifies edges into strong, weak, and non-edges."""
+        # define the values for the high and low thresholds 
         strong_edges = 255
         weak_edges = 75
 
+        # create arrays of booleans for the strong and weak edges that will act as a mask
         strong = image >= high_threshold
         weak = (image >= low_threshold) & (image < high_threshold)
 
+        # initialize a zero array for the output 
         output = np.zeros_like(image, dtype=np.uint8)
+
+        # set the strong and weak edges based on the mask
         output[strong] = strong_edges
         output[weak] = weak_edges
 
@@ -78,10 +88,11 @@ class CannyEdge:
         strong_edges = 255
         weak_edges = 75
 
+        # loop over the rows and cols
         for i in range(1, h - 1):
             for j in range(1, w - 1):
                 if image[i, j] == weak_edges:
-                    # If weak edge has a strong edge neighbor, keep it
+                    # If weak edge has a strong edge neighbor, keep it and raise to 255
                     if (strong_edges in image[i - 1:i + 2, j - 1:j + 2]):
                         image[i, j] = strong_edges
                     else:
@@ -135,7 +146,6 @@ class CannyEdge:
         return output
 
     def __convolve_sobel(image, kernel):
-
         flipped_kernel = np.flipud(np.fliplr(kernel))  # Flip both vertically and horizontally
         # determine kernel height and width based on the kernel passed to the function
         kernel_height, kernel_width = flipped_kernel.shape
@@ -186,13 +196,18 @@ class CannyEdge:
         return magnitude, direction
 
     def __generate_sobel_kernel(size, axis):
-        k = size // 2  # Half-size of the kernel
+        # Define the center coordinates and initialize the kernel
+        k = size // 2  
         kernel = np.zeros((size, size), dtype=np.int32)
 
+        # loop over the rows and cols
         for i in range(size):
             for j in range(size):
+                # this equation makes sure that as i get farther in columns the value decreases, and 
+                # as i get farther in colums my value decreases, and (j-k) ensures my center column is zeroed
                 kernel[i, j] = (j - k) * (k + 1 - abs(i - k))
 
+        # transpose the kernel for vertical edge detection
         if axis == 'y':
-            return kernel.T  # Transpose for vertical Sobel
+            return kernel.T  
         return kernel
