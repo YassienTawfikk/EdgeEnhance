@@ -77,20 +77,20 @@ class ActiveContour:
         step = 5
 
         # Create x points lists
-        t1_x = np.arange(0, num_xpoints, step)
-        t2_x = np.repeat((num_xpoints) - step, num_xpoints // step)
-        t3_x = np.flip(t1_x)
-        t4_x = np.repeat(0, num_xpoints // step)
+        top_edge_x = np.arange(0, num_xpoints, step)
+        right_edge_x = np.repeat((num_xpoints) - step, num_xpoints // step)
+        bottom_edge_x = np.flip(top_edge_x)
+        left_edge_x = np.repeat(0, num_xpoints // step)
 
         # Create y points list
-        t1_y = np.repeat(0, num_ypoints // step)
-        t2_y = np.arange(0, num_ypoints, step)
-        t3_y = np.repeat(num_ypoints - step, num_ypoints // step)
-        t4_y = np.flip(t2_y)
+        top_edge_y = np.repeat(0, num_ypoints // step)
+        right_edge_y = np.arange(0, num_ypoints, step)
+        bottom_edge_y = np.repeat(num_ypoints - step, num_ypoints // step)
+        left_edge_y = np.flip(right_edge_y)
 
         # Concatenate all the lists in one array
-        contour_x = np.array([t1_x, t2_x, t3_x, t4_x]).ravel()
-        contour_y = np.array([t1_y, t2_y, t3_y, t4_y]).ravel()
+        contour_x = np.array([top_edge_x, right_edge_x, bottom_edge_x, left_edge_x]).ravel()
+        contour_y = np.array([top_edge_y, right_edge_y, bottom_edge_y, left_edge_y]).ravel()
 
         # Shift the shape to a specific location in the image
         # contour_x = contour_x + (source.shape[1] // 2) - 85
@@ -112,7 +112,7 @@ class ActiveContour:
         """
 
         # Create x and y lists coordinates to initialize the contour
-        t = np.arange(0, num_points / 10, 0.1)
+        t = np.arange(0, num_points , 1)
 
 
         if type == "ellipse":
@@ -256,6 +256,7 @@ class ActiveContour:
         # EEdge *= 255 / EEdge.max()
         # EEdge = EEdge.astype("int16")
 
+        #Depending on the sign of WLine, the contour may be attracted to bright or dark lines.
         return WLine * ELine + WEdge * EEdge[1:-1, 1:-1]
 
     def sobel_edge(self,source: np.ndarray, GetDirection: bool = False):
