@@ -326,8 +326,8 @@ class MainWindowController:
 
         self.ui.area_spinBox.clear()
         self.ui.perimeter_spinBox.clear()
-        self.ui.perimeter_spinBox.setValue(perimeter)
-        self.ui.area_spinBox.setValue(area)
+        self.ui.perimeter_spinBox.setValue(int(round(perimeter)))
+        self.ui.area_spinBox.setValue(int(round(area)))
 
         print(f"Area: {area}")
         print(f"Perimeter: {perimeter}")
@@ -336,11 +336,14 @@ class MainWindowController:
         self.save_to_file()
 
     def save_to_file(self):
-        # Create a text file and write the contents of chain_code
-        if self.path == None:
+        if self.path is None:
             return
+
         image_name = os.path.basename(self.path)
-        filename = os.path.join("static/chain_code", f"{image_name}_chain_code.txt")
+        folder = os.path.join("static", "chain_code")
+        os.makedirs(folder, exist_ok=True)  # ✅ create the folder if it doesn't exist
+
+        filename = os.path.join(folder, f"{image_name}_chain_code.txt")
         with open(filename, "a") as file:
             file.write(", ".join(map(str, self.chain_code)) + "\n")
 
