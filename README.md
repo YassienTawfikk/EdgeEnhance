@@ -1,6 +1,6 @@
 ## EdgeEnhance
 
-### 🚀 Overview
+### Overview
 
 **EdgeEnhance** is an edge and boundary detection toolkit that integrates **Canny edge detection**, **Hough Transform**, and **Active Contour Models (Snakes)** to extract and analyze object boundaries in grayscale and color images. The system identifies structural shapes (lines, circles, ellipses) and evolves contours around object regions using greedy snake algorithms.
 
@@ -11,11 +11,11 @@
 
 ---
 
-### 🔍 Features & Visual Examples
+### Features & Visual Examples
 
 ---
 
-#### 🧭 Canny Edge Detection
+#### Canny Edge Detection
 
 <table>
 <tr>
@@ -41,13 +41,13 @@
 
 ---
 
-#### 🔷 Hough Transform – Shape Detection
+#### Hough Transform – Shape Detection
 
 Applies classical Hough Transform to detect geometric structures in edge maps using accumulator-based voting. The following shapes are detected independently:
 
 ---
 
-##### 📐 Hough Line Detection
+##### Hough Line Detection
 
 <table>
 <tr>
@@ -61,10 +61,14 @@ Applies classical Hough Transform to detect geometric structures in edge maps us
 </table>
 
 > **Insight:** Hough Line Transform detects straight edges by identifying colinear points in gradient space. A threshold of 300 votes was applied to ensure only dominant structural lines are retained. Useful for architectural and structural boundaries.
+>
+> **Parameter used:**
+>
+> * **Line Threshold (Votes):** 300
 
 ---
 
-##### 🔵 Hough Circle Detection
+##### Hough Circle Detection
 
 <table>
 <tr>
@@ -72,8 +76,8 @@ Applies classical Hough Transform to detect geometric structures in edge maps us
 <td><b>Detected Circles</b></td>
 </tr>
 <tr>
-<td><img src="" width="250"/></td>
-<td><img src="" width="250"/></td>
+<td><img src="https://github.com/user-attachments/assets/a9f66489-c59b-409f-a680-7df9fbf9a154" width="250"/></td>
+<td><img src="https://github.com/user-attachments/assets/8769110d-3f6c-460c-8ea4-6e4c4bac6e5d" width="250"/></td>
 </tr>
 </table>
 
@@ -82,14 +86,14 @@ Applies classical Hough Transform to detect geometric structures in edge maps us
 >
 > **Parameters used:**
 >
-> * **Minimum Radius:** 6
-> * **Maximum Radius:** 51
-> * **Canny Threshold:** 112
-> * **Accumulator Threshold:** 71
+> * **Minimum Radius:** 10
+> * **Maximum Radius:** 60
+> * **Canny Threshold:** 200
+> * **Accumulator Threshold:** 90
 
 ---
 
-##### 🟠 Hough Ellipse Detection
+##### Hough Ellipse Detection
 
 <table>
 <tr>
@@ -113,7 +117,7 @@ Applies classical Hough Transform to detect geometric structures in edge maps us
 
 ---
 
-#### 🐍 Active Contour Model (Snake)
+#### Active Contour Model (Snake)
 
 <table>
 <tr>
@@ -148,7 +152,7 @@ Applies classical Hough Transform to detect geometric structures in edge maps us
 
 ---
 
-### 📌 Installation
+### Installation
 
 ```
 git clone https://github.com/YassienTawfikk/EdgeEnhance.git
@@ -159,7 +163,7 @@ python main.py
 
 ---
 
-### 📚 Use Cases
+### Use Cases
 
 * Boundary extraction in CT/MRI images
 * Detection of manufactured or anatomical shapes (e.g., circles, ellipses)
@@ -168,7 +172,7 @@ python main.py
 
 ---
 
-### 🤝 Contributions
+### Contributions
 
 <div>
   <table align="center">
@@ -177,12 +181,6 @@ python main.py
         <a href="https://github.com/YassienTawfikk" target="_blank">
           <img src="https://avatars.githubusercontent.com/u/126521373?v=4" width="150px;" alt="Yassien Tawfik"/><br/>
           <sub><b>Yassien Tawfik</b></sub>
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/nariman-ahmed" target="_blank">
-          <img src="https://avatars.githubusercontent.com/u/126989278?v=4" width="150px;" alt="Nariman Ahmed"/><br/>
-          <sub><b>Nariman Ahmed</b></sub>
         </a>
       </td>
       <td align="center">
@@ -197,6 +195,12 @@ python main.py
           <sub><b>Nancy Mahmoud</b></sub>
         </a>
       </td>
+      <td align="center">
+        <a href="https://github.com/nariman-ahmed" target="_blank">
+          <img src="https://avatars.githubusercontent.com/u/126989278?v=4" width="150px;" alt="Nariman Ahmed"/><br/>
+          <sub><b>Nariman Ahmed</b></sub>
+        </a>
+      </td>      
     </tr>
   </table>
 </div>
