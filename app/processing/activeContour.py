@@ -116,7 +116,7 @@ class ActiveContour:
 
 
         if type == "ellipse":
-            # Coordinates for fish.png image
+            # Coordinates for image05.png image
             contour_x = (source.shape[1] // 2) + 215 * np.cos(t)
             contour_y = (source.shape[0] // 2) + 115 * np.sin(t) - 10
         else:
